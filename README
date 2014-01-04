@@ -1,52 +1,117 @@
-This file contains the source code for the programs in "flex and
-bison" published by O'Reilly in 2009.  If you use this code in a
-project or product I would appreciate credit, and, of course, it would
-be nice if you bought a copy of the book.
+## lex
+#用来定义所有的模式匹配规则
+#x.l x.lex, x.y x.yacc
+# 注释为C注释
+Lex 文件格式
+%{
+     第一部分 定义
+%}
+%%
+ 第二部分 规则
+%%
 
-The Makefiles are written for the widely available GNU Make.  The
-code has been tested with flex 2.5.35 and bison 2.4.1.  If you find
-bugs in this code, please send e-mail (preferably with fixes) so I can
-note it in errata and fix it in a future version.
+的三部分 子程序
 
-John Levine, November 2009
-Taughannock Networks
-PO Box 727
-Trumansburg NY 14886 US
-fbook@iecc.com
 
-Book info:  http://oreilly.com/catalog/9780596155971/
-This code: ftp://ftp.iecc.com/pub/file/flexbison.zip
+定义部分：
+ 可以用来声明函数， 变量，定义代替
+digit [0-9]
+letter [A-Za-z]
 
----- 
+ 在规则中可以直接使用 {digit} 来
 
-Copyright (c) 2009, Taughannock Networks. All rights reserved.
+正则元字符
+" \ [] ^ - ? . * + | () $ / {} % <>
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
+所有对元字符的引用都要使用转义字符
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+使用引号包含的字符串就代表他自己
+\t tab
+\b backspace
+\n newline
+\\ \
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
+e.g. xyz"++"
+   equal "xyz++"
+   equal xyz/+/+
 
-    * Neither the name of Taughannock Networks nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
+[] 中有3个元字符 \ - ^
+如果要在[] 中包含字符 - 他必须是第一个字符或最后一个
+ e.g. [-+0-9] matches all the gigits and the two signs
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+(ab|cd) 选择一个
 
-$Header: /home/johnl/flnb/code/RCS/README,v 2.3 2009/11/08 02:57:48 johnl Exp $
+
+Action
+对于任何匹配的token 都会执行一个对于的action 就是执行代码，默认的是
+把输入输出，一个空的action 是 ;
+
+输出匹配到的token Lex 提供了一个yytext 的变量存放匹配到的token
+[a-z]+ printf("%s", yytext);
+也可使用 ECHO 来代替
+[a-z]+ ECHO;
+
+yyleng 来存放匹配token的长度
+yylval 
+yylineno 提供当前行数
+
+如果action 有多个句子要使用 {} 扩起来
+
+
+##Lex 内置函数
+yywrap 
+  当lex 读完输入文件后就会调用 yywrap 
+  如果返回1 表示输入已经结束
+  int yywrap(void) {return 1;}
+
+yyerror 
+  错误处理函数， void yyerror(const char*)
+  通常用来输出错误，或者纠错
+
+yyparse
+  yacc 提供的函数，可以直接使用, yyparse 会自动
+   调用 yylex 来取得陪个token yylex 是yylex 是Lex生成的
+ 
+flex
+ 生产词法分析源码
+ flex xx.lex 
+ 会生成一个 lex.yy.c 的文件
+
+## yacc bison
+  bison -d xx.y
+  bison 的输入文件后缀名必须是y
+  会生成 xx.tab.c, xx.tab.h
+
+Yacc 的文法使用BNF的变量描述
+
+又 Lex返回的标记只能是终结符 terminal
+        
+gcc xx.tab.c lex.yy.c
+ 生成的可执行文件 读取标准输出，然后输出的标准输出
+  
+自底向上 reduce 从一个表倒是简化为一个非终结符 noterminal
+reduce confilict 当语法有有二意性时，及对一个表达是有多个匹配
+  规则。  需要重写语法为二意性, 或者提供操作符优先级给yacc
+
+%left 指定左结合
+%right 指定右结合
+最后列出的优先级高于先前列出的
+
+yacc 的格式和lex相同，第二部分为文法定义
+yacc 维护两个堆栈，1个分析站，一个内容站
+分析站中保存着中介符合和非中介符合
+内容站保存这这些符合对应的值
+$1 代表右是的地1个成员
+$$ 代表缩小后的堆栈的顶部
+
+
+Flex
+yywrap 函数已经废弃了，Flex有新的方法提供多文件输入
+ 使用%optin noyywrap 来不生产yywarap
+放在 %{ %} 前面
+
+提交提供一个 main函数，主动调用 yylex(), 和设置不使用 yywarp 可以
+不用链接flex 的库
+
+%option yylineno
+ 让flex 生成一个 yylineno 的变量，指定当前的行数

@@ -1,0 +1,69 @@
+编译原理
+========================
+
+语法(文法)：定义一个语言的形式。
+  常见语法 BNF（上下文无关语法） 巴斯科范式,
+  用来定义一个语言的语法
+
+语法元素：
+------------------------
+ 1. terminal (终结符号)
+ 2. nonterminal (非终结符合)
+ 3. 产生式 
+    由左部的nonterminal 和右部的有nonterminal 或 terminal 组成的序列
+	e.g. stmt : IF (expr) stmt ELSE stmt
+	小写字符都是nonterminal， 大写的都是terminal.
+	所有的 nonterminal 最后都被terminal 表达
+	
+    
+82666877 ye ma
+
+语法定义:
+------------------------
+一个BNF语法由4部分组成
+1. 终结符合集合
+2. 非终结符合集合
+3. 产生式
+4. 一个开始符合(nontermial)
+
+
+语法分析
+-------------------------
+从给出的终结符号串S 找出从文法的开始符合推导出该S的方法。
+
+语法的二意性(ambiguous)： 即从不同的推倒方式可以得到相同的终结符合S.
+为什么要消除语法的二意性： ？？？
+* 运算符合的优先级和结合性,文法的实现
+---------------------------------------
+结合性, 同一符合的推导顺序
+ 左结合文法, 用来处理需要左结合的操作推导
+   e.g. puls -> letter * puls | letter
+ 右结合文法, 用来处理需要右结合的操作推导
+   e.g. assigment -> assigment = letter| letter
+
+优先级, 不同符号的推导顺序
+  .e.g 9 + 5 * 2
+   有连个不同的优先级
+   我们分别创建两个nonternimal expr term 来代表两个优先级，
+   并使用另一个nonternimal factor 来代表基本单元。
+   factor -> digit | (expr)
+   term -> term * factor 
+         | term / factor
+         | factor
+
+   expr -> expr + term
+         | expr - term
+         | term
+          
+   从文法定义可以看出 优先级的表达， 因为 expr 是 expr +  term, 而
+      term 又是 × / 后的结果所以，这个文法×/ 比+ - 要先计算，这正式
+      希望的,
+   推广有N个优先级别的文法，要有N+1个非终结符号，先从最高级别的构造
+   nonterminal
+
+ 后缀表达式，
+  为啥需要后缀表达式： 因为使用后缀表达式，不需要括号
+  后缀是root后缀。
+   
+
+
