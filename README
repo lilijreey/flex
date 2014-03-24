@@ -23,7 +23,9 @@ letter [A-Za-z]
 正则元字符
 " \ [] ^ - ? . * + | () $ / {} % <>
 
+
 所有对元字符的引用都要使用转义字符
+e.g. \* 匹配 * 本身
 
 使用引号包含的字符串就代表他自己
 \t tab
@@ -106,8 +108,19 @@ $$ 代表缩小后的堆栈的顶部
 
 
 Flex
-yywrap 函数已经废弃了，Flex有新的方法提供多文件输入
- 使用%optin noyywrap 来不生产yywarap
+flex的选项影响最终生成的词法分析器的属性和行为。
+这些选项可以在运行flex命令时在终端输入，也可以在.l文件中使用%option指定。
+
+ %option noyywrap 来不生产yywarap
+          yywrap 函数已经废弃了，Flex有新的方法提供多文件输入
+     %option nounistd 强制flex生成的文件不包含 unistd.h 
+     %option reentrant 强制生成可重入的代码
+     %option yylineno 开启行号支持 
+     %option nounput 指示不要使用 input 和 unput 函数
+     %option bison-bridge 适配bison,生成的API能被bison 调用
+     %option header-fil="xxx.h" 指定生成的头文件的名字
+     %option outifle="lex.yy.c" 指定生成的文件的名字
+
 放在 %{ %} 前面
 
 提交提供一个 main函数，主动调用 yylex(), 和设置不使用 yywarp 可以
