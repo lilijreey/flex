@@ -112,33 +112,33 @@ Grammar
     6 select_stmt: SELECT select_opts select_expr_list
     7            | SELECT select_opts select_expr_list FROM table_references opt_where opt_groupby opt_having opt_orderby opt_limit opt_into_list
 
-    8 opt_where: /* empty */
+    8 opt_where: %empty
     9          | WHERE expr
 
-   10 opt_groupby: /* empty */
+   10 opt_groupby: %empty
    11            | GROUP BY groupby_list opt_with_rollup
 
    12 groupby_list: expr opt_asc_desc
    13             | groupby_list ',' expr opt_asc_desc
 
-   14 opt_asc_desc: /* empty */
+   14 opt_asc_desc: %empty
    15             | ASC
    16             | DESC
 
-   17 opt_with_rollup: /* empty */
+   17 opt_with_rollup: %empty
    18                | WITH ROLLUP
 
-   19 opt_having: /* empty */
+   19 opt_having: %empty
    20           | HAVING expr
 
-   21 opt_orderby: /* empty */
+   21 opt_orderby: %empty
    22            | ORDER BY groupby_list
 
-   23 opt_limit: /* empty */
+   23 opt_limit: %empty
    24          | LIMIT expr
    25          | LIMIT expr ',' expr
 
-   26 opt_into_list: /* empty */
+   26 opt_into_list: %empty
    27              | INTO column_list
 
    28 column_list: NAME
@@ -146,7 +146,7 @@ Grammar
    30            | column_list ',' NAME
    31            | column_list ',' STRING
 
-   32 select_opts: /* empty */
+   32 select_opts: %empty
    33            | select_opts ALL
    34            | select_opts DISTINCT
    35            | select_opts DISTINCTROW
@@ -174,11 +174,11 @@ Grammar
    52             | '(' table_references ')'
 
    53 opt_as: AS
-   54       | /* empty */
+   54       | %empty
 
    55 opt_as_alias: AS NAME
    56             | NAME
-   57             | /* empty */
+   57             | %empty
 
    58 join_table: table_reference opt_inner_cross JOIN table_factor opt_join_condition
    59           | table_reference STRAIGHT_JOIN table_factor
@@ -186,11 +186,11 @@ Grammar
    61           | table_reference left_or_right opt_outer JOIN table_factor join_condition
    62           | table_reference NATURAL opt_left_or_right_outer JOIN table_factor
 
-   63 opt_inner_cross: /* empty */
+   63 opt_inner_cross: %empty
    64                | INNER
    65                | CROSS
 
-   66 opt_outer: /* empty */
+   66 opt_outer: %empty
    67          | OUTER
 
    68 left_or_right: LEFT
@@ -198,10 +198,10 @@ Grammar
 
    70 opt_left_or_right_outer: LEFT opt_outer
    71                        | RIGHT opt_outer
-   72                        | /* empty */
+   72                        | %empty
 
    73 opt_join_condition: join_condition
-   74                   | /* empty */
+   74                   | %empty
 
    75 join_condition: ON expr
    76               | USING '(' column_list ')'
@@ -209,10 +209,10 @@ Grammar
    77 index_hint: USE KEY opt_for_join '(' index_list ')'
    78           | IGNORE KEY opt_for_join '(' index_list ')'
    79           | FORCE KEY opt_for_join '(' index_list ')'
-   80           | /* empty */
+   80           | %empty
 
    81 opt_for_join: FOR JOIN
-   82             | /* empty */
+   82             | %empty
 
    83 index_list: NAME
    84           | index_list ',' NAME
@@ -226,14 +226,14 @@ Grammar
    88 delete_opts: delete_opts LOW_PRIORITY
    89            | delete_opts QUICK
    90            | delete_opts IGNORE
-   91            | /* empty */
+   91            | %empty
 
    92 delete_stmt: DELETE delete_opts delete_list FROM table_references opt_where
 
    93 delete_list: NAME opt_dot_star
    94            | delete_list ',' NAME opt_dot_star
 
-   95 opt_dot_star: /* empty */
+   95 opt_dot_star: %empty
    96             | '.' '*'
 
    97 delete_stmt: DELETE delete_opts FROM delete_list USING table_references opt_where
@@ -242,19 +242,19 @@ Grammar
 
    99 insert_stmt: INSERT insert_opts opt_into NAME opt_col_names VALUES insert_vals_list opt_ondupupdate
 
-  100 opt_ondupupdate: /* empty */
+  100 opt_ondupupdate: %empty
   101                | ONDUPLICATE KEY UPDATE insert_asgn_list
 
-  102 insert_opts: /* empty */
+  102 insert_opts: %empty
   103            | insert_opts LOW_PRIORITY
   104            | insert_opts DELAYED
   105            | insert_opts HIGH_PRIORITY
   106            | insert_opts IGNORE
 
   107 opt_into: INTO
-  108         | /* empty */
+  108         | %empty
 
-  109 opt_col_names: /* empty */
+  109 opt_col_names: %empty
   110              | '(' column_list ')'
 
   111 insert_vals_list: '(' insert_vals ')'
@@ -283,7 +283,7 @@ Grammar
 
   128 update_stmt: UPDATE update_opts table_references SET update_asgn_list opt_where opt_orderby opt_limit
 
-  129 update_opts: /* empty */
+  129 update_opts: %empty
   130            | insert_opts LOW_PRIORITY
   131            | insert_opts IGNORE
 
@@ -297,7 +297,7 @@ Grammar
   137 create_database_stmt: CREATE DATABASE opt_if_not_exists NAME
   138                     | CREATE SCHEMA opt_if_not_exists NAME
 
-  139 opt_if_not_exists: /* empty */
+  139 opt_if_not_exists: %empty
   140                  | IF EXISTS
 
   141 stmt: create_table_stmt
@@ -312,7 +312,7 @@ Grammar
   148 create_col_list: create_definition
   149                | create_col_list ',' create_definition
 
-  150 $@1: /* empty */
+  150 $@1: %empty
 
   151 create_definition: $@1 NAME data_type column_atts
   152                  | PRIMARY KEY '(' column_list ')'
@@ -321,7 +321,7 @@ Grammar
   155                  | FULLTEXT INDEX '(' column_list ')'
   156                  | FULLTEXT KEY '(' column_list ')'
 
-  157 column_atts: /* empty */
+  157 column_atts: %empty
   158            | column_atts NOT NULLX
   159            | column_atts NULLX
   160            | column_atts DEFAULT STRING
@@ -335,18 +335,18 @@ Grammar
   168            | column_atts KEY
   169            | column_atts COMMENT STRING
 
-  170 opt_length: /* empty */
+  170 opt_length: %empty
   171           | '(' INTNUM ')'
   172           | '(' INTNUM ',' INTNUM ')'
 
-  173 opt_binary: /* empty */
+  173 opt_binary: %empty
   174           | BINARY
 
-  175 opt_uz: /* empty */
+  175 opt_uz: %empty
   176       | opt_uz UNSIGNED
   177       | opt_uz ZEROFILL
 
-  178 opt_csc: /* empty */
+  178 opt_csc: %empty
   179        | opt_csc CHAR SET STRING
   180        | opt_csc COLLATE STRING
 
@@ -386,11 +386,11 @@ Grammar
 
   213 create_select_statement: opt_ignore_replace opt_as select_stmt
 
-  214 opt_ignore_replace: /* empty */
+  214 opt_ignore_replace: %empty
   215                   | IGNORE
   216                   | REPLACE
 
-  217 opt_temporary: /* empty */
+  217 opt_temporary: %empty
   218              | TEMPORARY
 
   219 stmt: set_stmt
@@ -441,7 +441,7 @@ Grammar
   259 val_list: expr
   260         | expr ',' val_list
 
-  261 opt_val_list: /* empty */
+  261 opt_val_list: %empty
   262             | val_list
 
   263 expr: expr IN '(' val_list ')'
@@ -528,10 +528,10 @@ ASSIGN (264) 224 253
 OR (265) 240
 XOR (266) 241
 ANDOP (267) 239
-REGEXP (268) 298 299
-LIKE (269) 296 297
-IS (270) 254 255 256 257
-IN (271) 263 264 265 266
+IN (268) 263 264 265 266
+IS (269) 254 255 256 257
+LIKE (270) 296 297
+REGEXP (271) 298 299
 NOT (272) 158 251 255 257 264 266 297 299
 BETWEEN (273) 258
 COMPARISON (274) 119 120 121 122 132 133 134 135 223 242 243 244 245
@@ -928,7 +928,7 @@ case_list (327)
     on left: 294 295, on right: 290 291 292 293 295
 
 
-state 0
+State 0
 
     0 $accept: . stmt_list $end
 
@@ -953,14 +953,14 @@ state 0
     set_stmt              go to state 18
 
 
-state 1
+State 1
 
     3 stmt_list: error . ';'
 
     ';'  shift, and go to state 19
 
 
-state 2
+State 2
 
   137 create_database_stmt: CREATE . DATABASE opt_if_not_exists NAME
   138                     | CREATE . SCHEMA opt_if_not_exists NAME
@@ -980,7 +980,7 @@ state 2
     opt_temporary  go to state 23
 
 
-state 3
+State 3
 
    87 delete_stmt: DELETE . delete_opts FROM NAME opt_where opt_orderby opt_limit
    92            | DELETE . delete_opts delete_list FROM table_references opt_where
@@ -991,7 +991,7 @@ state 3
     delete_opts  go to state 24
 
 
-state 4
+State 4
 
    99 insert_stmt: INSERT . insert_opts opt_into NAME opt_col_names VALUES insert_vals_list opt_ondupupdate
   117            | INSERT . insert_opts opt_into NAME SET insert_asgn_list opt_ondupupdate
@@ -1002,7 +1002,7 @@ state 4
     insert_opts  go to state 25
 
 
-state 5
+State 5
 
   124 replace_stmt: REPLACE . insert_opts opt_into NAME opt_col_names VALUES insert_vals_list opt_ondupupdate
   125             | REPLACE . insert_opts opt_into NAME SET insert_asgn_list opt_ondupupdate
@@ -1013,7 +1013,7 @@ state 5
     insert_opts  go to state 26
 
 
-state 6
+State 6
 
     6 select_stmt: SELECT . select_opts select_expr_list
     7            | SELECT . select_opts select_expr_list FROM table_references opt_where opt_groupby opt_having opt_orderby opt_limit opt_into_list
@@ -1023,7 +1023,7 @@ state 6
     select_opts  go to state 27
 
 
-state 7
+State 7
 
   220 set_stmt: SET . set_list
 
@@ -1033,7 +1033,7 @@ state 7
     set_expr  go to state 30
 
 
-state 8
+State 8
 
   128 update_stmt: UPDATE . update_opts table_references SET update_asgn_list opt_where opt_orderby opt_limit
 
@@ -1045,7 +1045,7 @@ state 8
     update_opts  go to state 32
 
 
-state 9
+State 9
 
     0 $accept: stmt_list . $end
     2 stmt_list: stmt_list . stmt ';'
@@ -1072,77 +1072,77 @@ state 9
     set_stmt              go to state 18
 
 
-state 10
+State 10
 
     1 stmt_list: stmt . ';'
 
     ';'  shift, and go to state 36
 
 
-state 11
+State 11
 
     5 stmt: select_stmt .
 
     $default  reduce using rule 5 (stmt)
 
 
-state 12
+State 12
 
    86 stmt: delete_stmt .
 
     $default  reduce using rule 86 (stmt)
 
 
-state 13
+State 13
 
    98 stmt: insert_stmt .
 
     $default  reduce using rule 98 (stmt)
 
 
-state 14
+State 14
 
   123 stmt: replace_stmt .
 
     $default  reduce using rule 123 (stmt)
 
 
-state 15
+State 15
 
   127 stmt: update_stmt .
 
     $default  reduce using rule 127 (stmt)
 
 
-state 16
+State 16
 
   136 stmt: create_database_stmt .
 
     $default  reduce using rule 136 (stmt)
 
 
-state 17
+State 17
 
   141 stmt: create_table_stmt .
 
     $default  reduce using rule 141 (stmt)
 
 
-state 18
+State 18
 
   219 stmt: set_stmt .
 
     $default  reduce using rule 219 (stmt)
 
 
-state 19
+State 19
 
     3 stmt_list: error ';' .
 
     $default  reduce using rule 3 (stmt_list)
 
 
-state 20
+State 20
 
   137 create_database_stmt: CREATE DATABASE . opt_if_not_exists NAME
 
@@ -1153,7 +1153,7 @@ state 20
     opt_if_not_exists  go to state 38
 
 
-state 21
+State 21
 
   138 create_database_stmt: CREATE SCHEMA . opt_if_not_exists NAME
 
@@ -1164,14 +1164,14 @@ state 21
     opt_if_not_exists  go to state 39
 
 
-state 22
+State 22
 
   218 opt_temporary: TEMPORARY .
 
     $default  reduce using rule 218 (opt_temporary)
 
 
-state 23
+State 23
 
   142 create_table_stmt: CREATE opt_temporary . TABLE opt_if_not_exists NAME '(' create_col_list ')'
   143                  | CREATE opt_temporary . TABLE opt_if_not_exists NAME '.' NAME '(' create_col_list ')'
@@ -1183,7 +1183,7 @@ state 23
     TABLE  shift, and go to state 40
 
 
-state 24
+State 24
 
    87 delete_stmt: DELETE delete_opts . FROM NAME opt_where opt_orderby opt_limit
    88 delete_opts: delete_opts . LOW_PRIORITY
@@ -1201,7 +1201,7 @@ state 24
     delete_list  go to state 46
 
 
-state 25
+State 25
 
    99 insert_stmt: INSERT insert_opts . opt_into NAME opt_col_names VALUES insert_vals_list opt_ondupupdate
   103 insert_opts: insert_opts . LOW_PRIORITY
@@ -1222,7 +1222,7 @@ state 25
     opt_into  go to state 52
 
 
-state 26
+State 26
 
   103 insert_opts: insert_opts . LOW_PRIORITY
   104            | insert_opts . DELAYED
@@ -1243,7 +1243,7 @@ state 26
     opt_into  go to state 53
 
 
-state 27
+State 27
 
     6 select_stmt: SELECT select_opts . select_expr_list
     7            | SELECT select_opts . select_expr_list FROM table_references opt_where opt_groupby opt_having opt_orderby opt_limit opt_into_list
@@ -1262,8 +1262,8 @@ state 27
     BOOL                 shift, and go to state 57
     APPROXNUM            shift, and go to state 58
     USERVAR              shift, and go to state 59
-    '!'                  shift, and go to state 60
-    NOT                  shift, and go to state 61
+    NOT                  shift, and go to state 60
+    '!'                  shift, and go to state 61
     '-'                  shift, and go to state 62
     '*'                  shift, and go to state 63
     ALL                  shift, and go to state 64
@@ -1291,7 +1291,7 @@ state 27
     expr              go to state 85
 
 
-state 28
+State 28
 
   223 set_expr: USERVAR . COMPARISON expr
   224         | USERVAR . ASSIGN expr
@@ -1300,7 +1300,7 @@ state 28
     COMPARISON  shift, and go to state 87
 
 
-state 29
+State 29
 
   220 set_stmt: SET set_list .
   222 set_list: set_list . ',' set_expr
@@ -1310,14 +1310,14 @@ state 29
     $default  reduce using rule 220 (set_stmt)
 
 
-state 30
+State 30
 
   221 set_list: set_expr .
 
     $default  reduce using rule 221 (set_list)
 
 
-state 31
+State 31
 
   103 insert_opts: insert_opts . LOW_PRIORITY
   104            | insert_opts . DELAYED
@@ -1332,7 +1332,7 @@ state 31
     LOW_PRIORITY   shift, and go to state 90
 
 
-state 32
+State 32
 
   128 update_stmt: UPDATE update_opts . table_references SET update_asgn_list opt_where opt_orderby opt_limit
 
@@ -1346,56 +1346,56 @@ state 32
     table_subquery    go to state 97
 
 
-state 33
+State 33
 
     0 $accept: stmt_list $end .
 
     $default  accept
 
 
-state 34
+State 34
 
     4 stmt_list: stmt_list error . ';'
 
     ';'  shift, and go to state 98
 
 
-state 35
+State 35
 
     2 stmt_list: stmt_list stmt . ';'
 
     ';'  shift, and go to state 99
 
 
-state 36
+State 36
 
     1 stmt_list: stmt ';' .
 
     $default  reduce using rule 1 (stmt_list)
 
 
-state 37
+State 37
 
   140 opt_if_not_exists: IF . EXISTS
 
     EXISTS  shift, and go to state 100
 
 
-state 38
+State 38
 
   137 create_database_stmt: CREATE DATABASE opt_if_not_exists . NAME
 
     NAME  shift, and go to state 101
 
 
-state 39
+State 39
 
   138 create_database_stmt: CREATE SCHEMA opt_if_not_exists . NAME
 
     NAME  shift, and go to state 102
 
 
-state 40
+State 40
 
   142 create_table_stmt: CREATE opt_temporary TABLE . opt_if_not_exists NAME '(' create_col_list ')'
   143                  | CREATE opt_temporary TABLE . opt_if_not_exists NAME '.' NAME '(' create_col_list ')'
@@ -1411,7 +1411,7 @@ state 40
     opt_if_not_exists  go to state 103
 
 
-state 41
+State 41
 
    93 delete_list: NAME . opt_dot_star
 
@@ -1422,7 +1422,7 @@ state 41
     opt_dot_star  go to state 105
 
 
-state 42
+State 42
 
    87 delete_stmt: DELETE delete_opts FROM . NAME opt_where opt_orderby opt_limit
    97            | DELETE delete_opts FROM . delete_list USING table_references opt_where
@@ -1432,28 +1432,28 @@ state 42
     delete_list  go to state 107
 
 
-state 43
+State 43
 
    90 delete_opts: delete_opts IGNORE .
 
     $default  reduce using rule 90 (delete_opts)
 
 
-state 44
+State 44
 
    88 delete_opts: delete_opts LOW_PRIORITY .
 
     $default  reduce using rule 88 (delete_opts)
 
 
-state 45
+State 45
 
    89 delete_opts: delete_opts QUICK .
 
     $default  reduce using rule 89 (delete_opts)
 
 
-state 46
+State 46
 
    92 delete_stmt: DELETE delete_opts delete_list . FROM table_references opt_where
    94 delete_list: delete_list . ',' NAME opt_dot_star
@@ -1462,42 +1462,42 @@ state 46
     ','   shift, and go to state 109
 
 
-state 47
+State 47
 
   104 insert_opts: insert_opts DELAYED .
 
     $default  reduce using rule 104 (insert_opts)
 
 
-state 48
+State 48
 
   105 insert_opts: insert_opts HIGH_PRIORITY .
 
     $default  reduce using rule 105 (insert_opts)
 
 
-state 49
+State 49
 
   106 insert_opts: insert_opts IGNORE .
 
     $default  reduce using rule 106 (insert_opts)
 
 
-state 50
+State 50
 
   107 opt_into: INTO .
 
     $default  reduce using rule 107 (opt_into)
 
 
-state 51
+State 51
 
   103 insert_opts: insert_opts LOW_PRIORITY .
 
     $default  reduce using rule 103 (insert_opts)
 
 
-state 52
+State 52
 
    99 insert_stmt: INSERT insert_opts opt_into . NAME opt_col_names VALUES insert_vals_list opt_ondupupdate
   117            | INSERT insert_opts opt_into . NAME SET insert_asgn_list opt_ondupupdate
@@ -1506,7 +1506,7 @@ state 52
     NAME  shift, and go to state 110
 
 
-state 53
+State 53
 
   124 replace_stmt: REPLACE insert_opts opt_into . NAME opt_col_names VALUES insert_vals_list opt_ondupupdate
   125             | REPLACE insert_opts opt_into . NAME SET insert_asgn_list opt_ondupupdate
@@ -1515,7 +1515,7 @@ state 53
     NAME  shift, and go to state 111
 
 
-state 54
+State 54
 
   225 expr: NAME .
   227     | NAME . '.' NAME
@@ -1527,35 +1527,35 @@ state 54
     $default  reduce using rule 225 (expr)
 
 
-state 55
+State 55
 
   228 expr: STRING .
 
     $default  reduce using rule 228 (expr)
 
 
-state 56
+State 56
 
   229 expr: INTNUM .
 
     $default  reduce using rule 229 (expr)
 
 
-state 57
+State 57
 
   231 expr: BOOL .
 
     $default  reduce using rule 231 (expr)
 
 
-state 58
+State 58
 
   230 expr: APPROXNUM .
 
     $default  reduce using rule 230 (expr)
 
 
-state 59
+State 59
 
   226 expr: USERVAR .
   253     | USERVAR . ASSIGN expr
@@ -1565,9 +1565,9 @@ state 59
     $default  reduce using rule 226 (expr)
 
 
-state 60
+State 60
 
-  252 expr: '!' . expr
+  251 expr: NOT . expr
 
     NAME               shift, and go to state 54
     STRING             shift, and go to state 55
@@ -1575,8 +1575,8 @@ state 60
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -1593,9 +1593,9 @@ state 60
     expr  go to state 115
 
 
-state 61
+State 61
 
-  251 expr: NOT . expr
+  252 expr: '!' . expr
 
     NAME               shift, and go to state 54
     STRING             shift, and go to state 55
@@ -1603,8 +1603,8 @@ state 61
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -1621,7 +1621,7 @@ state 61
     expr  go to state 116
 
 
-state 62
+State 62
 
   238 expr: '-' . expr
 
@@ -1631,8 +1631,8 @@ state 62
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -1649,21 +1649,21 @@ state 62
     expr  go to state 117
 
 
-state 63
+State 63
 
    43 select_expr_list: '*' .
 
     $default  reduce using rule 43 (select_expr_list)
 
 
-state 64
+State 64
 
    33 select_opts: select_opts ALL .
 
     $default  reduce using rule 33 (select_opts)
 
 
-state 65
+State 65
 
   303 expr: BINARY . expr
 
@@ -1673,8 +1673,8 @@ state 65
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -1691,7 +1691,7 @@ state 65
     expr  go to state 118
 
 
-state 66
+State 66
 
   290 expr: CASE . expr case_list END
   291     | CASE . expr case_list ELSE expr END
@@ -1704,8 +1704,8 @@ state 66
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -1724,84 +1724,84 @@ state 66
     case_list  go to state 121
 
 
-state 67
+State 67
 
   301 expr: CURRENT_DATE .
 
     $default  reduce using rule 301 (expr)
 
 
-state 68
+State 68
 
   302 expr: CURRENT_TIME .
 
     $default  reduce using rule 302 (expr)
 
 
-state 69
+State 69
 
   300 expr: CURRENT_TIMESTAMP .
 
     $default  reduce using rule 300 (expr)
 
 
-state 70
+State 70
 
    34 select_opts: select_opts DISTINCT .
 
     $default  reduce using rule 34 (select_opts)
 
 
-state 71
+State 71
 
    35 select_opts: select_opts DISTINCTROW .
 
     $default  reduce using rule 35 (select_opts)
 
 
-state 72
+State 72
 
   267 expr: EXISTS . '(' select_stmt ')'
 
     '('  shift, and go to state 122
 
 
-state 73
+State 73
 
    36 select_opts: select_opts HIGH_PRIORITY .
 
     $default  reduce using rule 36 (select_opts)
 
 
-state 74
+State 74
 
    39 select_opts: select_opts SQL_BIG_RESULT .
 
     $default  reduce using rule 39 (select_opts)
 
 
-state 75
+State 75
 
    40 select_opts: select_opts SQL_CALC_FOUND_ROWS .
 
     $default  reduce using rule 40 (select_opts)
 
 
-state 76
+State 76
 
    38 select_opts: select_opts SQL_SMALL_RESULT .
 
     $default  reduce using rule 38 (select_opts)
 
 
-state 77
+State 77
 
    37 select_opts: select_opts STRAIGHT_JOIN .
 
     $default  reduce using rule 37 (select_opts)
 
 
-state 78
+State 78
 
   271 expr: FSUBSTRING . '(' val_list ')'
   272     | FSUBSTRING . '(' expr FROM expr ')'
@@ -1810,7 +1810,7 @@ state 78
     '('  shift, and go to state 123
 
 
-state 79
+State 79
 
   274 expr: FTRIM . '(' val_list ')'
   275     | FTRIM . '(' trim_ltb expr FROM val_list ')'
@@ -1818,21 +1818,21 @@ state 79
     '('  shift, and go to state 124
 
 
-state 80
+State 80
 
   279 expr: FDATE_ADD . '(' expr ',' interval_exp ')'
 
     '('  shift, and go to state 125
 
 
-state 81
+State 81
 
   280 expr: FDATE_SUB . '(' expr ',' interval_exp ')'
 
     '('  shift, and go to state 126
 
 
-state 82
+State 82
 
   269 expr: FCOUNT . '(' '*' ')'
   270     | FCOUNT . '(' expr ')'
@@ -1840,7 +1840,7 @@ state 82
     '('  shift, and go to state 127
 
 
-state 83
+State 83
 
     6 select_stmt: SELECT select_opts select_expr_list .
     7            | SELECT select_opts select_expr_list . FROM table_references opt_where opt_groupby opt_having opt_orderby opt_limit opt_into_list
@@ -1852,14 +1852,14 @@ state 83
     $default  reduce using rule 6 (select_stmt)
 
 
-state 84
+State 84
 
    41 select_expr_list: select_expr .
 
     $default  reduce using rule 41 (select_expr_list)
 
 
-state 85
+State 85
 
    44 select_expr: expr . opt_as_alias
   232 expr: expr . '+' expr
@@ -1898,10 +1898,10 @@ state 85
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -1922,7 +1922,7 @@ state 85
     opt_as_alias  go to state 152
 
 
-state 86
+State 86
 
   224 set_expr: USERVAR ASSIGN . expr
 
@@ -1932,8 +1932,8 @@ state 86
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -1950,7 +1950,7 @@ state 86
     expr  go to state 153
 
 
-state 87
+State 87
 
   223 set_expr: USERVAR COMPARISON . expr
 
@@ -1960,8 +1960,8 @@ state 87
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -1978,7 +1978,7 @@ state 87
     expr  go to state 154
 
 
-state 88
+State 88
 
   222 set_list: set_list ',' . set_expr
 
@@ -1987,7 +1987,7 @@ state 88
     set_expr  go to state 155
 
 
-state 89
+State 89
 
   106 insert_opts: insert_opts IGNORE .
   131 update_opts: insert_opts IGNORE .
@@ -1997,7 +1997,7 @@ state 89
     $default  reduce using rule 106 (insert_opts)
 
 
-state 90
+State 90
 
   103 insert_opts: insert_opts LOW_PRIORITY .
   130 update_opts: insert_opts LOW_PRIORITY .
@@ -2007,7 +2007,7 @@ state 90
     $default  reduce using rule 103 (insert_opts)
 
 
-state 91
+State 91
 
    49 table_factor: NAME . opt_as_alias index_hint
    50             | NAME . '.' NAME opt_as_alias index_hint
@@ -2021,7 +2021,7 @@ state 91
     opt_as_alias  go to state 157
 
 
-state 92
+State 92
 
    52 table_factor: '(' . table_references ')'
    85 table_subquery: '(' . select_stmt ')'
@@ -2038,7 +2038,7 @@ state 92
     table_subquery    go to state 97
 
 
-state 93
+State 93
 
    46 table_references: table_references . ',' table_reference
   128 update_stmt: UPDATE update_opts table_references . SET update_asgn_list opt_where opt_orderby opt_limit
@@ -2047,7 +2047,7 @@ state 93
     ','  shift, and go to state 161
 
 
-state 94
+State 94
 
    45 table_references: table_reference .
    58 join_table: table_reference . opt_inner_cross JOIN table_factor opt_join_condition
@@ -2070,21 +2070,21 @@ state 94
     left_or_right    go to state 169
 
 
-state 95
+State 95
 
    47 table_reference: table_factor .
 
     $default  reduce using rule 47 (table_reference)
 
 
-state 96
+State 96
 
    48 table_reference: join_table .
 
     $default  reduce using rule 48 (table_reference)
 
 
-state 97
+State 97
 
    51 table_factor: table_subquery . opt_as NAME
 
@@ -2095,42 +2095,42 @@ state 97
     opt_as  go to state 171
 
 
-state 98
+State 98
 
     4 stmt_list: stmt_list error ';' .
 
     $default  reduce using rule 4 (stmt_list)
 
 
-state 99
+State 99
 
     2 stmt_list: stmt_list stmt ';' .
 
     $default  reduce using rule 2 (stmt_list)
 
 
-state 100
+State 100
 
   140 opt_if_not_exists: IF EXISTS .
 
     $default  reduce using rule 140 (opt_if_not_exists)
 
 
-state 101
+State 101
 
   137 create_database_stmt: CREATE DATABASE opt_if_not_exists NAME .
 
     $default  reduce using rule 137 (create_database_stmt)
 
 
-state 102
+State 102
 
   138 create_database_stmt: CREATE SCHEMA opt_if_not_exists NAME .
 
     $default  reduce using rule 138 (create_database_stmt)
 
 
-state 103
+State 103
 
   142 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists . NAME '(' create_col_list ')'
   143                  | CREATE opt_temporary TABLE opt_if_not_exists . NAME '.' NAME '(' create_col_list ')'
@@ -2142,21 +2142,21 @@ state 103
     NAME  shift, and go to state 172
 
 
-state 104
+State 104
 
    96 opt_dot_star: '.' . '*'
 
     '*'  shift, and go to state 173
 
 
-state 105
+State 105
 
    93 delete_list: NAME opt_dot_star .
 
     $default  reduce using rule 93 (delete_list)
 
 
-state 106
+State 106
 
    87 delete_stmt: DELETE delete_opts FROM NAME . opt_where opt_orderby opt_limit
    93 delete_list: NAME . opt_dot_star
@@ -2172,7 +2172,7 @@ state 106
     opt_dot_star  go to state 105
 
 
-state 107
+State 107
 
    94 delete_list: delete_list . ',' NAME opt_dot_star
    97 delete_stmt: DELETE delete_opts FROM delete_list . USING table_references opt_where
@@ -2181,7 +2181,7 @@ state 107
     ','    shift, and go to state 109
 
 
-state 108
+State 108
 
    92 delete_stmt: DELETE delete_opts delete_list FROM . table_references opt_where
 
@@ -2195,14 +2195,14 @@ state 108
     table_subquery    go to state 97
 
 
-state 109
+State 109
 
    94 delete_list: delete_list ',' . NAME opt_dot_star
 
     NAME  shift, and go to state 178
 
 
-state 110
+State 110
 
    99 insert_stmt: INSERT insert_opts opt_into NAME . opt_col_names VALUES insert_vals_list opt_ondupupdate
   117            | INSERT insert_opts opt_into NAME . SET insert_asgn_list opt_ondupupdate
@@ -2216,7 +2216,7 @@ state 110
     opt_col_names  go to state 181
 
 
-state 111
+State 111
 
   124 replace_stmt: REPLACE insert_opts opt_into NAME . opt_col_names VALUES insert_vals_list opt_ondupupdate
   125             | REPLACE insert_opts opt_into NAME . SET insert_asgn_list opt_ondupupdate
@@ -2230,14 +2230,14 @@ state 111
     opt_col_names  go to state 183
 
 
-state 112
+State 112
 
   227 expr: NAME '.' . NAME
 
     NAME  shift, and go to state 184
 
 
-state 113
+State 113
 
   268 expr: NAME '(' . opt_val_list ')'
 
@@ -2247,8 +2247,8 @@ state 113
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2269,7 +2269,7 @@ state 113
     opt_val_list  go to state 187
 
 
-state 114
+State 114
 
   253 expr: USERVAR ASSIGN . expr
 
@@ -2279,8 +2279,8 @@ state 114
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2297,58 +2297,7 @@ state 114
     expr  go to state 188
 
 
-state 115
-
-  232 expr: expr . '+' expr
-  233     | expr . '-' expr
-  234     | expr . '*' expr
-  235     | expr . '/' expr
-  236     | expr . '%' expr
-  237     | expr . MOD expr
-  239     | expr . ANDOP expr
-  240     | expr . OR expr
-  241     | expr . XOR expr
-  242     | expr . COMPARISON expr
-  243     | expr . COMPARISON '(' select_stmt ')'
-  244     | expr . COMPARISON ANY '(' select_stmt ')'
-  245     | expr . COMPARISON SOME '(' select_stmt ')'
-  246     | expr . COMPARISON ALL '(' select_stmt ')'
-  247     | expr . '|' expr
-  248     | expr . '&' expr
-  249     | expr . '^' expr
-  250     | expr . SHIFT expr
-  252     | '!' expr .
-  254     | expr . IS NULLX
-  255     | expr . IS NOT NULLX
-  256     | expr . IS BOOL
-  257     | expr . IS NOT BOOL
-  258     | expr . BETWEEN expr AND expr
-  263     | expr . IN '(' val_list ')'
-  264     | expr . NOT IN '(' val_list ')'
-  265     | expr . IN '(' select_stmt ')'
-  266     | expr . NOT IN '(' select_stmt ')'
-  296     | expr . LIKE expr
-  297     | expr . NOT LIKE expr
-  298     | expr . REGEXP expr
-  299     | expr . NOT REGEXP expr
-
-    BETWEEN     shift, and go to state 139
-    COMPARISON  shift, and go to state 140
-    '|'         shift, and go to state 141
-    '&'         shift, and go to state 142
-    SHIFT       shift, and go to state 143
-    '+'         shift, and go to state 144
-    '-'         shift, and go to state 145
-    '*'         shift, and go to state 146
-    '/'         shift, and go to state 147
-    '%'         shift, and go to state 148
-    MOD         shift, and go to state 149
-    '^'         shift, and go to state 150
-
-    $default  reduce using rule 252 (expr)
-
-
-state 116
+State 115
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -2399,7 +2348,58 @@ state 116
     $default  reduce using rule 251 (expr)
 
 
-state 117
+State 116
+
+  232 expr: expr . '+' expr
+  233     | expr . '-' expr
+  234     | expr . '*' expr
+  235     | expr . '/' expr
+  236     | expr . '%' expr
+  237     | expr . MOD expr
+  239     | expr . ANDOP expr
+  240     | expr . OR expr
+  241     | expr . XOR expr
+  242     | expr . COMPARISON expr
+  243     | expr . COMPARISON '(' select_stmt ')'
+  244     | expr . COMPARISON ANY '(' select_stmt ')'
+  245     | expr . COMPARISON SOME '(' select_stmt ')'
+  246     | expr . COMPARISON ALL '(' select_stmt ')'
+  247     | expr . '|' expr
+  248     | expr . '&' expr
+  249     | expr . '^' expr
+  250     | expr . SHIFT expr
+  252     | '!' expr .
+  254     | expr . IS NULLX
+  255     | expr . IS NOT NULLX
+  256     | expr . IS BOOL
+  257     | expr . IS NOT BOOL
+  258     | expr . BETWEEN expr AND expr
+  263     | expr . IN '(' val_list ')'
+  264     | expr . NOT IN '(' val_list ')'
+  265     | expr . IN '(' select_stmt ')'
+  266     | expr . NOT IN '(' select_stmt ')'
+  296     | expr . LIKE expr
+  297     | expr . NOT LIKE expr
+  298     | expr . REGEXP expr
+  299     | expr . NOT REGEXP expr
+
+    BETWEEN     shift, and go to state 139
+    COMPARISON  shift, and go to state 140
+    '|'         shift, and go to state 141
+    '&'         shift, and go to state 142
+    SHIFT       shift, and go to state 143
+    '+'         shift, and go to state 144
+    '-'         shift, and go to state 145
+    '*'         shift, and go to state 146
+    '/'         shift, and go to state 147
+    '%'         shift, and go to state 148
+    MOD         shift, and go to state 149
+    '^'         shift, and go to state 150
+
+    $default  reduce using rule 252 (expr)
+
+
+State 117
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -2437,7 +2437,7 @@ state 117
     $default  reduce using rule 238 (expr)
 
 
-state 118
+State 118
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -2475,7 +2475,7 @@ state 118
     $default  reduce using rule 303 (expr)
 
 
-state 119
+State 119
 
   294 case_list: WHEN . expr THEN expr
 
@@ -2485,8 +2485,8 @@ state 119
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2503,7 +2503,7 @@ state 119
     expr  go to state 189
 
 
-state 120
+State 120
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -2542,10 +2542,10 @@ state 120
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -2564,7 +2564,7 @@ state 120
     case_list  go to state 190
 
 
-state 121
+State 121
 
   292 expr: CASE case_list . END
   293     | CASE case_list . ELSE expr END
@@ -2575,7 +2575,7 @@ state 121
     WHEN  shift, and go to state 193
 
 
-state 122
+State 122
 
   267 expr: EXISTS '(' . select_stmt ')'
 
@@ -2584,7 +2584,7 @@ state 122
     select_stmt  go to state 194
 
 
-state 123
+State 123
 
   271 expr: FSUBSTRING '(' . val_list ')'
   272     | FSUBSTRING '(' . expr FROM expr ')'
@@ -2596,8 +2596,8 @@ state 123
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2615,7 +2615,7 @@ state 123
     val_list  go to state 196
 
 
-state 124
+State 124
 
   274 expr: FTRIM '(' . val_list ')'
   275     | FTRIM '(' . trim_ltb expr FROM val_list ')'
@@ -2626,8 +2626,8 @@ state 124
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     BOTH               shift, and go to state 197
@@ -2649,7 +2649,7 @@ state 124
     trim_ltb  go to state 201
 
 
-state 125
+State 125
 
   279 expr: FDATE_ADD '(' . expr ',' interval_exp ')'
 
@@ -2659,8 +2659,8 @@ state 125
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2677,7 +2677,7 @@ state 125
     expr  go to state 202
 
 
-state 126
+State 126
 
   280 expr: FDATE_SUB '(' . expr ',' interval_exp ')'
 
@@ -2687,8 +2687,8 @@ state 126
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2705,7 +2705,7 @@ state 126
     expr  go to state 203
 
 
-state 127
+State 127
 
   269 expr: FCOUNT '(' . '*' ')'
   270     | FCOUNT '(' . expr ')'
@@ -2716,8 +2716,8 @@ state 127
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     '*'                shift, and go to state 204
     BINARY             shift, and go to state 65
@@ -2735,7 +2735,7 @@ state 127
     expr  go to state 205
 
 
-state 128
+State 128
 
     7 select_stmt: SELECT select_opts select_expr_list FROM . table_references opt_where opt_groupby opt_having opt_orderby opt_limit opt_into_list
 
@@ -2749,7 +2749,7 @@ state 128
     table_subquery    go to state 97
 
 
-state 129
+State 129
 
    42 select_expr_list: select_expr_list ',' . select_expr
 
@@ -2759,8 +2759,8 @@ state 129
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2778,14 +2778,14 @@ state 129
     expr         go to state 85
 
 
-state 130
+State 130
 
    56 opt_as_alias: NAME .
 
     $default  reduce using rule 56 (opt_as_alias)
 
 
-state 131
+State 131
 
   240 expr: expr OR . expr
 
@@ -2795,8 +2795,8 @@ state 131
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2813,7 +2813,7 @@ state 131
     expr  go to state 208
 
 
-state 132
+State 132
 
   241 expr: expr XOR . expr
 
@@ -2823,8 +2823,8 @@ state 132
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2841,7 +2841,7 @@ state 132
     expr  go to state 209
 
 
-state 133
+State 133
 
   239 expr: expr ANDOP . expr
 
@@ -2851,8 +2851,8 @@ state 133
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2869,35 +2869,27 @@ state 133
     expr  go to state 210
 
 
-state 134
+State 134
 
-  298 expr: expr REGEXP . expr
+  263 expr: expr IN . '(' val_list ')'
+  265     | expr IN . '(' select_stmt ')'
 
-    NAME               shift, and go to state 54
-    STRING             shift, and go to state 55
-    INTNUM             shift, and go to state 56
-    BOOL               shift, and go to state 57
-    APPROXNUM          shift, and go to state 58
-    USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
-    '-'                shift, and go to state 62
-    BINARY             shift, and go to state 65
-    CASE               shift, and go to state 66
-    CURRENT_DATE       shift, and go to state 67
-    CURRENT_TIME       shift, and go to state 68
-    CURRENT_TIMESTAMP  shift, and go to state 69
-    EXISTS             shift, and go to state 72
-    FSUBSTRING         shift, and go to state 78
-    FTRIM              shift, and go to state 79
-    FDATE_ADD          shift, and go to state 80
-    FDATE_SUB          shift, and go to state 81
-    FCOUNT             shift, and go to state 82
-
-    expr  go to state 211
+    '('  shift, and go to state 211
 
 
-state 135
+State 135
+
+  254 expr: expr IS . NULLX
+  255     | expr IS . NOT NULLX
+  256     | expr IS . BOOL
+  257     | expr IS . NOT BOOL
+
+    BOOL   shift, and go to state 212
+    NOT    shift, and go to state 213
+    NULLX  shift, and go to state 214
+
+
+State 136
 
   296 expr: expr LIKE . expr
 
@@ -2907,8 +2899,8 @@ state 135
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2922,42 +2914,50 @@ state 135
     FDATE_SUB          shift, and go to state 81
     FCOUNT             shift, and go to state 82
 
-    expr  go to state 212
+    expr  go to state 215
 
 
-state 136
+State 137
 
-  254 expr: expr IS . NULLX
-  255     | expr IS . NOT NULLX
-  256     | expr IS . BOOL
-  257     | expr IS . NOT BOOL
+  298 expr: expr REGEXP . expr
 
-    BOOL   shift, and go to state 213
-    NOT    shift, and go to state 214
-    NULLX  shift, and go to state 215
+    NAME               shift, and go to state 54
+    STRING             shift, and go to state 55
+    INTNUM             shift, and go to state 56
+    BOOL               shift, and go to state 57
+    APPROXNUM          shift, and go to state 58
+    USERVAR            shift, and go to state 59
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
+    '-'                shift, and go to state 62
+    BINARY             shift, and go to state 65
+    CASE               shift, and go to state 66
+    CURRENT_DATE       shift, and go to state 67
+    CURRENT_TIME       shift, and go to state 68
+    CURRENT_TIMESTAMP  shift, and go to state 69
+    EXISTS             shift, and go to state 72
+    FSUBSTRING         shift, and go to state 78
+    FTRIM              shift, and go to state 79
+    FDATE_ADD          shift, and go to state 80
+    FDATE_SUB          shift, and go to state 81
+    FCOUNT             shift, and go to state 82
+
+    expr  go to state 216
 
 
-state 137
-
-  263 expr: expr IN . '(' val_list ')'
-  265     | expr IN . '(' select_stmt ')'
-
-    '('  shift, and go to state 216
-
-
-state 138
+State 138
 
   264 expr: expr NOT . IN '(' val_list ')'
   266     | expr NOT . IN '(' select_stmt ')'
   297     | expr NOT . LIKE expr
   299     | expr NOT . REGEXP expr
 
-    REGEXP  shift, and go to state 217
+    IN      shift, and go to state 217
     LIKE    shift, and go to state 218
-    IN      shift, and go to state 219
+    REGEXP  shift, and go to state 219
 
 
-state 139
+State 139
 
   258 expr: expr BETWEEN . expr AND expr
 
@@ -2967,8 +2967,8 @@ state 139
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -2985,7 +2985,7 @@ state 139
     expr  go to state 220
 
 
-state 140
+State 140
 
   242 expr: expr COMPARISON . expr
   243     | expr COMPARISON . '(' select_stmt ')'
@@ -2999,8 +2999,8 @@ state 140
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     ALL                shift, and go to state 221
     ANY                shift, and go to state 222
@@ -3021,7 +3021,7 @@ state 140
     expr  go to state 225
 
 
-state 141
+State 141
 
   247 expr: expr '|' . expr
 
@@ -3031,8 +3031,8 @@ state 141
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3049,7 +3049,7 @@ state 141
     expr  go to state 226
 
 
-state 142
+State 142
 
   248 expr: expr '&' . expr
 
@@ -3059,8 +3059,8 @@ state 142
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3077,7 +3077,7 @@ state 142
     expr  go to state 227
 
 
-state 143
+State 143
 
   250 expr: expr SHIFT . expr
 
@@ -3087,8 +3087,8 @@ state 143
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3105,7 +3105,7 @@ state 143
     expr  go to state 228
 
 
-state 144
+State 144
 
   232 expr: expr '+' . expr
 
@@ -3115,8 +3115,8 @@ state 144
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3133,7 +3133,7 @@ state 144
     expr  go to state 229
 
 
-state 145
+State 145
 
   233 expr: expr '-' . expr
 
@@ -3143,8 +3143,8 @@ state 145
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3161,7 +3161,7 @@ state 145
     expr  go to state 230
 
 
-state 146
+State 146
 
   234 expr: expr '*' . expr
 
@@ -3171,8 +3171,8 @@ state 146
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3189,7 +3189,7 @@ state 146
     expr  go to state 231
 
 
-state 147
+State 147
 
   235 expr: expr '/' . expr
 
@@ -3199,8 +3199,8 @@ state 147
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3217,7 +3217,7 @@ state 147
     expr  go to state 232
 
 
-state 148
+State 148
 
   236 expr: expr '%' . expr
 
@@ -3227,8 +3227,8 @@ state 148
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3245,7 +3245,7 @@ state 148
     expr  go to state 233
 
 
-state 149
+State 149
 
   237 expr: expr MOD . expr
 
@@ -3255,8 +3255,8 @@ state 149
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3273,7 +3273,7 @@ state 149
     expr  go to state 234
 
 
-state 150
+State 150
 
   249 expr: expr '^' . expr
 
@@ -3283,8 +3283,8 @@ state 150
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3301,21 +3301,21 @@ state 150
     expr  go to state 235
 
 
-state 151
+State 151
 
    55 opt_as_alias: AS . NAME
 
     NAME  shift, and go to state 236
 
 
-state 152
+State 152
 
    44 select_expr: expr opt_as_alias .
 
     $default  reduce using rule 44 (select_expr)
 
 
-state 153
+State 153
 
   224 set_expr: USERVAR ASSIGN expr .
   232 expr: expr . '+' expr
@@ -3353,10 +3353,10 @@ state 153
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -3374,7 +3374,7 @@ state 153
     $default  reduce using rule 224 (set_expr)
 
 
-state 154
+State 154
 
   223 set_expr: USERVAR COMPARISON expr .
   232 expr: expr . '+' expr
@@ -3412,10 +3412,10 @@ state 154
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -3433,21 +3433,21 @@ state 154
     $default  reduce using rule 223 (set_expr)
 
 
-state 155
+State 155
 
   222 set_list: set_list ',' set_expr .
 
     $default  reduce using rule 222 (set_list)
 
 
-state 156
+State 156
 
    50 table_factor: NAME '.' . NAME opt_as_alias index_hint
 
     NAME  shift, and go to state 237
 
 
-state 157
+State 157
 
    49 table_factor: NAME opt_as_alias . index_hint
 
@@ -3460,14 +3460,14 @@ state 157
     index_hint  go to state 241
 
 
-state 158
+State 158
 
    85 table_subquery: '(' select_stmt . ')'
 
     ')'  shift, and go to state 242
 
 
-state 159
+State 159
 
    46 table_references: table_references . ',' table_reference
    52 table_factor: '(' table_references . ')'
@@ -3476,7 +3476,7 @@ state 159
     ')'  shift, and go to state 243
 
 
-state 160
+State 160
 
   128 update_stmt: UPDATE update_opts table_references SET . update_asgn_list opt_where opt_orderby opt_limit
 
@@ -3485,7 +3485,7 @@ state 160
     update_asgn_list  go to state 245
 
 
-state 161
+State 161
 
    46 table_references: table_references ',' . table_reference
 
@@ -3498,28 +3498,28 @@ state 161
     table_subquery   go to state 97
 
 
-state 162
+State 162
 
    65 opt_inner_cross: CROSS .
 
     $default  reduce using rule 65 (opt_inner_cross)
 
 
-state 163
+State 163
 
    64 opt_inner_cross: INNER .
 
     $default  reduce using rule 64 (opt_inner_cross)
 
 
-state 164
+State 164
 
    68 left_or_right: LEFT .
 
     $default  reduce using rule 68 (left_or_right)
 
 
-state 165
+State 165
 
    62 join_table: table_reference NATURAL . opt_left_or_right_outer JOIN table_factor
 
@@ -3531,14 +3531,14 @@ state 165
     opt_left_or_right_outer  go to state 249
 
 
-state 166
+State 166
 
    69 left_or_right: RIGHT .
 
     $default  reduce using rule 69 (left_or_right)
 
 
-state 167
+State 167
 
    59 join_table: table_reference STRAIGHT_JOIN . table_factor
    60           | table_reference STRAIGHT_JOIN . table_factor ON expr
@@ -3550,14 +3550,14 @@ state 167
     table_subquery  go to state 97
 
 
-state 168
+State 168
 
    58 join_table: table_reference opt_inner_cross . JOIN table_factor opt_join_condition
 
     JOIN  shift, and go to state 251
 
 
-state 169
+State 169
 
    61 join_table: table_reference left_or_right . opt_outer JOIN table_factor join_condition
 
@@ -3568,21 +3568,21 @@ state 169
     opt_outer  go to state 253
 
 
-state 170
+State 170
 
    53 opt_as: AS .
 
     $default  reduce using rule 53 (opt_as)
 
 
-state 171
+State 171
 
    51 table_factor: table_subquery opt_as . NAME
 
     NAME  shift, and go to state 254
 
 
-state 172
+State 172
 
   142 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME . '(' create_col_list ')'
   143                  | CREATE opt_temporary TABLE opt_if_not_exists NAME . '.' NAME '(' create_col_list ')'
@@ -3602,14 +3602,14 @@ state 172
     opt_ignore_replace       go to state 260
 
 
-state 173
+State 173
 
    96 opt_dot_star: '.' '*' .
 
     $default  reduce using rule 96 (opt_dot_star)
 
 
-state 174
+State 174
 
     9 opt_where: WHERE . expr
 
@@ -3619,8 +3619,8 @@ state 174
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3637,7 +3637,7 @@ state 174
     expr  go to state 261
 
 
-state 175
+State 175
 
    87 delete_stmt: DELETE delete_opts FROM NAME opt_where . opt_orderby opt_limit
 
@@ -3648,7 +3648,7 @@ state 175
     opt_orderby  go to state 263
 
 
-state 176
+State 176
 
    97 delete_stmt: DELETE delete_opts FROM delete_list USING . table_references opt_where
 
@@ -3662,7 +3662,7 @@ state 176
     table_subquery    go to state 97
 
 
-state 177
+State 177
 
    46 table_references: table_references . ',' table_reference
    92 delete_stmt: DELETE delete_opts delete_list FROM table_references . opt_where
@@ -3675,7 +3675,7 @@ state 177
     opt_where  go to state 265
 
 
-state 178
+State 178
 
    94 delete_list: delete_list ',' NAME . opt_dot_star
 
@@ -3686,7 +3686,7 @@ state 178
     opt_dot_star  go to state 266
 
 
-state 179
+State 179
 
   117 insert_stmt: INSERT insert_opts opt_into NAME SET . insert_asgn_list opt_ondupupdate
 
@@ -3695,7 +3695,7 @@ state 179
     insert_asgn_list  go to state 268
 
 
-state 180
+State 180
 
   110 opt_col_names: '(' . column_list ')'
 
@@ -3705,7 +3705,7 @@ state 180
     column_list  go to state 271
 
 
-state 181
+State 181
 
    99 insert_stmt: INSERT insert_opts opt_into NAME opt_col_names . VALUES insert_vals_list opt_ondupupdate
   118            | INSERT insert_opts opt_into NAME opt_col_names . select_stmt opt_ondupupdate
@@ -3716,7 +3716,7 @@ state 181
     select_stmt  go to state 273
 
 
-state 182
+State 182
 
   125 replace_stmt: REPLACE insert_opts opt_into NAME SET . insert_asgn_list opt_ondupupdate
 
@@ -3725,7 +3725,7 @@ state 182
     insert_asgn_list  go to state 274
 
 
-state 183
+State 183
 
   124 replace_stmt: REPLACE insert_opts opt_into NAME opt_col_names . VALUES insert_vals_list opt_ondupupdate
   126             | REPLACE insert_opts opt_into NAME opt_col_names . select_stmt opt_ondupupdate
@@ -3736,14 +3736,14 @@ state 183
     select_stmt  go to state 276
 
 
-state 184
+State 184
 
   227 expr: NAME '.' NAME .
 
     $default  reduce using rule 227 (expr)
 
 
-state 185
+State 185
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -3782,10 +3782,10 @@ state 185
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -3804,21 +3804,21 @@ state 185
     $default  reduce using rule 259 (val_list)
 
 
-state 186
+State 186
 
   262 opt_val_list: val_list .
 
     $default  reduce using rule 262 (opt_val_list)
 
 
-state 187
+State 187
 
   268 expr: NAME '(' opt_val_list . ')'
 
     ')'  shift, and go to state 278
 
 
-state 188
+State 188
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -3856,10 +3856,10 @@ state 188
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -3877,7 +3877,7 @@ state 188
     $default  reduce using rule 253 (expr)
 
 
-state 189
+State 189
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -3915,10 +3915,10 @@ state 189
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -3935,7 +3935,7 @@ state 189
     THEN        shift, and go to state 279
 
 
-state 190
+State 190
 
   290 expr: CASE expr case_list . END
   291     | CASE expr case_list . ELSE expr END
@@ -3946,7 +3946,7 @@ state 190
     WHEN  shift, and go to state 193
 
 
-state 191
+State 191
 
   293 expr: CASE case_list ELSE . expr END
 
@@ -3956,8 +3956,8 @@ state 191
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -3974,14 +3974,14 @@ state 191
     expr  go to state 282
 
 
-state 192
+State 192
 
   292 expr: CASE case_list END .
 
     $default  reduce using rule 292 (expr)
 
 
-state 193
+State 193
 
   295 case_list: case_list WHEN . expr THEN expr
 
@@ -3991,8 +3991,8 @@ state 193
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -4009,14 +4009,14 @@ state 193
     expr  go to state 283
 
 
-state 194
+State 194
 
   267 expr: EXISTS '(' select_stmt . ')'
 
     ')'  shift, and go to state 284
 
 
-state 195
+State 195
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4057,10 +4057,10 @@ state 195
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -4080,42 +4080,42 @@ state 195
     $default  reduce using rule 259 (val_list)
 
 
-state 196
+State 196
 
   271 expr: FSUBSTRING '(' val_list . ')'
 
     ')'  shift, and go to state 286
 
 
-state 197
+State 197
 
   278 trim_ltb: BOTH .
 
     $default  reduce using rule 278 (trim_ltb)
 
 
-state 198
+State 198
 
   276 trim_ltb: LEADING .
 
     $default  reduce using rule 276 (trim_ltb)
 
 
-state 199
+State 199
 
   277 trim_ltb: TRAILING .
 
     $default  reduce using rule 277 (trim_ltb)
 
 
-state 200
+State 200
 
   274 expr: FTRIM '(' val_list . ')'
 
     ')'  shift, and go to state 287
 
 
-state 201
+State 201
 
   275 expr: FTRIM '(' trim_ltb . expr FROM val_list ')'
 
@@ -4125,8 +4125,8 @@ state 201
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -4143,7 +4143,7 @@ state 201
     expr  go to state 288
 
 
-state 202
+State 202
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4181,10 +4181,10 @@ state 202
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -4201,7 +4201,7 @@ state 202
     ','         shift, and go to state 289
 
 
-state 203
+State 203
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4239,10 +4239,10 @@ state 203
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -4259,14 +4259,14 @@ state 203
     ','         shift, and go to state 290
 
 
-state 204
+State 204
 
   269 expr: FCOUNT '(' '*' . ')'
 
     ')'  shift, and go to state 291
 
 
-state 205
+State 205
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4304,10 +4304,10 @@ state 205
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -4324,7 +4324,7 @@ state 205
     ')'         shift, and go to state 292
 
 
-state 206
+State 206
 
     7 select_stmt: SELECT select_opts select_expr_list FROM table_references . opt_where opt_groupby opt_having opt_orderby opt_limit opt_into_list
    46 table_references: table_references . ',' table_reference
@@ -4337,14 +4337,14 @@ state 206
     opt_where  go to state 293
 
 
-state 207
+State 207
 
    42 select_expr_list: select_expr_list ',' select_expr .
 
     $default  reduce using rule 42 (select_expr_list)
 
 
-state 208
+State 208
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4381,10 +4381,10 @@ state 208
 
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -4402,7 +4402,7 @@ state 208
     $default  reduce using rule 240 (expr)
 
 
-state 209
+State 209
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4438,10 +4438,10 @@ state 209
   299     | expr . NOT REGEXP expr
 
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -4459,7 +4459,7 @@ state 209
     $default  reduce using rule 241 (expr)
 
 
-state 210
+State 210
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4494,10 +4494,10 @@ state 210
   298     | expr . REGEXP expr
   299     | expr . NOT REGEXP expr
 
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -4515,64 +4515,62 @@ state 210
     $default  reduce using rule 239 (expr)
 
 
-state 211
+State 211
 
-  232 expr: expr . '+' expr
-  233     | expr . '-' expr
-  234     | expr . '*' expr
-  235     | expr . '/' expr
-  236     | expr . '%' expr
-  237     | expr . MOD expr
-  239     | expr . ANDOP expr
-  240     | expr . OR expr
-  241     | expr . XOR expr
-  242     | expr . COMPARISON expr
-  243     | expr . COMPARISON '(' select_stmt ')'
-  244     | expr . COMPARISON ANY '(' select_stmt ')'
-  245     | expr . COMPARISON SOME '(' select_stmt ')'
-  246     | expr . COMPARISON ALL '(' select_stmt ')'
-  247     | expr . '|' expr
-  248     | expr . '&' expr
-  249     | expr . '^' expr
-  250     | expr . SHIFT expr
-  254     | expr . IS NULLX
-  255     | expr . IS NOT NULLX
-  256     | expr . IS BOOL
-  257     | expr . IS NOT BOOL
-  258     | expr . BETWEEN expr AND expr
-  263     | expr . IN '(' val_list ')'
-  264     | expr . NOT IN '(' val_list ')'
-  265     | expr . IN '(' select_stmt ')'
-  266     | expr . NOT IN '(' select_stmt ')'
-  296     | expr . LIKE expr
-  297     | expr . NOT LIKE expr
-  298     | expr . REGEXP expr
-  298     | expr REGEXP expr .
-  299     | expr . NOT REGEXP expr
+  263 expr: expr IN '(' . val_list ')'
+  265     | expr IN '(' . select_stmt ')'
 
-    NOT         shift, and go to state 138
-    BETWEEN     shift, and go to state 139
-    COMPARISON  shift, and go to state 140
-    '|'         shift, and go to state 141
-    '&'         shift, and go to state 142
-    SHIFT       shift, and go to state 143
-    '+'         shift, and go to state 144
-    '-'         shift, and go to state 145
-    '*'         shift, and go to state 146
-    '/'         shift, and go to state 147
-    '%'         shift, and go to state 148
-    MOD         shift, and go to state 149
-    '^'         shift, and go to state 150
+    NAME               shift, and go to state 54
+    STRING             shift, and go to state 55
+    INTNUM             shift, and go to state 56
+    BOOL               shift, and go to state 57
+    APPROXNUM          shift, and go to state 58
+    USERVAR            shift, and go to state 59
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
+    '-'                shift, and go to state 62
+    BINARY             shift, and go to state 65
+    CASE               shift, and go to state 66
+    CURRENT_DATE       shift, and go to state 67
+    CURRENT_TIME       shift, and go to state 68
+    CURRENT_TIMESTAMP  shift, and go to state 69
+    EXISTS             shift, and go to state 72
+    SELECT             shift, and go to state 6
+    FSUBSTRING         shift, and go to state 78
+    FTRIM              shift, and go to state 79
+    FDATE_ADD          shift, and go to state 80
+    FDATE_SUB          shift, and go to state 81
+    FCOUNT             shift, and go to state 82
 
-    REGEXP  error (nonassociative)
-    LIKE    error (nonassociative)
-    IS      error (nonassociative)
-    IN      error (nonassociative)
-
-    $default  reduce using rule 298 (expr)
+    select_stmt  go to state 294
+    expr         go to state 185
+    val_list     go to state 295
 
 
-state 212
+State 212
+
+  256 expr: expr IS BOOL .
+
+    $default  reduce using rule 256 (expr)
+
+
+State 213
+
+  255 expr: expr IS NOT . NULLX
+  257     | expr IS NOT . BOOL
+
+    BOOL   shift, and go to state 296
+    NULLX  shift, and go to state 297
+
+
+State 214
+
+  254 expr: expr IS NULLX .
+
+    $default  reduce using rule 254 (expr)
+
+
+State 215
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4621,98 +4619,80 @@ state 212
     MOD         shift, and go to state 149
     '^'         shift, and go to state 150
 
-    REGEXP  error (nonassociative)
-    LIKE    error (nonassociative)
-    IS      error (nonassociative)
     IN      error (nonassociative)
+    IS      error (nonassociative)
+    LIKE    error (nonassociative)
+    REGEXP  error (nonassociative)
 
     $default  reduce using rule 296 (expr)
 
 
-state 213
+State 216
 
-  256 expr: expr IS BOOL .
+  232 expr: expr . '+' expr
+  233     | expr . '-' expr
+  234     | expr . '*' expr
+  235     | expr . '/' expr
+  236     | expr . '%' expr
+  237     | expr . MOD expr
+  239     | expr . ANDOP expr
+  240     | expr . OR expr
+  241     | expr . XOR expr
+  242     | expr . COMPARISON expr
+  243     | expr . COMPARISON '(' select_stmt ')'
+  244     | expr . COMPARISON ANY '(' select_stmt ')'
+  245     | expr . COMPARISON SOME '(' select_stmt ')'
+  246     | expr . COMPARISON ALL '(' select_stmt ')'
+  247     | expr . '|' expr
+  248     | expr . '&' expr
+  249     | expr . '^' expr
+  250     | expr . SHIFT expr
+  254     | expr . IS NULLX
+  255     | expr . IS NOT NULLX
+  256     | expr . IS BOOL
+  257     | expr . IS NOT BOOL
+  258     | expr . BETWEEN expr AND expr
+  263     | expr . IN '(' val_list ')'
+  264     | expr . NOT IN '(' val_list ')'
+  265     | expr . IN '(' select_stmt ')'
+  266     | expr . NOT IN '(' select_stmt ')'
+  296     | expr . LIKE expr
+  297     | expr . NOT LIKE expr
+  298     | expr . REGEXP expr
+  298     | expr REGEXP expr .
+  299     | expr . NOT REGEXP expr
 
-    $default  reduce using rule 256 (expr)
+    NOT         shift, and go to state 138
+    BETWEEN     shift, and go to state 139
+    COMPARISON  shift, and go to state 140
+    '|'         shift, and go to state 141
+    '&'         shift, and go to state 142
+    SHIFT       shift, and go to state 143
+    '+'         shift, and go to state 144
+    '-'         shift, and go to state 145
+    '*'         shift, and go to state 146
+    '/'         shift, and go to state 147
+    '%'         shift, and go to state 148
+    MOD         shift, and go to state 149
+    '^'         shift, and go to state 150
 
+    IN      error (nonassociative)
+    IS      error (nonassociative)
+    LIKE    error (nonassociative)
+    REGEXP  error (nonassociative)
 
-state 214
-
-  255 expr: expr IS NOT . NULLX
-  257     | expr IS NOT . BOOL
-
-    BOOL   shift, and go to state 294
-    NULLX  shift, and go to state 295
-
-
-state 215
-
-  254 expr: expr IS NULLX .
-
-    $default  reduce using rule 254 (expr)
-
-
-state 216
-
-  263 expr: expr IN '(' . val_list ')'
-  265     | expr IN '(' . select_stmt ')'
-
-    NAME               shift, and go to state 54
-    STRING             shift, and go to state 55
-    INTNUM             shift, and go to state 56
-    BOOL               shift, and go to state 57
-    APPROXNUM          shift, and go to state 58
-    USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
-    '-'                shift, and go to state 62
-    BINARY             shift, and go to state 65
-    CASE               shift, and go to state 66
-    CURRENT_DATE       shift, and go to state 67
-    CURRENT_TIME       shift, and go to state 68
-    CURRENT_TIMESTAMP  shift, and go to state 69
-    EXISTS             shift, and go to state 72
-    SELECT             shift, and go to state 6
-    FSUBSTRING         shift, and go to state 78
-    FTRIM              shift, and go to state 79
-    FDATE_ADD          shift, and go to state 80
-    FDATE_SUB          shift, and go to state 81
-    FCOUNT             shift, and go to state 82
-
-    select_stmt  go to state 296
-    expr         go to state 185
-    val_list     go to state 297
-
-
-state 217
-
-  299 expr: expr NOT REGEXP . expr
-
-    NAME               shift, and go to state 54
-    STRING             shift, and go to state 55
-    INTNUM             shift, and go to state 56
-    BOOL               shift, and go to state 57
-    APPROXNUM          shift, and go to state 58
-    USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
-    '-'                shift, and go to state 62
-    BINARY             shift, and go to state 65
-    CASE               shift, and go to state 66
-    CURRENT_DATE       shift, and go to state 67
-    CURRENT_TIME       shift, and go to state 68
-    CURRENT_TIMESTAMP  shift, and go to state 69
-    EXISTS             shift, and go to state 72
-    FSUBSTRING         shift, and go to state 78
-    FTRIM              shift, and go to state 79
-    FDATE_ADD          shift, and go to state 80
-    FDATE_SUB          shift, and go to state 81
-    FCOUNT             shift, and go to state 82
-
-    expr  go to state 298
+    $default  reduce using rule 298 (expr)
 
 
-state 218
+State 217
+
+  264 expr: expr NOT IN . '(' val_list ')'
+  266     | expr NOT IN . '(' select_stmt ')'
+
+    '('  shift, and go to state 298
+
+
+State 218
 
   297 expr: expr NOT LIKE . expr
 
@@ -4722,8 +4702,8 @@ state 218
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -4740,15 +4720,35 @@ state 218
     expr  go to state 299
 
 
-state 219
+State 219
 
-  264 expr: expr NOT IN . '(' val_list ')'
-  266     | expr NOT IN . '(' select_stmt ')'
+  299 expr: expr NOT REGEXP . expr
 
-    '('  shift, and go to state 300
+    NAME               shift, and go to state 54
+    STRING             shift, and go to state 55
+    INTNUM             shift, and go to state 56
+    BOOL               shift, and go to state 57
+    APPROXNUM          shift, and go to state 58
+    USERVAR            shift, and go to state 59
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
+    '-'                shift, and go to state 62
+    BINARY             shift, and go to state 65
+    CASE               shift, and go to state 66
+    CURRENT_DATE       shift, and go to state 67
+    CURRENT_TIME       shift, and go to state 68
+    CURRENT_TIMESTAMP  shift, and go to state 69
+    EXISTS             shift, and go to state 72
+    FSUBSTRING         shift, and go to state 78
+    FTRIM              shift, and go to state 79
+    FDATE_ADD          shift, and go to state 80
+    FDATE_SUB          shift, and go to state 81
+    FCOUNT             shift, and go to state 82
+
+    expr  go to state 300
 
 
-state 220
+State 220
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4786,10 +4786,10 @@ state 220
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -4806,28 +4806,28 @@ state 220
     AND         shift, and go to state 301
 
 
-state 221
+State 221
 
   246 expr: expr COMPARISON ALL . '(' select_stmt ')'
 
     '('  shift, and go to state 302
 
 
-state 222
+State 222
 
   244 expr: expr COMPARISON ANY . '(' select_stmt ')'
 
     '('  shift, and go to state 303
 
 
-state 223
+State 223
 
   245 expr: expr COMPARISON SOME . '(' select_stmt ')'
 
     '('  shift, and go to state 304
 
 
-state 224
+State 224
 
   243 expr: expr COMPARISON '(' . select_stmt ')'
 
@@ -4836,7 +4836,7 @@ state 224
     select_stmt  go to state 305
 
 
-state 225
+State 225
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4885,7 +4885,7 @@ state 225
     $default  reduce using rule 242 (expr)
 
 
-state 226
+State 226
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4933,7 +4933,7 @@ state 226
     $default  reduce using rule 247 (expr)
 
 
-state 227
+State 227
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -4980,7 +4980,7 @@ state 227
     $default  reduce using rule 248 (expr)
 
 
-state 228
+State 228
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -5026,7 +5026,7 @@ state 228
     $default  reduce using rule 250 (expr)
 
 
-state 229
+State 229
 
   232 expr: expr . '+' expr
   232     | expr '+' expr .
@@ -5070,7 +5070,7 @@ state 229
     $default  reduce using rule 232 (expr)
 
 
-state 230
+State 230
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -5114,7 +5114,7 @@ state 230
     $default  reduce using rule 233 (expr)
 
 
-state 231
+State 231
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -5154,7 +5154,7 @@ state 231
     $default  reduce using rule 234 (expr)
 
 
-state 232
+State 232
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -5194,7 +5194,7 @@ state 232
     $default  reduce using rule 235 (expr)
 
 
-state 233
+State 233
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -5234,7 +5234,7 @@ state 233
     $default  reduce using rule 236 (expr)
 
 
-state 234
+State 234
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -5274,7 +5274,7 @@ state 234
     $default  reduce using rule 237 (expr)
 
 
-state 235
+State 235
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -5312,14 +5312,14 @@ state 235
     $default  reduce using rule 249 (expr)
 
 
-state 236
+State 236
 
    55 opt_as_alias: AS NAME .
 
     $default  reduce using rule 55 (opt_as_alias)
 
 
-state 237
+State 237
 
    50 table_factor: NAME '.' NAME . opt_as_alias index_hint
 
@@ -5331,49 +5331,49 @@ state 237
     opt_as_alias  go to state 306
 
 
-state 238
+State 238
 
    79 index_hint: FORCE . KEY opt_for_join '(' index_list ')'
 
     KEY  shift, and go to state 307
 
 
-state 239
+State 239
 
    78 index_hint: IGNORE . KEY opt_for_join '(' index_list ')'
 
     KEY  shift, and go to state 308
 
 
-state 240
+State 240
 
    77 index_hint: USE . KEY opt_for_join '(' index_list ')'
 
     KEY  shift, and go to state 309
 
 
-state 241
+State 241
 
    49 table_factor: NAME opt_as_alias index_hint .
 
     $default  reduce using rule 49 (table_factor)
 
 
-state 242
+State 242
 
    85 table_subquery: '(' select_stmt ')' .
 
     $default  reduce using rule 85 (table_subquery)
 
 
-state 243
+State 243
 
    52 table_factor: '(' table_references ')' .
 
     $default  reduce using rule 52 (table_factor)
 
 
-state 244
+State 244
 
   132 update_asgn_list: NAME . COMPARISON expr
   133                 | NAME . '.' NAME COMPARISON expr
@@ -5382,7 +5382,7 @@ state 244
     '.'         shift, and go to state 311
 
 
-state 245
+State 245
 
   128 update_stmt: UPDATE update_opts table_references SET update_asgn_list . opt_where opt_orderby opt_limit
   134 update_asgn_list: update_asgn_list . ',' NAME COMPARISON expr
@@ -5396,7 +5396,7 @@ state 245
     opt_where  go to state 313
 
 
-state 246
+State 246
 
    46 table_references: table_references ',' table_reference .
    58 join_table: table_reference . opt_inner_cross JOIN table_factor opt_join_condition
@@ -5419,7 +5419,7 @@ state 246
     left_or_right    go to state 169
 
 
-state 247
+State 247
 
    70 opt_left_or_right_outer: LEFT . opt_outer
 
@@ -5430,7 +5430,7 @@ state 247
     opt_outer  go to state 314
 
 
-state 248
+State 248
 
    71 opt_left_or_right_outer: RIGHT . opt_outer
 
@@ -5441,14 +5441,14 @@ state 248
     opt_outer  go to state 315
 
 
-state 249
+State 249
 
    62 join_table: table_reference NATURAL opt_left_or_right_outer . JOIN table_factor
 
     JOIN  shift, and go to state 316
 
 
-state 250
+State 250
 
    59 join_table: table_reference STRAIGHT_JOIN table_factor .
    60           | table_reference STRAIGHT_JOIN table_factor . ON expr
@@ -5458,7 +5458,7 @@ state 250
     $default  reduce using rule 59 (join_table)
 
 
-state 251
+State 251
 
    58 join_table: table_reference opt_inner_cross JOIN . table_factor opt_join_condition
 
@@ -5469,42 +5469,42 @@ state 251
     table_subquery  go to state 97
 
 
-state 252
+State 252
 
    67 opt_outer: OUTER .
 
     $default  reduce using rule 67 (opt_outer)
 
 
-state 253
+State 253
 
    61 join_table: table_reference left_or_right opt_outer . JOIN table_factor join_condition
 
     JOIN  shift, and go to state 319
 
 
-state 254
+State 254
 
    51 table_factor: table_subquery opt_as NAME .
 
     $default  reduce using rule 51 (table_factor)
 
 
-state 255
+State 255
 
   215 opt_ignore_replace: IGNORE .
 
     $default  reduce using rule 215 (opt_ignore_replace)
 
 
-state 256
+State 256
 
   216 opt_ignore_replace: REPLACE .
 
     $default  reduce using rule 216 (opt_ignore_replace)
 
 
-state 257
+State 257
 
   143 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '.' . NAME '(' create_col_list ')'
   146                  | CREATE opt_temporary TABLE opt_if_not_exists NAME '.' . NAME '(' create_col_list ')' create_select_statement
@@ -5513,7 +5513,7 @@ state 257
     NAME  shift, and go to state 320
 
 
-state 258
+State 258
 
   142 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '(' . create_col_list ')'
   144                  | CREATE opt_temporary TABLE opt_if_not_exists NAME '(' . create_col_list ')' create_select_statement
@@ -5530,14 +5530,14 @@ state 258
     $@1                go to state 327
 
 
-state 259
+State 259
 
   145 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME create_select_statement .
 
     $default  reduce using rule 145 (create_table_stmt)
 
 
-state 260
+State 260
 
   213 create_select_statement: opt_ignore_replace . opt_as select_stmt
 
@@ -5548,7 +5548,7 @@ state 260
     opt_as  go to state 328
 
 
-state 261
+State 261
 
     9 opt_where: WHERE expr .
   232 expr: expr . '+' expr
@@ -5586,10 +5586,10 @@ state 261
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -5607,14 +5607,14 @@ state 261
     $default  reduce using rule 9 (opt_where)
 
 
-state 262
+State 262
 
    22 opt_orderby: ORDER . BY groupby_list
 
     BY  shift, and go to state 329
 
 
-state 263
+State 263
 
    87 delete_stmt: DELETE delete_opts FROM NAME opt_where opt_orderby . opt_limit
 
@@ -5625,7 +5625,7 @@ state 263
     opt_limit  go to state 331
 
 
-state 264
+State 264
 
    46 table_references: table_references . ',' table_reference
    97 delete_stmt: DELETE delete_opts FROM delete_list USING table_references . opt_where
@@ -5638,21 +5638,21 @@ state 264
     opt_where  go to state 332
 
 
-state 265
+State 265
 
    92 delete_stmt: DELETE delete_opts delete_list FROM table_references opt_where .
 
     $default  reduce using rule 92 (delete_stmt)
 
 
-state 266
+State 266
 
    94 delete_list: delete_list ',' NAME opt_dot_star .
 
     $default  reduce using rule 94 (delete_list)
 
 
-state 267
+State 267
 
   119 insert_asgn_list: NAME . COMPARISON expr
   120                 | NAME . COMPARISON DEFAULT
@@ -5660,7 +5660,7 @@ state 267
     COMPARISON  shift, and go to state 333
 
 
-state 268
+State 268
 
   117 insert_stmt: INSERT insert_opts opt_into NAME SET insert_asgn_list . opt_ondupupdate
   121 insert_asgn_list: insert_asgn_list . ',' NAME COMPARISON expr
@@ -5674,21 +5674,21 @@ state 268
     opt_ondupupdate  go to state 336
 
 
-state 269
+State 269
 
    28 column_list: NAME .
 
     $default  reduce using rule 28 (column_list)
 
 
-state 270
+State 270
 
    29 column_list: STRING .
 
     $default  reduce using rule 29 (column_list)
 
 
-state 271
+State 271
 
    30 column_list: column_list . ',' NAME
    31            | column_list . ',' STRING
@@ -5698,7 +5698,7 @@ state 271
     ')'  shift, and go to state 338
 
 
-state 272
+State 272
 
    99 insert_stmt: INSERT insert_opts opt_into NAME opt_col_names VALUES . insert_vals_list opt_ondupupdate
 
@@ -5707,7 +5707,7 @@ state 272
     insert_vals_list  go to state 340
 
 
-state 273
+State 273
 
   118 insert_stmt: INSERT insert_opts opt_into NAME opt_col_names select_stmt . opt_ondupupdate
 
@@ -5718,7 +5718,7 @@ state 273
     opt_ondupupdate  go to state 341
 
 
-state 274
+State 274
 
   121 insert_asgn_list: insert_asgn_list . ',' NAME COMPARISON expr
   122                 | insert_asgn_list . ',' NAME COMPARISON DEFAULT
@@ -5732,7 +5732,7 @@ state 274
     opt_ondupupdate  go to state 342
 
 
-state 275
+State 275
 
   124 replace_stmt: REPLACE insert_opts opt_into NAME opt_col_names VALUES . insert_vals_list opt_ondupupdate
 
@@ -5741,7 +5741,7 @@ state 275
     insert_vals_list  go to state 343
 
 
-state 276
+State 276
 
   126 replace_stmt: REPLACE insert_opts opt_into NAME opt_col_names select_stmt . opt_ondupupdate
 
@@ -5752,7 +5752,7 @@ state 276
     opt_ondupupdate  go to state 344
 
 
-state 277
+State 277
 
   260 val_list: expr ',' . val_list
 
@@ -5762,8 +5762,8 @@ state 277
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -5781,14 +5781,14 @@ state 277
     val_list  go to state 345
 
 
-state 278
+State 278
 
   268 expr: NAME '(' opt_val_list ')' .
 
     $default  reduce using rule 268 (expr)
 
 
-state 279
+State 279
 
   294 case_list: WHEN expr THEN . expr
 
@@ -5798,8 +5798,8 @@ state 279
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -5816,7 +5816,7 @@ state 279
     expr  go to state 346
 
 
-state 280
+State 280
 
   291 expr: CASE expr case_list ELSE . expr END
 
@@ -5826,8 +5826,8 @@ state 280
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -5844,14 +5844,14 @@ state 280
     expr  go to state 347
 
 
-state 281
+State 281
 
   290 expr: CASE expr case_list END .
 
     $default  reduce using rule 290 (expr)
 
 
-state 282
+State 282
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -5889,10 +5889,10 @@ state 282
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -5909,7 +5909,7 @@ state 282
     END         shift, and go to state 348
 
 
-state 283
+State 283
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -5947,10 +5947,10 @@ state 283
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -5967,14 +5967,14 @@ state 283
     THEN        shift, and go to state 349
 
 
-state 284
+State 284
 
   267 expr: EXISTS '(' select_stmt ')' .
 
     $default  reduce using rule 267 (expr)
 
 
-state 285
+State 285
 
   272 expr: FSUBSTRING '(' expr FROM . expr ')'
   273     | FSUBSTRING '(' expr FROM . expr FOR expr ')'
@@ -5985,8 +5985,8 @@ state 285
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -6003,21 +6003,21 @@ state 285
     expr  go to state 350
 
 
-state 286
+State 286
 
   271 expr: FSUBSTRING '(' val_list ')' .
 
     $default  reduce using rule 271 (expr)
 
 
-state 287
+State 287
 
   274 expr: FTRIM '(' val_list ')' .
 
     $default  reduce using rule 274 (expr)
 
 
-state 288
+State 288
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -6055,10 +6055,10 @@ state 288
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -6075,7 +6075,7 @@ state 288
     FROM        shift, and go to state 351
 
 
-state 289
+State 289
 
   279 expr: FDATE_ADD '(' expr ',' . interval_exp ')'
 
@@ -6084,7 +6084,7 @@ state 289
     interval_exp  go to state 353
 
 
-state 290
+State 290
 
   280 expr: FDATE_SUB '(' expr ',' . interval_exp ')'
 
@@ -6093,21 +6093,21 @@ state 290
     interval_exp  go to state 354
 
 
-state 291
+State 291
 
   269 expr: FCOUNT '(' '*' ')' .
 
     $default  reduce using rule 269 (expr)
 
 
-state 292
+State 292
 
   270 expr: FCOUNT '(' expr ')' .
 
     $default  reduce using rule 270 (expr)
 
 
-state 293
+State 293
 
     7 select_stmt: SELECT select_opts select_expr_list FROM table_references opt_where . opt_groupby opt_having opt_orderby opt_limit opt_into_list
 
@@ -6118,92 +6118,67 @@ state 293
     opt_groupby  go to state 356
 
 
-state 294
-
-  257 expr: expr IS NOT BOOL .
-
-    $default  reduce using rule 257 (expr)
-
-
-state 295
-
-  255 expr: expr IS NOT NULLX .
-
-    $default  reduce using rule 255 (expr)
-
-
-state 296
+State 294
 
   265 expr: expr IN '(' select_stmt . ')'
 
     ')'  shift, and go to state 357
 
 
-state 297
+State 295
 
   263 expr: expr IN '(' val_list . ')'
 
     ')'  shift, and go to state 358
 
 
-state 298
+State 296
 
-  232 expr: expr . '+' expr
-  233     | expr . '-' expr
-  234     | expr . '*' expr
-  235     | expr . '/' expr
-  236     | expr . '%' expr
-  237     | expr . MOD expr
-  239     | expr . ANDOP expr
-  240     | expr . OR expr
-  241     | expr . XOR expr
-  242     | expr . COMPARISON expr
-  243     | expr . COMPARISON '(' select_stmt ')'
-  244     | expr . COMPARISON ANY '(' select_stmt ')'
-  245     | expr . COMPARISON SOME '(' select_stmt ')'
-  246     | expr . COMPARISON ALL '(' select_stmt ')'
-  247     | expr . '|' expr
-  248     | expr . '&' expr
-  249     | expr . '^' expr
-  250     | expr . SHIFT expr
-  254     | expr . IS NULLX
-  255     | expr . IS NOT NULLX
-  256     | expr . IS BOOL
-  257     | expr . IS NOT BOOL
-  258     | expr . BETWEEN expr AND expr
-  263     | expr . IN '(' val_list ')'
-  264     | expr . NOT IN '(' val_list ')'
-  265     | expr . IN '(' select_stmt ')'
-  266     | expr . NOT IN '(' select_stmt ')'
-  296     | expr . LIKE expr
-  297     | expr . NOT LIKE expr
-  298     | expr . REGEXP expr
-  299     | expr . NOT REGEXP expr
-  299     | expr NOT REGEXP expr .
+  257 expr: expr IS NOT BOOL .
 
-    NOT         shift, and go to state 138
-    BETWEEN     shift, and go to state 139
-    COMPARISON  shift, and go to state 140
-    '|'         shift, and go to state 141
-    '&'         shift, and go to state 142
-    SHIFT       shift, and go to state 143
-    '+'         shift, and go to state 144
-    '-'         shift, and go to state 145
-    '*'         shift, and go to state 146
-    '/'         shift, and go to state 147
-    '%'         shift, and go to state 148
-    MOD         shift, and go to state 149
-    '^'         shift, and go to state 150
-
-    REGEXP  error (nonassociative)
-    LIKE    error (nonassociative)
-    IS      error (nonassociative)
-    IN      error (nonassociative)
-
-    $default  reduce using rule 299 (expr)
+    $default  reduce using rule 257 (expr)
 
 
-state 299
+State 297
+
+  255 expr: expr IS NOT NULLX .
+
+    $default  reduce using rule 255 (expr)
+
+
+State 298
+
+  264 expr: expr NOT IN '(' . val_list ')'
+  266     | expr NOT IN '(' . select_stmt ')'
+
+    NAME               shift, and go to state 54
+    STRING             shift, and go to state 55
+    INTNUM             shift, and go to state 56
+    BOOL               shift, and go to state 57
+    APPROXNUM          shift, and go to state 58
+    USERVAR            shift, and go to state 59
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
+    '-'                shift, and go to state 62
+    BINARY             shift, and go to state 65
+    CASE               shift, and go to state 66
+    CURRENT_DATE       shift, and go to state 67
+    CURRENT_TIME       shift, and go to state 68
+    CURRENT_TIMESTAMP  shift, and go to state 69
+    EXISTS             shift, and go to state 72
+    SELECT             shift, and go to state 6
+    FSUBSTRING         shift, and go to state 78
+    FTRIM              shift, and go to state 79
+    FDATE_ADD          shift, and go to state 80
+    FDATE_SUB          shift, and go to state 81
+    FCOUNT             shift, and go to state 82
+
+    select_stmt  go to state 359
+    expr         go to state 185
+    val_list     go to state 360
+
+
+State 299
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -6252,47 +6227,72 @@ state 299
     MOD         shift, and go to state 149
     '^'         shift, and go to state 150
 
-    REGEXP  error (nonassociative)
-    LIKE    error (nonassociative)
-    IS      error (nonassociative)
     IN      error (nonassociative)
+    IS      error (nonassociative)
+    LIKE    error (nonassociative)
+    REGEXP  error (nonassociative)
 
     $default  reduce using rule 297 (expr)
 
 
-state 300
+State 300
 
-  264 expr: expr NOT IN '(' . val_list ')'
-  266     | expr NOT IN '(' . select_stmt ')'
+  232 expr: expr . '+' expr
+  233     | expr . '-' expr
+  234     | expr . '*' expr
+  235     | expr . '/' expr
+  236     | expr . '%' expr
+  237     | expr . MOD expr
+  239     | expr . ANDOP expr
+  240     | expr . OR expr
+  241     | expr . XOR expr
+  242     | expr . COMPARISON expr
+  243     | expr . COMPARISON '(' select_stmt ')'
+  244     | expr . COMPARISON ANY '(' select_stmt ')'
+  245     | expr . COMPARISON SOME '(' select_stmt ')'
+  246     | expr . COMPARISON ALL '(' select_stmt ')'
+  247     | expr . '|' expr
+  248     | expr . '&' expr
+  249     | expr . '^' expr
+  250     | expr . SHIFT expr
+  254     | expr . IS NULLX
+  255     | expr . IS NOT NULLX
+  256     | expr . IS BOOL
+  257     | expr . IS NOT BOOL
+  258     | expr . BETWEEN expr AND expr
+  263     | expr . IN '(' val_list ')'
+  264     | expr . NOT IN '(' val_list ')'
+  265     | expr . IN '(' select_stmt ')'
+  266     | expr . NOT IN '(' select_stmt ')'
+  296     | expr . LIKE expr
+  297     | expr . NOT LIKE expr
+  298     | expr . REGEXP expr
+  299     | expr . NOT REGEXP expr
+  299     | expr NOT REGEXP expr .
 
-    NAME               shift, and go to state 54
-    STRING             shift, and go to state 55
-    INTNUM             shift, and go to state 56
-    BOOL               shift, and go to state 57
-    APPROXNUM          shift, and go to state 58
-    USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
-    '-'                shift, and go to state 62
-    BINARY             shift, and go to state 65
-    CASE               shift, and go to state 66
-    CURRENT_DATE       shift, and go to state 67
-    CURRENT_TIME       shift, and go to state 68
-    CURRENT_TIMESTAMP  shift, and go to state 69
-    EXISTS             shift, and go to state 72
-    SELECT             shift, and go to state 6
-    FSUBSTRING         shift, and go to state 78
-    FTRIM              shift, and go to state 79
-    FDATE_ADD          shift, and go to state 80
-    FDATE_SUB          shift, and go to state 81
-    FCOUNT             shift, and go to state 82
+    NOT         shift, and go to state 138
+    BETWEEN     shift, and go to state 139
+    COMPARISON  shift, and go to state 140
+    '|'         shift, and go to state 141
+    '&'         shift, and go to state 142
+    SHIFT       shift, and go to state 143
+    '+'         shift, and go to state 144
+    '-'         shift, and go to state 145
+    '*'         shift, and go to state 146
+    '/'         shift, and go to state 147
+    '%'         shift, and go to state 148
+    MOD         shift, and go to state 149
+    '^'         shift, and go to state 150
 
-    select_stmt  go to state 359
-    expr         go to state 185
-    val_list     go to state 360
+    IN      error (nonassociative)
+    IS      error (nonassociative)
+    LIKE    error (nonassociative)
+    REGEXP  error (nonassociative)
+
+    $default  reduce using rule 299 (expr)
 
 
-state 301
+State 301
 
   258 expr: expr BETWEEN expr AND . expr
 
@@ -6302,8 +6302,8 @@ state 301
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -6320,7 +6320,7 @@ state 301
     expr  go to state 361
 
 
-state 302
+State 302
 
   246 expr: expr COMPARISON ALL '(' . select_stmt ')'
 
@@ -6329,7 +6329,7 @@ state 302
     select_stmt  go to state 362
 
 
-state 303
+State 303
 
   244 expr: expr COMPARISON ANY '(' . select_stmt ')'
 
@@ -6338,7 +6338,7 @@ state 303
     select_stmt  go to state 363
 
 
-state 304
+State 304
 
   245 expr: expr COMPARISON SOME '(' . select_stmt ')'
 
@@ -6347,14 +6347,14 @@ state 304
     select_stmt  go to state 364
 
 
-state 305
+State 305
 
   243 expr: expr COMPARISON '(' select_stmt . ')'
 
     ')'  shift, and go to state 365
 
 
-state 306
+State 306
 
    50 table_factor: NAME '.' NAME opt_as_alias . index_hint
 
@@ -6367,7 +6367,7 @@ state 306
     index_hint  go to state 366
 
 
-state 307
+State 307
 
    79 index_hint: FORCE KEY . opt_for_join '(' index_list ')'
 
@@ -6378,7 +6378,7 @@ state 307
     opt_for_join  go to state 368
 
 
-state 308
+State 308
 
    78 index_hint: IGNORE KEY . opt_for_join '(' index_list ')'
 
@@ -6389,7 +6389,7 @@ state 308
     opt_for_join  go to state 369
 
 
-state 309
+State 309
 
    77 index_hint: USE KEY . opt_for_join '(' index_list ')'
 
@@ -6400,7 +6400,7 @@ state 309
     opt_for_join  go to state 370
 
 
-state 310
+State 310
 
   132 update_asgn_list: NAME COMPARISON . expr
 
@@ -6410,8 +6410,8 @@ state 310
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -6428,14 +6428,14 @@ state 310
     expr  go to state 371
 
 
-state 311
+State 311
 
   133 update_asgn_list: NAME '.' . NAME COMPARISON expr
 
     NAME  shift, and go to state 372
 
 
-state 312
+State 312
 
   134 update_asgn_list: update_asgn_list ',' . NAME COMPARISON expr
   135                 | update_asgn_list ',' . NAME '.' NAME COMPARISON expr
@@ -6443,7 +6443,7 @@ state 312
     NAME  shift, and go to state 373
 
 
-state 313
+State 313
 
   128 update_stmt: UPDATE update_opts table_references SET update_asgn_list opt_where . opt_orderby opt_limit
 
@@ -6454,21 +6454,21 @@ state 313
     opt_orderby  go to state 374
 
 
-state 314
+State 314
 
    70 opt_left_or_right_outer: LEFT opt_outer .
 
     $default  reduce using rule 70 (opt_left_or_right_outer)
 
 
-state 315
+State 315
 
    71 opt_left_or_right_outer: RIGHT opt_outer .
 
     $default  reduce using rule 71 (opt_left_or_right_outer)
 
 
-state 316
+State 316
 
    62 join_table: table_reference NATURAL opt_left_or_right_outer JOIN . table_factor
 
@@ -6479,7 +6479,7 @@ state 316
     table_subquery  go to state 97
 
 
-state 317
+State 317
 
    60 join_table: table_reference STRAIGHT_JOIN table_factor ON . expr
 
@@ -6489,8 +6489,8 @@ state 317
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -6507,7 +6507,7 @@ state 317
     expr  go to state 376
 
 
-state 318
+State 318
 
    58 join_table: table_reference opt_inner_cross JOIN table_factor . opt_join_condition
 
@@ -6520,7 +6520,7 @@ state 318
     join_condition      go to state 380
 
 
-state 319
+State 319
 
    61 join_table: table_reference left_or_right opt_outer JOIN . table_factor join_condition
 
@@ -6531,7 +6531,7 @@ state 319
     table_subquery  go to state 97
 
 
-state 320
+State 320
 
   143 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '.' NAME . '(' create_col_list ')'
   146                  | CREATE opt_temporary TABLE opt_if_not_exists NAME '.' NAME . '(' create_col_list ')' create_select_statement
@@ -6547,7 +6547,7 @@ state 320
     opt_ignore_replace       go to state 260
 
 
-state 321
+State 321
 
   155 create_definition: FULLTEXT . INDEX '(' column_list ')'
   156                  | FULLTEXT . KEY '(' column_list ')'
@@ -6556,28 +6556,28 @@ state 321
     KEY    shift, and go to state 385
 
 
-state 322
+State 322
 
   154 create_definition: INDEX . '(' column_list ')'
 
     '('  shift, and go to state 386
 
 
-state 323
+State 323
 
   153 create_definition: KEY . '(' column_list ')'
 
     '('  shift, and go to state 387
 
 
-state 324
+State 324
 
   152 create_definition: PRIMARY . KEY '(' column_list ')'
 
     KEY  shift, and go to state 388
 
 
-state 325
+State 325
 
   142 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '(' create_col_list . ')'
   144                  | CREATE opt_temporary TABLE opt_if_not_exists NAME '(' create_col_list . ')' create_select_statement
@@ -6587,21 +6587,21 @@ state 325
     ')'  shift, and go to state 390
 
 
-state 326
+State 326
 
   148 create_col_list: create_definition .
 
     $default  reduce using rule 148 (create_col_list)
 
 
-state 327
+State 327
 
   151 create_definition: $@1 . NAME data_type column_atts
 
     NAME  shift, and go to state 391
 
 
-state 328
+State 328
 
   213 create_select_statement: opt_ignore_replace opt_as . select_stmt
 
@@ -6610,7 +6610,7 @@ state 328
     select_stmt  go to state 392
 
 
-state 329
+State 329
 
    22 opt_orderby: ORDER BY . groupby_list
 
@@ -6620,8 +6620,8 @@ state 329
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -6639,7 +6639,7 @@ state 329
     expr          go to state 394
 
 
-state 330
+State 330
 
    24 opt_limit: LIMIT . expr
    25          | LIMIT . expr ',' expr
@@ -6650,8 +6650,8 @@ state 330
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -6668,21 +6668,21 @@ state 330
     expr  go to state 395
 
 
-state 331
+State 331
 
    87 delete_stmt: DELETE delete_opts FROM NAME opt_where opt_orderby opt_limit .
 
     $default  reduce using rule 87 (delete_stmt)
 
 
-state 332
+State 332
 
    97 delete_stmt: DELETE delete_opts FROM delete_list USING table_references opt_where .
 
     $default  reduce using rule 97 (delete_stmt)
 
 
-state 333
+State 333
 
   119 insert_asgn_list: NAME COMPARISON . expr
   120                 | NAME COMPARISON . DEFAULT
@@ -6693,8 +6693,8 @@ state 333
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -6712,14 +6712,14 @@ state 333
     expr  go to state 397
 
 
-state 334
+State 334
 
   101 opt_ondupupdate: ONDUPLICATE . KEY UPDATE insert_asgn_list
 
     KEY  shift, and go to state 398
 
 
-state 335
+State 335
 
   121 insert_asgn_list: insert_asgn_list ',' . NAME COMPARISON expr
   122                 | insert_asgn_list ',' . NAME COMPARISON DEFAULT
@@ -6727,14 +6727,14 @@ state 335
     NAME  shift, and go to state 399
 
 
-state 336
+State 336
 
   117 insert_stmt: INSERT insert_opts opt_into NAME SET insert_asgn_list opt_ondupupdate .
 
     $default  reduce using rule 117 (insert_stmt)
 
 
-state 337
+State 337
 
    30 column_list: column_list ',' . NAME
    31            | column_list ',' . STRING
@@ -6743,14 +6743,14 @@ state 337
     STRING  shift, and go to state 401
 
 
-state 338
+State 338
 
   110 opt_col_names: '(' column_list ')' .
 
     $default  reduce using rule 110 (opt_col_names)
 
 
-state 339
+State 339
 
   111 insert_vals_list: '(' . insert_vals ')'
 
@@ -6760,8 +6760,8 @@ state 339
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -6780,7 +6780,7 @@ state 339
     expr         go to state 404
 
 
-state 340
+State 340
 
    99 insert_stmt: INSERT insert_opts opt_into NAME opt_col_names VALUES insert_vals_list . opt_ondupupdate
   112 insert_vals_list: insert_vals_list . ',' '(' insert_vals ')'
@@ -6793,21 +6793,21 @@ state 340
     opt_ondupupdate  go to state 406
 
 
-state 341
+State 341
 
   118 insert_stmt: INSERT insert_opts opt_into NAME opt_col_names select_stmt opt_ondupupdate .
 
     $default  reduce using rule 118 (insert_stmt)
 
 
-state 342
+State 342
 
   125 replace_stmt: REPLACE insert_opts opt_into NAME SET insert_asgn_list opt_ondupupdate .
 
     $default  reduce using rule 125 (replace_stmt)
 
 
-state 343
+State 343
 
   112 insert_vals_list: insert_vals_list . ',' '(' insert_vals ')'
   124 replace_stmt: REPLACE insert_opts opt_into NAME opt_col_names VALUES insert_vals_list . opt_ondupupdate
@@ -6820,21 +6820,21 @@ state 343
     opt_ondupupdate  go to state 407
 
 
-state 344
+State 344
 
   126 replace_stmt: REPLACE insert_opts opt_into NAME opt_col_names select_stmt opt_ondupupdate .
 
     $default  reduce using rule 126 (replace_stmt)
 
 
-state 345
+State 345
 
   260 val_list: expr ',' val_list .
 
     $default  reduce using rule 260 (val_list)
 
 
-state 346
+State 346
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -6872,10 +6872,10 @@ state 346
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -6893,7 +6893,7 @@ state 346
     $default  reduce using rule 294 (case_list)
 
 
-state 347
+State 347
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -6931,10 +6931,10 @@ state 347
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -6951,14 +6951,14 @@ state 347
     END         shift, and go to state 408
 
 
-state 348
+State 348
 
   293 expr: CASE case_list ELSE expr END .
 
     $default  reduce using rule 293 (expr)
 
 
-state 349
+State 349
 
   295 case_list: case_list WHEN expr THEN . expr
 
@@ -6968,8 +6968,8 @@ state 349
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -6986,7 +6986,7 @@ state 349
     expr  go to state 409
 
 
-state 350
+State 350
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -7025,10 +7025,10 @@ state 350
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -7046,7 +7046,7 @@ state 350
     ')'         shift, and go to state 411
 
 
-state 351
+State 351
 
   275 expr: FTRIM '(' trim_ltb expr FROM . val_list ')'
 
@@ -7056,8 +7056,8 @@ state 351
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -7075,7 +7075,7 @@ state 351
     val_list  go to state 412
 
 
-state 352
+State 352
 
   281 interval_exp: INTERVAL . expr DAY_HOUR
   282             | INTERVAL . expr DAY_MICROSECOND
@@ -7093,8 +7093,8 @@ state 352
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -7111,28 +7111,28 @@ state 352
     expr  go to state 413
 
 
-state 353
+State 353
 
   279 expr: FDATE_ADD '(' expr ',' interval_exp . ')'
 
     ')'  shift, and go to state 414
 
 
-state 354
+State 354
 
   280 expr: FDATE_SUB '(' expr ',' interval_exp . ')'
 
     ')'  shift, and go to state 415
 
 
-state 355
+State 355
 
    11 opt_groupby: GROUP . BY groupby_list opt_with_rollup
 
     BY  shift, and go to state 416
 
 
-state 356
+State 356
 
     7 select_stmt: SELECT select_opts select_expr_list FROM table_references opt_where opt_groupby . opt_having opt_orderby opt_limit opt_into_list
 
@@ -7143,35 +7143,35 @@ state 356
     opt_having  go to state 418
 
 
-state 357
+State 357
 
   265 expr: expr IN '(' select_stmt ')' .
 
     $default  reduce using rule 265 (expr)
 
 
-state 358
+State 358
 
   263 expr: expr IN '(' val_list ')' .
 
     $default  reduce using rule 263 (expr)
 
 
-state 359
+State 359
 
   266 expr: expr NOT IN '(' select_stmt . ')'
 
     ')'  shift, and go to state 419
 
 
-state 360
+State 360
 
   264 expr: expr NOT IN '(' val_list . ')'
 
     ')'  shift, and go to state 420
 
 
-state 361
+State 361
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -7221,70 +7221,70 @@ state 361
     $default  reduce using rule 258 (expr)
 
 
-state 362
+State 362
 
   246 expr: expr COMPARISON ALL '(' select_stmt . ')'
 
     ')'  shift, and go to state 421
 
 
-state 363
+State 363
 
   244 expr: expr COMPARISON ANY '(' select_stmt . ')'
 
     ')'  shift, and go to state 422
 
 
-state 364
+State 364
 
   245 expr: expr COMPARISON SOME '(' select_stmt . ')'
 
     ')'  shift, and go to state 423
 
 
-state 365
+State 365
 
   243 expr: expr COMPARISON '(' select_stmt ')' .
 
     $default  reduce using rule 243 (expr)
 
 
-state 366
+State 366
 
    50 table_factor: NAME '.' NAME opt_as_alias index_hint .
 
     $default  reduce using rule 50 (table_factor)
 
 
-state 367
+State 367
 
    81 opt_for_join: FOR . JOIN
 
     JOIN  shift, and go to state 424
 
 
-state 368
+State 368
 
    79 index_hint: FORCE KEY opt_for_join . '(' index_list ')'
 
     '('  shift, and go to state 425
 
 
-state 369
+State 369
 
    78 index_hint: IGNORE KEY opt_for_join . '(' index_list ')'
 
     '('  shift, and go to state 426
 
 
-state 370
+State 370
 
    77 index_hint: USE KEY opt_for_join . '(' index_list ')'
 
     '('  shift, and go to state 427
 
 
-state 371
+State 371
 
   132 update_asgn_list: NAME COMPARISON expr .
   232 expr: expr . '+' expr
@@ -7322,10 +7322,10 @@ state 371
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -7343,14 +7343,14 @@ state 371
     $default  reduce using rule 132 (update_asgn_list)
 
 
-state 372
+State 372
 
   133 update_asgn_list: NAME '.' NAME . COMPARISON expr
 
     COMPARISON  shift, and go to state 428
 
 
-state 373
+State 373
 
   134 update_asgn_list: update_asgn_list ',' NAME . COMPARISON expr
   135                 | update_asgn_list ',' NAME . '.' NAME COMPARISON expr
@@ -7359,7 +7359,7 @@ state 373
     '.'         shift, and go to state 430
 
 
-state 374
+State 374
 
   128 update_stmt: UPDATE update_opts table_references SET update_asgn_list opt_where opt_orderby . opt_limit
 
@@ -7370,14 +7370,14 @@ state 374
     opt_limit  go to state 431
 
 
-state 375
+State 375
 
    62 join_table: table_reference NATURAL opt_left_or_right_outer JOIN table_factor .
 
     $default  reduce using rule 62 (join_table)
 
 
-state 376
+State 376
 
    60 join_table: table_reference STRAIGHT_JOIN table_factor ON expr .
   232 expr: expr . '+' expr
@@ -7415,10 +7415,10 @@ state 376
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -7436,7 +7436,7 @@ state 376
     $default  reduce using rule 60 (join_table)
 
 
-state 377
+State 377
 
    75 join_condition: ON . expr
 
@@ -7446,8 +7446,8 @@ state 377
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -7464,28 +7464,28 @@ state 377
     expr  go to state 432
 
 
-state 378
+State 378
 
    76 join_condition: USING . '(' column_list ')'
 
     '('  shift, and go to state 433
 
 
-state 379
+State 379
 
    58 join_table: table_reference opt_inner_cross JOIN table_factor opt_join_condition .
 
     $default  reduce using rule 58 (join_table)
 
 
-state 380
+State 380
 
    73 opt_join_condition: join_condition .
 
     $default  reduce using rule 73 (opt_join_condition)
 
 
-state 381
+State 381
 
    61 join_table: table_reference left_or_right opt_outer JOIN table_factor . join_condition
 
@@ -7495,7 +7495,7 @@ state 381
     join_condition  go to state 434
 
 
-state 382
+State 382
 
   143 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '.' NAME '(' . create_col_list ')'
   146                  | CREATE opt_temporary TABLE opt_if_not_exists NAME '.' NAME '(' . create_col_list ')' create_select_statement
@@ -7512,28 +7512,28 @@ state 382
     $@1                go to state 327
 
 
-state 383
+State 383
 
   147 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '.' NAME create_select_statement .
 
     $default  reduce using rule 147 (create_table_stmt)
 
 
-state 384
+State 384
 
   155 create_definition: FULLTEXT INDEX . '(' column_list ')'
 
     '('  shift, and go to state 436
 
 
-state 385
+State 385
 
   156 create_definition: FULLTEXT KEY . '(' column_list ')'
 
     '('  shift, and go to state 437
 
 
-state 386
+State 386
 
   154 create_definition: INDEX '(' . column_list ')'
 
@@ -7543,7 +7543,7 @@ state 386
     column_list  go to state 438
 
 
-state 387
+State 387
 
   153 create_definition: KEY '(' . column_list ')'
 
@@ -7553,14 +7553,14 @@ state 387
     column_list  go to state 439
 
 
-state 388
+State 388
 
   152 create_definition: PRIMARY KEY . '(' column_list ')'
 
     '('  shift, and go to state 440
 
 
-state 389
+State 389
 
   149 create_col_list: create_col_list ',' . create_definition
 
@@ -7575,7 +7575,7 @@ state 389
     $@1                go to state 327
 
 
-state 390
+State 390
 
   142 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '(' create_col_list ')' .
   144                  | CREATE opt_temporary TABLE opt_if_not_exists NAME '(' create_col_list ')' . create_select_statement
@@ -7590,7 +7590,7 @@ state 390
     opt_ignore_replace       go to state 260
 
 
-state 391
+State 391
 
   151 create_definition: $@1 NAME . data_type column_atts
 
@@ -7628,14 +7628,14 @@ state 391
     data_type  go to state 473
 
 
-state 392
+State 392
 
   213 create_select_statement: opt_ignore_replace opt_as select_stmt .
 
     $default  reduce using rule 213 (create_select_statement)
 
 
-state 393
+State 393
 
    13 groupby_list: groupby_list . ',' expr opt_asc_desc
    22 opt_orderby: ORDER BY groupby_list .
@@ -7645,7 +7645,7 @@ state 393
     $default  reduce using rule 22 (opt_orderby)
 
 
-state 394
+State 394
 
    12 groupby_list: expr . opt_asc_desc
   232 expr: expr . '+' expr
@@ -7683,10 +7683,10 @@ state 394
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -7708,7 +7708,7 @@ state 394
     opt_asc_desc  go to state 477
 
 
-state 395
+State 395
 
    24 opt_limit: LIMIT expr .
    25          | LIMIT expr . ',' expr
@@ -7747,10 +7747,10 @@ state 395
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -7769,14 +7769,14 @@ state 395
     $default  reduce using rule 24 (opt_limit)
 
 
-state 396
+State 396
 
   120 insert_asgn_list: NAME COMPARISON DEFAULT .
 
     $default  reduce using rule 120 (insert_asgn_list)
 
 
-state 397
+State 397
 
   119 insert_asgn_list: NAME COMPARISON expr .
   232 expr: expr . '+' expr
@@ -7814,10 +7814,10 @@ state 397
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -7835,14 +7835,14 @@ state 397
     $default  reduce using rule 119 (insert_asgn_list)
 
 
-state 398
+State 398
 
   101 opt_ondupupdate: ONDUPLICATE KEY . UPDATE insert_asgn_list
 
     UPDATE  shift, and go to state 479
 
 
-state 399
+State 399
 
   121 insert_asgn_list: insert_asgn_list ',' NAME . COMPARISON expr
   122                 | insert_asgn_list ',' NAME . COMPARISON DEFAULT
@@ -7850,28 +7850,28 @@ state 399
     COMPARISON  shift, and go to state 480
 
 
-state 400
+State 400
 
    30 column_list: column_list ',' NAME .
 
     $default  reduce using rule 30 (column_list)
 
 
-state 401
+State 401
 
    31 column_list: column_list ',' STRING .
 
     $default  reduce using rule 31 (column_list)
 
 
-state 402
+State 402
 
   114 insert_vals: DEFAULT .
 
     $default  reduce using rule 114 (insert_vals)
 
 
-state 403
+State 403
 
   111 insert_vals_list: '(' insert_vals . ')'
   115 insert_vals: insert_vals . ',' expr
@@ -7881,7 +7881,7 @@ state 403
     ')'  shift, and go to state 482
 
 
-state 404
+State 404
 
   113 insert_vals: expr .
   232 expr: expr . '+' expr
@@ -7919,10 +7919,10 @@ state 404
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -7940,35 +7940,35 @@ state 404
     $default  reduce using rule 113 (insert_vals)
 
 
-state 405
+State 405
 
   112 insert_vals_list: insert_vals_list ',' . '(' insert_vals ')'
 
     '('  shift, and go to state 483
 
 
-state 406
+State 406
 
    99 insert_stmt: INSERT insert_opts opt_into NAME opt_col_names VALUES insert_vals_list opt_ondupupdate .
 
     $default  reduce using rule 99 (insert_stmt)
 
 
-state 407
+State 407
 
   124 replace_stmt: REPLACE insert_opts opt_into NAME opt_col_names VALUES insert_vals_list opt_ondupupdate .
 
     $default  reduce using rule 124 (replace_stmt)
 
 
-state 408
+State 408
 
   291 expr: CASE expr case_list ELSE expr END .
 
     $default  reduce using rule 291 (expr)
 
 
-state 409
+State 409
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -8006,10 +8006,10 @@ state 409
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -8027,7 +8027,7 @@ state 409
     $default  reduce using rule 295 (case_list)
 
 
-state 410
+State 410
 
   273 expr: FSUBSTRING '(' expr FROM expr FOR . expr ')'
 
@@ -8037,8 +8037,8 @@ state 410
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -8055,21 +8055,21 @@ state 410
     expr  go to state 484
 
 
-state 411
+State 411
 
   272 expr: FSUBSTRING '(' expr FROM expr ')' .
 
     $default  reduce using rule 272 (expr)
 
 
-state 412
+State 412
 
   275 expr: FTRIM '(' trim_ltb expr FROM val_list . ')'
 
     ')'  shift, and go to state 485
 
 
-state 413
+State 413
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -8115,10 +8115,10 @@ state 413
     OR                shift, and go to state 131
     XOR               shift, and go to state 132
     ANDOP             shift, and go to state 133
-    REGEXP            shift, and go to state 134
-    LIKE              shift, and go to state 135
-    IS                shift, and go to state 136
-    IN                shift, and go to state 137
+    IN                shift, and go to state 134
+    IS                shift, and go to state 135
+    LIKE              shift, and go to state 136
+    REGEXP            shift, and go to state 137
     NOT               shift, and go to state 138
     BETWEEN           shift, and go to state 139
     COMPARISON        shift, and go to state 140
@@ -8143,21 +8143,21 @@ state 413
     YEAR_MONTH        shift, and go to state 494
 
 
-state 414
+State 414
 
   279 expr: FDATE_ADD '(' expr ',' interval_exp ')' .
 
     $default  reduce using rule 279 (expr)
 
 
-state 415
+State 415
 
   280 expr: FDATE_SUB '(' expr ',' interval_exp ')' .
 
     $default  reduce using rule 280 (expr)
 
 
-state 416
+State 416
 
    11 opt_groupby: GROUP BY . groupby_list opt_with_rollup
 
@@ -8167,8 +8167,8 @@ state 416
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -8186,7 +8186,7 @@ state 416
     expr          go to state 394
 
 
-state 417
+State 417
 
    20 opt_having: HAVING . expr
 
@@ -8196,8 +8196,8 @@ state 417
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -8214,7 +8214,7 @@ state 417
     expr  go to state 496
 
 
-state 418
+State 418
 
     7 select_stmt: SELECT select_opts select_expr_list FROM table_references opt_where opt_groupby opt_having . opt_orderby opt_limit opt_into_list
 
@@ -8225,49 +8225,49 @@ state 418
     opt_orderby  go to state 497
 
 
-state 419
+State 419
 
   266 expr: expr NOT IN '(' select_stmt ')' .
 
     $default  reduce using rule 266 (expr)
 
 
-state 420
+State 420
 
   264 expr: expr NOT IN '(' val_list ')' .
 
     $default  reduce using rule 264 (expr)
 
 
-state 421
+State 421
 
   246 expr: expr COMPARISON ALL '(' select_stmt ')' .
 
     $default  reduce using rule 246 (expr)
 
 
-state 422
+State 422
 
   244 expr: expr COMPARISON ANY '(' select_stmt ')' .
 
     $default  reduce using rule 244 (expr)
 
 
-state 423
+State 423
 
   245 expr: expr COMPARISON SOME '(' select_stmt ')' .
 
     $default  reduce using rule 245 (expr)
 
 
-state 424
+State 424
 
    81 opt_for_join: FOR JOIN .
 
     $default  reduce using rule 81 (opt_for_join)
 
 
-state 425
+State 425
 
    79 index_hint: FORCE KEY opt_for_join '(' . index_list ')'
 
@@ -8276,7 +8276,7 @@ state 425
     index_list  go to state 499
 
 
-state 426
+State 426
 
    78 index_hint: IGNORE KEY opt_for_join '(' . index_list ')'
 
@@ -8285,7 +8285,7 @@ state 426
     index_list  go to state 500
 
 
-state 427
+State 427
 
    77 index_hint: USE KEY opt_for_join '(' . index_list ')'
 
@@ -8294,7 +8294,7 @@ state 427
     index_list  go to state 501
 
 
-state 428
+State 428
 
   133 update_asgn_list: NAME '.' NAME COMPARISON . expr
 
@@ -8304,8 +8304,8 @@ state 428
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -8322,7 +8322,7 @@ state 428
     expr  go to state 502
 
 
-state 429
+State 429
 
   134 update_asgn_list: update_asgn_list ',' NAME COMPARISON . expr
 
@@ -8332,8 +8332,8 @@ state 429
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -8350,21 +8350,21 @@ state 429
     expr  go to state 503
 
 
-state 430
+State 430
 
   135 update_asgn_list: update_asgn_list ',' NAME '.' . NAME COMPARISON expr
 
     NAME  shift, and go to state 504
 
 
-state 431
+State 431
 
   128 update_stmt: UPDATE update_opts table_references SET update_asgn_list opt_where opt_orderby opt_limit .
 
     $default  reduce using rule 128 (update_stmt)
 
 
-state 432
+State 432
 
    75 join_condition: ON expr .
   232 expr: expr . '+' expr
@@ -8402,10 +8402,10 @@ state 432
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -8423,7 +8423,7 @@ state 432
     $default  reduce using rule 75 (join_condition)
 
 
-state 433
+State 433
 
    76 join_condition: USING '(' . column_list ')'
 
@@ -8433,14 +8433,14 @@ state 433
     column_list  go to state 505
 
 
-state 434
+State 434
 
    61 join_table: table_reference left_or_right opt_outer JOIN table_factor join_condition .
 
     $default  reduce using rule 61 (join_table)
 
 
-state 435
+State 435
 
   143 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '.' NAME '(' create_col_list . ')'
   146                  | CREATE opt_temporary TABLE opt_if_not_exists NAME '.' NAME '(' create_col_list . ')' create_select_statement
@@ -8450,7 +8450,7 @@ state 435
     ')'  shift, and go to state 506
 
 
-state 436
+State 436
 
   155 create_definition: FULLTEXT INDEX '(' . column_list ')'
 
@@ -8460,7 +8460,7 @@ state 436
     column_list  go to state 507
 
 
-state 437
+State 437
 
   156 create_definition: FULLTEXT KEY '(' . column_list ')'
 
@@ -8470,7 +8470,7 @@ state 437
     column_list  go to state 508
 
 
-state 438
+State 438
 
    30 column_list: column_list . ',' NAME
    31            | column_list . ',' STRING
@@ -8480,7 +8480,7 @@ state 438
     ')'  shift, and go to state 509
 
 
-state 439
+State 439
 
    30 column_list: column_list . ',' NAME
    31            | column_list . ',' STRING
@@ -8490,7 +8490,7 @@ state 439
     ')'  shift, and go to state 510
 
 
-state 440
+State 440
 
   152 create_definition: PRIMARY KEY '(' . column_list ')'
 
@@ -8500,21 +8500,21 @@ state 440
     column_list  go to state 511
 
 
-state 441
+State 441
 
   149 create_col_list: create_col_list ',' create_definition .
 
     $default  reduce using rule 149 (create_col_list)
 
 
-state 442
+State 442
 
   144 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '(' create_col_list ')' create_select_statement .
 
     $default  reduce using rule 144 (create_table_stmt)
 
 
-state 443
+State 443
 
   187 data_type: BIGINT . opt_length opt_uz
 
@@ -8525,7 +8525,7 @@ state 443
     opt_length  go to state 513
 
 
-state 444
+State 444
 
   199 data_type: BINARY . opt_length
 
@@ -8536,7 +8536,7 @@ state 444
     opt_length  go to state 514
 
 
-state 445
+State 445
 
   181 data_type: BIT . opt_length
 
@@ -8547,14 +8547,14 @@ state 445
     opt_length  go to state 515
 
 
-state 446
+State 446
 
   202 data_type: BLOB .
 
     $default  reduce using rule 202 (data_type)
 
 
-state 447
+State 447
 
   197 data_type: CHAR . opt_length opt_csc
 
@@ -8565,21 +8565,21 @@ state 447
     opt_length  go to state 516
 
 
-state 448
+State 448
 
   192 data_type: DATE .
 
     $default  reduce using rule 192 (data_type)
 
 
-state 449
+State 449
 
   195 data_type: DATETIME .
 
     $default  reduce using rule 195 (data_type)
 
 
-state 450
+State 450
 
   191 data_type: DECIMAL . opt_length opt_uz
 
@@ -8590,7 +8590,7 @@ state 450
     opt_length  go to state 517
 
 
-state 451
+State 451
 
   189 data_type: DOUBLE . opt_length opt_uz
 
@@ -8601,14 +8601,14 @@ state 451
     opt_length  go to state 518
 
 
-state 452
+State 452
 
   209 data_type: ENUM . '(' enum_list ')' opt_csc
 
     '('  shift, and go to state 519
 
 
-state 453
+State 453
 
   190 data_type: FLOAT . opt_length opt_uz
 
@@ -8619,7 +8619,7 @@ state 453
     opt_length  go to state 520
 
 
-state 454
+State 454
 
   185 data_type: INT . opt_length opt_uz
 
@@ -8630,7 +8630,7 @@ state 454
     opt_length  go to state 521
 
 
-state 455
+State 455
 
   186 data_type: INTEGER . opt_length opt_uz
 
@@ -8641,14 +8641,14 @@ state 455
     opt_length  go to state 522
 
 
-state 456
+State 456
 
   204 data_type: LONGBLOB .
 
     $default  reduce using rule 204 (data_type)
 
 
-state 457
+State 457
 
   208 data_type: LONGTEXT . opt_binary opt_csc
 
@@ -8659,14 +8659,14 @@ state 457
     opt_binary  go to state 524
 
 
-state 458
+State 458
 
   203 data_type: MEDIUMBLOB .
 
     $default  reduce using rule 203 (data_type)
 
 
-state 459
+State 459
 
   184 data_type: MEDIUMINT . opt_length opt_uz
 
@@ -8677,7 +8677,7 @@ state 459
     opt_length  go to state 525
 
 
-state 460
+State 460
 
   207 data_type: MEDIUMTEXT . opt_binary opt_csc
 
@@ -8688,7 +8688,7 @@ state 460
     opt_binary  go to state 526
 
 
-state 461
+State 461
 
   188 data_type: REAL . opt_length opt_uz
 
@@ -8699,14 +8699,14 @@ state 461
     opt_length  go to state 527
 
 
-state 462
+State 462
 
   210 data_type: SET . '(' enum_list ')' opt_csc
 
     '('  shift, and go to state 528
 
 
-state 463
+State 463
 
   183 data_type: SMALLINT . opt_length opt_uz
 
@@ -8717,7 +8717,7 @@ state 463
     opt_length  go to state 529
 
 
-state 464
+State 464
 
   206 data_type: TEXT . opt_binary opt_csc
 
@@ -8728,28 +8728,28 @@ state 464
     opt_binary  go to state 530
 
 
-state 465
+State 465
 
   193 data_type: TIME .
 
     $default  reduce using rule 193 (data_type)
 
 
-state 466
+State 466
 
   194 data_type: TIMESTAMP .
 
     $default  reduce using rule 194 (data_type)
 
 
-state 467
+State 467
 
   201 data_type: TINYBLOB .
 
     $default  reduce using rule 201 (data_type)
 
 
-state 468
+State 468
 
   182 data_type: TINYINT . opt_length opt_uz
 
@@ -8760,7 +8760,7 @@ state 468
     opt_length  go to state 531
 
 
-state 469
+State 469
 
   205 data_type: TINYTEXT . opt_binary opt_csc
 
@@ -8771,28 +8771,28 @@ state 469
     opt_binary  go to state 532
 
 
-state 470
+State 470
 
   200 data_type: VARBINARY . '(' INTNUM ')'
 
     '('  shift, and go to state 533
 
 
-state 471
+State 471
 
   198 data_type: VARCHAR . '(' INTNUM ')' opt_csc
 
     '('  shift, and go to state 534
 
 
-state 472
+State 472
 
   196 data_type: YEAR .
 
     $default  reduce using rule 196 (data_type)
 
 
-state 473
+State 473
 
   151 create_definition: $@1 NAME data_type . column_atts
 
@@ -8801,7 +8801,7 @@ state 473
     column_atts  go to state 535
 
 
-state 474
+State 474
 
    13 groupby_list: groupby_list ',' . expr opt_asc_desc
 
@@ -8811,8 +8811,8 @@ state 474
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -8829,28 +8829,28 @@ state 474
     expr  go to state 536
 
 
-state 475
+State 475
 
    15 opt_asc_desc: ASC .
 
     $default  reduce using rule 15 (opt_asc_desc)
 
 
-state 476
+State 476
 
    16 opt_asc_desc: DESC .
 
     $default  reduce using rule 16 (opt_asc_desc)
 
 
-state 477
+State 477
 
    12 groupby_list: expr opt_asc_desc .
 
     $default  reduce using rule 12 (groupby_list)
 
 
-state 478
+State 478
 
    25 opt_limit: LIMIT expr ',' . expr
 
@@ -8860,8 +8860,8 @@ state 478
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -8878,7 +8878,7 @@ state 478
     expr  go to state 537
 
 
-state 479
+State 479
 
   101 opt_ondupupdate: ONDUPLICATE KEY UPDATE . insert_asgn_list
 
@@ -8887,7 +8887,7 @@ state 479
     insert_asgn_list  go to state 538
 
 
-state 480
+State 480
 
   121 insert_asgn_list: insert_asgn_list ',' NAME COMPARISON . expr
   122                 | insert_asgn_list ',' NAME COMPARISON . DEFAULT
@@ -8898,8 +8898,8 @@ state 480
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -8917,7 +8917,7 @@ state 480
     expr  go to state 540
 
 
-state 481
+State 481
 
   115 insert_vals: insert_vals ',' . expr
   116            | insert_vals ',' . DEFAULT
@@ -8928,8 +8928,8 @@ state 481
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -8947,14 +8947,14 @@ state 481
     expr  go to state 542
 
 
-state 482
+State 482
 
   111 insert_vals_list: '(' insert_vals ')' .
 
     $default  reduce using rule 111 (insert_vals_list)
 
 
-state 483
+State 483
 
   112 insert_vals_list: insert_vals_list ',' '(' . insert_vals ')'
 
@@ -8964,8 +8964,8 @@ state 483
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -8984,7 +8984,7 @@ state 483
     expr         go to state 404
 
 
-state 484
+State 484
 
   232 expr: expr . '+' expr
   233     | expr . '-' expr
@@ -9022,10 +9022,10 @@ state 484
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -9042,77 +9042,77 @@ state 484
     ')'         shift, and go to state 544
 
 
-state 485
+State 485
 
   275 expr: FTRIM '(' trim_ltb expr FROM val_list ')' .
 
     $default  reduce using rule 275 (expr)
 
 
-state 486
+State 486
 
   281 interval_exp: INTERVAL expr DAY_HOUR .
 
     $default  reduce using rule 281 (interval_exp)
 
 
-state 487
+State 487
 
   282 interval_exp: INTERVAL expr DAY_MICROSECOND .
 
     $default  reduce using rule 282 (interval_exp)
 
 
-state 488
+State 488
 
   283 interval_exp: INTERVAL expr DAY_MINUTE .
 
     $default  reduce using rule 283 (interval_exp)
 
 
-state 489
+State 489
 
   284 interval_exp: INTERVAL expr DAY_SECOND .
 
     $default  reduce using rule 284 (interval_exp)
 
 
-state 490
+State 490
 
   287 interval_exp: INTERVAL expr HOUR_MICROSECOND .
 
     $default  reduce using rule 287 (interval_exp)
 
 
-state 491
+State 491
 
   288 interval_exp: INTERVAL expr HOUR_MINUTE .
 
     $default  reduce using rule 288 (interval_exp)
 
 
-state 492
+State 492
 
   289 interval_exp: INTERVAL expr HOUR_SECOND .
 
     $default  reduce using rule 289 (interval_exp)
 
 
-state 493
+State 493
 
   286 interval_exp: INTERVAL expr YEAR .
 
     $default  reduce using rule 286 (interval_exp)
 
 
-state 494
+State 494
 
   285 interval_exp: INTERVAL expr YEAR_MONTH .
 
     $default  reduce using rule 285 (interval_exp)
 
 
-state 495
+State 495
 
    11 opt_groupby: GROUP BY groupby_list . opt_with_rollup
    13 groupby_list: groupby_list . ',' expr opt_asc_desc
@@ -9125,7 +9125,7 @@ state 495
     opt_with_rollup  go to state 546
 
 
-state 496
+State 496
 
    20 opt_having: HAVING expr .
   232 expr: expr . '+' expr
@@ -9163,10 +9163,10 @@ state 496
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -9184,7 +9184,7 @@ state 496
     $default  reduce using rule 20 (opt_having)
 
 
-state 497
+State 497
 
     7 select_stmt: SELECT select_opts select_expr_list FROM table_references opt_where opt_groupby opt_having opt_orderby . opt_limit opt_into_list
 
@@ -9195,14 +9195,14 @@ state 497
     opt_limit  go to state 547
 
 
-state 498
+State 498
 
    83 index_list: NAME .
 
     $default  reduce using rule 83 (index_list)
 
 
-state 499
+State 499
 
    79 index_hint: FORCE KEY opt_for_join '(' index_list . ')'
    84 index_list: index_list . ',' NAME
@@ -9211,7 +9211,7 @@ state 499
     ')'  shift, and go to state 549
 
 
-state 500
+State 500
 
    78 index_hint: IGNORE KEY opt_for_join '(' index_list . ')'
    84 index_list: index_list . ',' NAME
@@ -9220,7 +9220,7 @@ state 500
     ')'  shift, and go to state 550
 
 
-state 501
+State 501
 
    77 index_hint: USE KEY opt_for_join '(' index_list . ')'
    84 index_list: index_list . ',' NAME
@@ -9229,7 +9229,7 @@ state 501
     ')'  shift, and go to state 551
 
 
-state 502
+State 502
 
   133 update_asgn_list: NAME '.' NAME COMPARISON expr .
   232 expr: expr . '+' expr
@@ -9267,10 +9267,10 @@ state 502
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -9288,7 +9288,7 @@ state 502
     $default  reduce using rule 133 (update_asgn_list)
 
 
-state 503
+State 503
 
   134 update_asgn_list: update_asgn_list ',' NAME COMPARISON expr .
   232 expr: expr . '+' expr
@@ -9326,10 +9326,10 @@ state 503
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -9347,14 +9347,14 @@ state 503
     $default  reduce using rule 134 (update_asgn_list)
 
 
-state 504
+State 504
 
   135 update_asgn_list: update_asgn_list ',' NAME '.' NAME . COMPARISON expr
 
     COMPARISON  shift, and go to state 552
 
 
-state 505
+State 505
 
    30 column_list: column_list . ',' NAME
    31            | column_list . ',' STRING
@@ -9364,7 +9364,7 @@ state 505
     ')'  shift, and go to state 553
 
 
-state 506
+State 506
 
   143 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '.' NAME '(' create_col_list ')' .
   146                  | CREATE opt_temporary TABLE opt_if_not_exists NAME '.' NAME '(' create_col_list ')' . create_select_statement
@@ -9379,7 +9379,7 @@ state 506
     opt_ignore_replace       go to state 260
 
 
-state 507
+State 507
 
    30 column_list: column_list . ',' NAME
    31            | column_list . ',' STRING
@@ -9389,7 +9389,7 @@ state 507
     ')'  shift, and go to state 555
 
 
-state 508
+State 508
 
    30 column_list: column_list . ',' NAME
    31            | column_list . ',' STRING
@@ -9399,21 +9399,21 @@ state 508
     ')'  shift, and go to state 556
 
 
-state 509
+State 509
 
   154 create_definition: INDEX '(' column_list ')' .
 
     $default  reduce using rule 154 (create_definition)
 
 
-state 510
+State 510
 
   153 create_definition: KEY '(' column_list ')' .
 
     $default  reduce using rule 153 (create_definition)
 
 
-state 511
+State 511
 
    30 column_list: column_list . ',' NAME
    31            | column_list . ',' STRING
@@ -9423,7 +9423,7 @@ state 511
     ')'  shift, and go to state 557
 
 
-state 512
+State 512
 
   171 opt_length: '(' . INTNUM ')'
   172           | '(' . INTNUM ',' INTNUM ')'
@@ -9431,7 +9431,7 @@ state 512
     INTNUM  shift, and go to state 558
 
 
-state 513
+State 513
 
   187 data_type: BIGINT opt_length . opt_uz
 
@@ -9440,21 +9440,21 @@ state 513
     opt_uz  go to state 559
 
 
-state 514
+State 514
 
   199 data_type: BINARY opt_length .
 
     $default  reduce using rule 199 (data_type)
 
 
-state 515
+State 515
 
   181 data_type: BIT opt_length .
 
     $default  reduce using rule 181 (data_type)
 
 
-state 516
+State 516
 
   197 data_type: CHAR opt_length . opt_csc
 
@@ -9463,7 +9463,7 @@ state 516
     opt_csc  go to state 560
 
 
-state 517
+State 517
 
   191 data_type: DECIMAL opt_length . opt_uz
 
@@ -9472,7 +9472,7 @@ state 517
     opt_uz  go to state 561
 
 
-state 518
+State 518
 
   189 data_type: DOUBLE opt_length . opt_uz
 
@@ -9481,7 +9481,7 @@ state 518
     opt_uz  go to state 562
 
 
-state 519
+State 519
 
   209 data_type: ENUM '(' . enum_list ')' opt_csc
 
@@ -9490,7 +9490,7 @@ state 519
     enum_list  go to state 564
 
 
-state 520
+State 520
 
   190 data_type: FLOAT opt_length . opt_uz
 
@@ -9499,7 +9499,7 @@ state 520
     opt_uz  go to state 565
 
 
-state 521
+State 521
 
   185 data_type: INT opt_length . opt_uz
 
@@ -9508,7 +9508,7 @@ state 521
     opt_uz  go to state 566
 
 
-state 522
+State 522
 
   186 data_type: INTEGER opt_length . opt_uz
 
@@ -9517,14 +9517,14 @@ state 522
     opt_uz  go to state 567
 
 
-state 523
+State 523
 
   174 opt_binary: BINARY .
 
     $default  reduce using rule 174 (opt_binary)
 
 
-state 524
+State 524
 
   208 data_type: LONGTEXT opt_binary . opt_csc
 
@@ -9533,7 +9533,7 @@ state 524
     opt_csc  go to state 568
 
 
-state 525
+State 525
 
   184 data_type: MEDIUMINT opt_length . opt_uz
 
@@ -9542,7 +9542,7 @@ state 525
     opt_uz  go to state 569
 
 
-state 526
+State 526
 
   207 data_type: MEDIUMTEXT opt_binary . opt_csc
 
@@ -9551,7 +9551,7 @@ state 526
     opt_csc  go to state 570
 
 
-state 527
+State 527
 
   188 data_type: REAL opt_length . opt_uz
 
@@ -9560,7 +9560,7 @@ state 527
     opt_uz  go to state 571
 
 
-state 528
+State 528
 
   210 data_type: SET '(' . enum_list ')' opt_csc
 
@@ -9569,7 +9569,7 @@ state 528
     enum_list  go to state 572
 
 
-state 529
+State 529
 
   183 data_type: SMALLINT opt_length . opt_uz
 
@@ -9578,7 +9578,7 @@ state 529
     opt_uz  go to state 573
 
 
-state 530
+State 530
 
   206 data_type: TEXT opt_binary . opt_csc
 
@@ -9587,7 +9587,7 @@ state 530
     opt_csc  go to state 574
 
 
-state 531
+State 531
 
   182 data_type: TINYINT opt_length . opt_uz
 
@@ -9596,7 +9596,7 @@ state 531
     opt_uz  go to state 575
 
 
-state 532
+State 532
 
   205 data_type: TINYTEXT opt_binary . opt_csc
 
@@ -9605,21 +9605,21 @@ state 532
     opt_csc  go to state 576
 
 
-state 533
+State 533
 
   200 data_type: VARBINARY '(' . INTNUM ')'
 
     INTNUM  shift, and go to state 577
 
 
-state 534
+State 534
 
   198 data_type: VARCHAR '(' . INTNUM ')' opt_csc
 
     INTNUM  shift, and go to state 578
 
 
-state 535
+State 535
 
   151 create_definition: $@1 NAME data_type column_atts .
   158 column_atts: column_atts . NOT NULLX
@@ -9647,7 +9647,7 @@ state 535
     $default  reduce using rule 151 (create_definition)
 
 
-state 536
+State 536
 
    13 groupby_list: groupby_list ',' expr . opt_asc_desc
   232 expr: expr . '+' expr
@@ -9685,10 +9685,10 @@ state 536
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -9710,7 +9710,7 @@ state 536
     opt_asc_desc  go to state 587
 
 
-state 537
+State 537
 
    25 opt_limit: LIMIT expr ',' expr .
   232 expr: expr . '+' expr
@@ -9748,10 +9748,10 @@ state 537
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -9769,7 +9769,7 @@ state 537
     $default  reduce using rule 25 (opt_limit)
 
 
-state 538
+State 538
 
   101 opt_ondupupdate: ONDUPLICATE KEY UPDATE insert_asgn_list .
   121 insert_asgn_list: insert_asgn_list . ',' NAME COMPARISON expr
@@ -9780,14 +9780,14 @@ state 538
     $default  reduce using rule 101 (opt_ondupupdate)
 
 
-state 539
+State 539
 
   122 insert_asgn_list: insert_asgn_list ',' NAME COMPARISON DEFAULT .
 
     $default  reduce using rule 122 (insert_asgn_list)
 
 
-state 540
+State 540
 
   121 insert_asgn_list: insert_asgn_list ',' NAME COMPARISON expr .
   232 expr: expr . '+' expr
@@ -9825,10 +9825,10 @@ state 540
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -9846,14 +9846,14 @@ state 540
     $default  reduce using rule 121 (insert_asgn_list)
 
 
-state 541
+State 541
 
   116 insert_vals: insert_vals ',' DEFAULT .
 
     $default  reduce using rule 116 (insert_vals)
 
 
-state 542
+State 542
 
   115 insert_vals: insert_vals ',' expr .
   232 expr: expr . '+' expr
@@ -9891,10 +9891,10 @@ state 542
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -9912,7 +9912,7 @@ state 542
     $default  reduce using rule 115 (insert_vals)
 
 
-state 543
+State 543
 
   112 insert_vals_list: insert_vals_list ',' '(' insert_vals . ')'
   115 insert_vals: insert_vals . ',' expr
@@ -9922,28 +9922,28 @@ state 543
     ')'  shift, and go to state 588
 
 
-state 544
+State 544
 
   273 expr: FSUBSTRING '(' expr FROM expr FOR expr ')' .
 
     $default  reduce using rule 273 (expr)
 
 
-state 545
+State 545
 
    18 opt_with_rollup: WITH . ROLLUP
 
     ROLLUP  shift, and go to state 589
 
 
-state 546
+State 546
 
    11 opt_groupby: GROUP BY groupby_list opt_with_rollup .
 
     $default  reduce using rule 11 (opt_groupby)
 
 
-state 547
+State 547
 
     7 select_stmt: SELECT select_opts select_expr_list FROM table_references opt_where opt_groupby opt_having opt_orderby opt_limit . opt_into_list
 
@@ -9954,35 +9954,35 @@ state 547
     opt_into_list  go to state 591
 
 
-state 548
+State 548
 
    84 index_list: index_list ',' . NAME
 
     NAME  shift, and go to state 592
 
 
-state 549
+State 549
 
    79 index_hint: FORCE KEY opt_for_join '(' index_list ')' .
 
     $default  reduce using rule 79 (index_hint)
 
 
-state 550
+State 550
 
    78 index_hint: IGNORE KEY opt_for_join '(' index_list ')' .
 
     $default  reduce using rule 78 (index_hint)
 
 
-state 551
+State 551
 
    77 index_hint: USE KEY opt_for_join '(' index_list ')' .
 
     $default  reduce using rule 77 (index_hint)
 
 
-state 552
+State 552
 
   135 update_asgn_list: update_asgn_list ',' NAME '.' NAME COMPARISON . expr
 
@@ -9992,8 +9992,8 @@ state 552
     BOOL               shift, and go to state 57
     APPROXNUM          shift, and go to state 58
     USERVAR            shift, and go to state 59
-    '!'                shift, and go to state 60
-    NOT                shift, and go to state 61
+    NOT                shift, and go to state 60
+    '!'                shift, and go to state 61
     '-'                shift, and go to state 62
     BINARY             shift, and go to state 65
     CASE               shift, and go to state 66
@@ -10010,42 +10010,42 @@ state 552
     expr  go to state 593
 
 
-state 553
+State 553
 
    76 join_condition: USING '(' column_list ')' .
 
     $default  reduce using rule 76 (join_condition)
 
 
-state 554
+State 554
 
   146 create_table_stmt: CREATE opt_temporary TABLE opt_if_not_exists NAME '.' NAME '(' create_col_list ')' create_select_statement .
 
     $default  reduce using rule 146 (create_table_stmt)
 
 
-state 555
+State 555
 
   155 create_definition: FULLTEXT INDEX '(' column_list ')' .
 
     $default  reduce using rule 155 (create_definition)
 
 
-state 556
+State 556
 
   156 create_definition: FULLTEXT KEY '(' column_list ')' .
 
     $default  reduce using rule 156 (create_definition)
 
 
-state 557
+State 557
 
   152 create_definition: PRIMARY KEY '(' column_list ')' .
 
     $default  reduce using rule 152 (create_definition)
 
 
-state 558
+State 558
 
   171 opt_length: '(' INTNUM . ')'
   172           | '(' INTNUM . ',' INTNUM ')'
@@ -10054,7 +10054,7 @@ state 558
     ')'  shift, and go to state 595
 
 
-state 559
+State 559
 
   176 opt_uz: opt_uz . UNSIGNED
   177       | opt_uz . ZEROFILL
@@ -10066,7 +10066,7 @@ state 559
     $default  reduce using rule 187 (data_type)
 
 
-state 560
+State 560
 
   179 opt_csc: opt_csc . CHAR SET STRING
   180        | opt_csc . COLLATE STRING
@@ -10078,7 +10078,7 @@ state 560
     $default  reduce using rule 197 (data_type)
 
 
-state 561
+State 561
 
   176 opt_uz: opt_uz . UNSIGNED
   177       | opt_uz . ZEROFILL
@@ -10090,7 +10090,7 @@ state 561
     $default  reduce using rule 191 (data_type)
 
 
-state 562
+State 562
 
   176 opt_uz: opt_uz . UNSIGNED
   177       | opt_uz . ZEROFILL
@@ -10102,14 +10102,14 @@ state 562
     $default  reduce using rule 189 (data_type)
 
 
-state 563
+State 563
 
   211 enum_list: STRING .
 
     $default  reduce using rule 211 (enum_list)
 
 
-state 564
+State 564
 
   209 data_type: ENUM '(' enum_list . ')' opt_csc
   212 enum_list: enum_list . ',' STRING
@@ -10118,7 +10118,7 @@ state 564
     ')'  shift, and go to state 601
 
 
-state 565
+State 565
 
   176 opt_uz: opt_uz . UNSIGNED
   177       | opt_uz . ZEROFILL
@@ -10130,7 +10130,7 @@ state 565
     $default  reduce using rule 190 (data_type)
 
 
-state 566
+State 566
 
   176 opt_uz: opt_uz . UNSIGNED
   177       | opt_uz . ZEROFILL
@@ -10142,7 +10142,7 @@ state 566
     $default  reduce using rule 185 (data_type)
 
 
-state 567
+State 567
 
   176 opt_uz: opt_uz . UNSIGNED
   177       | opt_uz . ZEROFILL
@@ -10154,7 +10154,7 @@ state 567
     $default  reduce using rule 186 (data_type)
 
 
-state 568
+State 568
 
   179 opt_csc: opt_csc . CHAR SET STRING
   180        | opt_csc . COLLATE STRING
@@ -10166,7 +10166,7 @@ state 568
     $default  reduce using rule 208 (data_type)
 
 
-state 569
+State 569
 
   176 opt_uz: opt_uz . UNSIGNED
   177       | opt_uz . ZEROFILL
@@ -10178,7 +10178,7 @@ state 569
     $default  reduce using rule 184 (data_type)
 
 
-state 570
+State 570
 
   179 opt_csc: opt_csc . CHAR SET STRING
   180        | opt_csc . COLLATE STRING
@@ -10190,7 +10190,7 @@ state 570
     $default  reduce using rule 207 (data_type)
 
 
-state 571
+State 571
 
   176 opt_uz: opt_uz . UNSIGNED
   177       | opt_uz . ZEROFILL
@@ -10202,7 +10202,7 @@ state 571
     $default  reduce using rule 188 (data_type)
 
 
-state 572
+State 572
 
   210 data_type: SET '(' enum_list . ')' opt_csc
   212 enum_list: enum_list . ',' STRING
@@ -10211,7 +10211,7 @@ state 572
     ')'  shift, and go to state 602
 
 
-state 573
+State 573
 
   176 opt_uz: opt_uz . UNSIGNED
   177       | opt_uz . ZEROFILL
@@ -10223,7 +10223,7 @@ state 573
     $default  reduce using rule 183 (data_type)
 
 
-state 574
+State 574
 
   179 opt_csc: opt_csc . CHAR SET STRING
   180        | opt_csc . COLLATE STRING
@@ -10235,7 +10235,7 @@ state 574
     $default  reduce using rule 206 (data_type)
 
 
-state 575
+State 575
 
   176 opt_uz: opt_uz . UNSIGNED
   177       | opt_uz . ZEROFILL
@@ -10247,7 +10247,7 @@ state 575
     $default  reduce using rule 182 (data_type)
 
 
-state 576
+State 576
 
   179 opt_csc: opt_csc . CHAR SET STRING
   180        | opt_csc . COLLATE STRING
@@ -10259,42 +10259,42 @@ state 576
     $default  reduce using rule 205 (data_type)
 
 
-state 577
+State 577
 
   200 data_type: VARBINARY '(' INTNUM . ')'
 
     ')'  shift, and go to state 603
 
 
-state 578
+State 578
 
   198 data_type: VARCHAR '(' INTNUM . ')' opt_csc
 
     ')'  shift, and go to state 604
 
 
-state 579
+State 579
 
   158 column_atts: column_atts NOT . NULLX
 
     NULLX  shift, and go to state 605
 
 
-state 580
+State 580
 
   164 column_atts: column_atts AUTO_INCREMENT .
 
     $default  reduce using rule 164 (column_atts)
 
 
-state 581
+State 581
 
   169 column_atts: column_atts COMMENT . STRING
 
     STRING  shift, and go to state 606
 
 
-state 582
+State 582
 
   160 column_atts: column_atts DEFAULT . STRING
   161            | column_atts DEFAULT . INTNUM
@@ -10307,28 +10307,28 @@ state 582
     APPROXNUM  shift, and go to state 610
 
 
-state 583
+State 583
 
   168 column_atts: column_atts KEY .
 
     $default  reduce using rule 168 (column_atts)
 
 
-state 584
+State 584
 
   159 column_atts: column_atts NULLX .
 
     $default  reduce using rule 159 (column_atts)
 
 
-state 585
+State 585
 
   167 column_atts: column_atts PRIMARY . KEY
 
     KEY  shift, and go to state 611
 
 
-state 586
+State 586
 
   165 column_atts: column_atts UNIQUE . '(' column_list ')'
   166            | column_atts UNIQUE . KEY
@@ -10337,28 +10337,28 @@ state 586
     '('  shift, and go to state 613
 
 
-state 587
+State 587
 
    13 groupby_list: groupby_list ',' expr opt_asc_desc .
 
     $default  reduce using rule 13 (groupby_list)
 
 
-state 588
+State 588
 
   112 insert_vals_list: insert_vals_list ',' '(' insert_vals ')' .
 
     $default  reduce using rule 112 (insert_vals_list)
 
 
-state 589
+State 589
 
    18 opt_with_rollup: WITH ROLLUP .
 
     $default  reduce using rule 18 (opt_with_rollup)
 
 
-state 590
+State 590
 
    27 opt_into_list: INTO . column_list
 
@@ -10368,21 +10368,21 @@ state 590
     column_list  go to state 614
 
 
-state 591
+State 591
 
     7 select_stmt: SELECT select_opts select_expr_list FROM table_references opt_where opt_groupby opt_having opt_orderby opt_limit opt_into_list .
 
     $default  reduce using rule 7 (select_stmt)
 
 
-state 592
+State 592
 
    84 index_list: index_list ',' NAME .
 
     $default  reduce using rule 84 (index_list)
 
 
-state 593
+State 593
 
   135 update_asgn_list: update_asgn_list ',' NAME '.' NAME COMPARISON expr .
   232 expr: expr . '+' expr
@@ -10420,10 +10420,10 @@ state 593
     OR          shift, and go to state 131
     XOR         shift, and go to state 132
     ANDOP       shift, and go to state 133
-    REGEXP      shift, and go to state 134
-    LIKE        shift, and go to state 135
-    IS          shift, and go to state 136
-    IN          shift, and go to state 137
+    IN          shift, and go to state 134
+    IS          shift, and go to state 135
+    LIKE        shift, and go to state 136
+    REGEXP      shift, and go to state 137
     NOT         shift, and go to state 138
     BETWEEN     shift, and go to state 139
     COMPARISON  shift, and go to state 140
@@ -10441,56 +10441,56 @@ state 593
     $default  reduce using rule 135 (update_asgn_list)
 
 
-state 594
+State 594
 
   172 opt_length: '(' INTNUM ',' . INTNUM ')'
 
     INTNUM  shift, and go to state 615
 
 
-state 595
+State 595
 
   171 opt_length: '(' INTNUM ')' .
 
     $default  reduce using rule 171 (opt_length)
 
 
-state 596
+State 596
 
   176 opt_uz: opt_uz UNSIGNED .
 
     $default  reduce using rule 176 (opt_uz)
 
 
-state 597
+State 597
 
   177 opt_uz: opt_uz ZEROFILL .
 
     $default  reduce using rule 177 (opt_uz)
 
 
-state 598
+State 598
 
   179 opt_csc: opt_csc CHAR . SET STRING
 
     SET  shift, and go to state 616
 
 
-state 599
+State 599
 
   180 opt_csc: opt_csc COLLATE . STRING
 
     STRING  shift, and go to state 617
 
 
-state 600
+State 600
 
   212 enum_list: enum_list ',' . STRING
 
     STRING  shift, and go to state 618
 
 
-state 601
+State 601
 
   209 data_type: ENUM '(' enum_list ')' . opt_csc
 
@@ -10499,7 +10499,7 @@ state 601
     opt_csc  go to state 619
 
 
-state 602
+State 602
 
   210 data_type: SET '(' enum_list ')' . opt_csc
 
@@ -10508,14 +10508,14 @@ state 602
     opt_csc  go to state 620
 
 
-state 603
+State 603
 
   200 data_type: VARBINARY '(' INTNUM ')' .
 
     $default  reduce using rule 200 (data_type)
 
 
-state 604
+State 604
 
   198 data_type: VARCHAR '(' INTNUM ')' . opt_csc
 
@@ -10524,63 +10524,63 @@ state 604
     opt_csc  go to state 621
 
 
-state 605
+State 605
 
   158 column_atts: column_atts NOT NULLX .
 
     $default  reduce using rule 158 (column_atts)
 
 
-state 606
+State 606
 
   169 column_atts: column_atts COMMENT STRING .
 
     $default  reduce using rule 169 (column_atts)
 
 
-state 607
+State 607
 
   160 column_atts: column_atts DEFAULT STRING .
 
     $default  reduce using rule 160 (column_atts)
 
 
-state 608
+State 608
 
   161 column_atts: column_atts DEFAULT INTNUM .
 
     $default  reduce using rule 161 (column_atts)
 
 
-state 609
+State 609
 
   163 column_atts: column_atts DEFAULT BOOL .
 
     $default  reduce using rule 163 (column_atts)
 
 
-state 610
+State 610
 
   162 column_atts: column_atts DEFAULT APPROXNUM .
 
     $default  reduce using rule 162 (column_atts)
 
 
-state 611
+State 611
 
   167 column_atts: column_atts PRIMARY KEY .
 
     $default  reduce using rule 167 (column_atts)
 
 
-state 612
+State 612
 
   166 column_atts: column_atts UNIQUE KEY .
 
     $default  reduce using rule 166 (column_atts)
 
 
-state 613
+State 613
 
   165 column_atts: column_atts UNIQUE '(' . column_list ')'
 
@@ -10590,7 +10590,7 @@ state 613
     column_list  go to state 622
 
 
-state 614
+State 614
 
    27 opt_into_list: INTO column_list .
    30 column_list: column_list . ',' NAME
@@ -10601,35 +10601,35 @@ state 614
     $default  reduce using rule 27 (opt_into_list)
 
 
-state 615
+State 615
 
   172 opt_length: '(' INTNUM ',' INTNUM . ')'
 
     ')'  shift, and go to state 623
 
 
-state 616
+State 616
 
   179 opt_csc: opt_csc CHAR SET . STRING
 
     STRING  shift, and go to state 624
 
 
-state 617
+State 617
 
   180 opt_csc: opt_csc COLLATE STRING .
 
     $default  reduce using rule 180 (opt_csc)
 
 
-state 618
+State 618
 
   212 enum_list: enum_list ',' STRING .
 
     $default  reduce using rule 212 (enum_list)
 
 
-state 619
+State 619
 
   179 opt_csc: opt_csc . CHAR SET STRING
   180        | opt_csc . COLLATE STRING
@@ -10641,7 +10641,7 @@ state 619
     $default  reduce using rule 209 (data_type)
 
 
-state 620
+State 620
 
   179 opt_csc: opt_csc . CHAR SET STRING
   180        | opt_csc . COLLATE STRING
@@ -10653,7 +10653,7 @@ state 620
     $default  reduce using rule 210 (data_type)
 
 
-state 621
+State 621
 
   179 opt_csc: opt_csc . CHAR SET STRING
   180        | opt_csc . COLLATE STRING
@@ -10665,7 +10665,7 @@ state 621
     $default  reduce using rule 198 (data_type)
 
 
-state 622
+State 622
 
    30 column_list: column_list . ',' NAME
    31            | column_list . ',' STRING
@@ -10675,21 +10675,21 @@ state 622
     ')'  shift, and go to state 625
 
 
-state 623
+State 623
 
   172 opt_length: '(' INTNUM ',' INTNUM ')' .
 
     $default  reduce using rule 172 (opt_length)
 
 
-state 624
+State 624
 
   179 opt_csc: opt_csc CHAR SET STRING .
 
     $default  reduce using rule 179 (opt_csc)
 
 
-state 625
+State 625
 
   165 column_atts: column_atts UNIQUE '(' column_list ')' .
 
