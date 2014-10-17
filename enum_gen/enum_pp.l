@@ -11,7 +11,7 @@
 %}
 
 
-%option noyywrap warn nodefault nounput yylineno
+%option noyywrap nounput yylineno
 
 NAME [a-zA-Z][_a-zA-Z0-9]*
 VAL ([1-9][0-9]*)

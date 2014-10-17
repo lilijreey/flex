@@ -197,6 +197,7 @@ yywrap
 yyerror 
   错误处理函数， void yyerror(const char*)
   通常用来输出错误，或者纠错
+  默认没有，要自己在bison 中定义
 
 yyparse
   yacc 提供的函数，可以直接使用, yyparse 会自动
@@ -218,10 +219,17 @@ bison -v
   会生成 xx.tab.c, xx.tab.h
 
 bison 需要一个名为 yylex 的函数来返回Token. 这个yylex 既可以是自己手动编写的
-      也可以是flex 生成的
+      也可以是flex 生成的, 如果是使用flex 生成的需要在.y 文件中声明一下
+	e.g.
+	void yyerror(char *);
+	int yylex(void);
 
 Yacc 的文法使用BNF的变量描述
 
+##BNF
+  xx: /*空规则， 主要用于可以包含 ɛ 的空串*/
+    | xx blblbl
+    ;
 又 Lex返回的标记只能是终结符 terminal
         
 gcc xx.tab.c lex.yy.c
@@ -328,3 +336,13 @@ Qus.
 
 lib
  -lfl -ly
+ 这两个包含一个就行，主要是用来添加main 函数的
+ 如果你不想写main， 并且只使用了flex 就写添加-lfl
+ 如果bison flex 都用就只能使用 -ly， -lfl 不会调用yyparse()
+
+
+### 如何写出没有二义性的文法
+* 如何在文法中规定操作符的结合性
+× 如何在文法中规定操作符的优先级
+  see dc/dc.y
+

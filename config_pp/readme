@@ -1,0 +1,45 @@
+config 第三版
+
+1.目标自动生成load_config_meta 
+ 和verify 函数模版，
+
+2. 即可是ＣＳ模式也可以ｌｏｃａｌ模式
+3. 支持自定义导出查询函数
+4. ｅｔｓ，和beam 透明转换
+
+自动生成record
+record 描述语言
+
+#cfg{
+ame=RecordName,
+file=
+fields= [
+	#cf{name=Name, type=, info=Info, default=3, comment=} 
+]
+}.
+
+
+
+Type ::
+* key 主建
+* {belong, {mod, xx}} 说明这个字段是Tab 中的主建
+   会生成
+   ?check(Name =:= ?none orelse mod:is_exist_xx(Cost),"task [~p] cost :~p 没有找到! ",  [Id, Cost]),
+* custom 用于手动验证
+  integer()
+  non_neg_integer() >=0
+  pass_integer() > 0
+  bool 0 or 1
+  {'>', N}
+  {'<', N}
+  {'>=', N}
+  {'=<', N}
+  {'[]', N}
+  {'(]', N}
+  {'[)', N}
+  {'()', N}
+  {valid, Name} 
+     is_valid_Name(X)
+
+
+cfg
