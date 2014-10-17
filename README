@@ -342,7 +342,20 @@ lib
 
 
 ### 如何写出没有二义性的文法
+* 所有的二义性文法都可以转发为一个没有二义性的文法
 * 如何在文法中规定操作符的结合性
+     T::= T op X   op 左结合
+     T::= X op T   op 右结合
 × 如何在文法中规定操作符的优先级
+    T::= T op1 N
+    N ::= N op2 M
+ op2 比op1 的优先级高
   see dc/dc.y
 
+
+###C++ CPP
+flex bison
+
+flexc++
+bisonc++
+一套用C++ 重写的flex 和bison

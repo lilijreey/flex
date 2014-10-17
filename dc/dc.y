@@ -16,10 +16,11 @@ int yylex(void);
 }
 
 %token <i> NUM
-%type <i> term
 %type <i> factor
 
-/*%left  '+' '-' '*' '/'*/
+%left  '+' '-'
+%left  '*' '/'
+%nonassoc '|'
 
 %%
 
