@@ -289,7 +289,7 @@ for (i=1; i < argc; i++)
 
 %option yylineno
  让flex 生成一个 yylineno 的变量，指定当前的行数
- 当有多个文件时, 使用yyrestart(),并不会重置yylineno
+ 当有多个文件时, 使用yyrestart/1 ,并不会重置yylineno
   要手动重置
 
 

@@ -17,6 +17,7 @@
 "/" {return yytext[0];}
 "|" {return yytext[0];}
 ";" {return yytext[0];}
+"("|")" {return yytext[0];}
 [0-9]+ {yylval.i = atoi(yytext); return NUM;}
 \n {}
 [ \t] {}
