@@ -1,0 +1,27 @@
+
+%union
+{
+  double u_val;
+  double *u_symbol;
+}
+
+%token NUM
+
+%%
+
+input: // empty string
+     | input line
+     ;
+
+line: '\n'
+      | exp '\n' {std::cout << "\t" << $1 << std::endl;}
+      ;
+
+exp: NUM
+    | exp exp '+' {$$ =$1 + $3;}
+    | exp exp '-' {$$ =$1 - $3;}
+    | exp exp '*' {$$ =$1 * $3;}
+    | exp exp '/' {$$ =$1 / $3;}
+    | error
+    ;
+

@@ -1,0 +1,226 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ABORT	Parserbase.h	/^        void ABORT() const;$/;"	p	class:ParserBase	access:protected	signature:() const
+ABORT	Parserbase.h	/^inline void ParserBase::ABORT() const$/;"	f	class:ParserBase	signature:() const
+ACCEPT	Parserbase.h	/^        void ACCEPT() const;$/;"	p	class:ParserBase	access:protected	signature:() const
+ACCEPT	Parserbase.h	/^inline void ParserBase::ACCEPT() const$/;"	f	class:ParserBase	signature:() const
+DEFAULT_RECOVERY_MODE__	Parserbase.h	/^            DEFAULT_RECOVERY_MODE__,$/;"	e	enum:ParserBase::ErrorRecovery__
+DEF_RED	Parser.cc	/^        DEF_RED,    \/\/ state having default reduction$/;"	e	enum:__anon1::StateType	file:
+ERROR	Parserbase.h	/^        void ERROR() const;$/;"	p	class:ParserBase	access:protected	signature:() const
+ERROR	Parserbase.h	/^inline void ParserBase::ERROR() const$/;"	f	class:ParserBase	signature:() const
+ERR_DEF	Parser.cc	/^        ERR_DEF,    \/\/ ERR_ITEM | DEF_RED$/;"	e	enum:__anon1::StateType	file:
+ERR_ITEM	Parser.cc	/^        ERR_ITEM,$/;"	e	enum:__anon1::StateType	file:
+ERR_REQ	Parser.cc	/^        ERR_REQ,    \/\/ ERR_ITEM | REQ_TOKEN$/;"	e	enum:__anon1::StateType	file:
+ERR_REQ_DEF	Parser.cc	/^        ERR_REQ_DEF \/\/ ERR_ITEM | REQ_TOKEN | DEF_RED$/;"	e	enum:__anon1::StateType	file:
+ErrorRecovery__	Parserbase.h	/^        enum ErrorRecovery__$/;"	g	class:ParserBase	access:protected
+NORMAL	Parser.cc	/^        NORMAL,$/;"	e	enum:__anon1::StateType	file:
+NUM	Parserbase.h	/^        NUM = 257,$/;"	e	enum:ParserBase::Tokens__
+PARSE_ABORT__	Parserbase.h	/^            PARSE_ABORT__  = 1$/;"	e	enum:ParserBase::Return__
+PARSE_ACCEPT	Parser.cc	/^        PARSE_ACCEPT     = 0,   \/\/ `ACCEPT' TRANSITION$/;"	e	enum:__anon1::ReservedTokens	file:
+PARSE_ACCEPT__	Parserbase.h	/^            PARSE_ACCEPT__ = 0,   \/\/ values used as parse()'s return values$/;"	e	enum:ParserBase::Return__
+PI__	Parser.cc	/^    struct PI__     \/\/ Production Info$/;"	s	namespace:__anon1	file:
+Parser	Parser.h	/^class Parser: public ParserBase$/;"	c	inherits:ParserBase
+Parser	Parser.h	10;"	d
+Parser	Parserbase.h	106;"	d
+Parser::error	Parser.h	/^        void error(char const *msg);    \/\/ called on (syntax) errors$/;"	p	class:Parser	access:private	signature:(char const *msg)
+Parser::errorRecovery	Parser.cc	/^void Parser::errorRecovery()$/;"	f	class:Parser	signature:()
+Parser::errorRecovery	Parser.h	/^        void errorRecovery();$/;"	p	class:Parser	access:private	signature:()
+Parser::exceptionHandler__	Parser.h	/^        void exceptionHandler__(std::exception const &exc);$/;"	p	class:Parser	access:private	signature:(std::exception const &exc)
+Parser::executeAction	Parser.cc	/^void Parser::executeAction(int production)$/;"	f	class:Parser	signature:(int production)
+Parser::executeAction	Parser.h	/^        void executeAction(int ruleNr);$/;"	p	class:Parser	access:private	signature:(int ruleNr)
+Parser::lex	Parser.cc	/^int Parser::lex()$/;"	f	class:Parser	signature:()
+Parser::lex	Parser.h	/^        int lex();                      \/\/ returns the next token from the$/;"	p	class:Parser	access:private	signature:()
+Parser::lookup	Parser.cc	/^int Parser::lookup(bool recovery)$/;"	f	class:Parser	signature:(bool recovery)
+Parser::lookup	Parser.h	/^        int lookup(bool recovery);$/;"	p	class:Parser	access:private	signature:(bool recovery)
+Parser::nextToken	Parser.cc	/^void Parser::nextToken()$/;"	f	class:Parser	signature:()
+Parser::nextToken	Parser.h	/^        void nextToken();$/;"	p	class:Parser	access:private	signature:()
+Parser::parse	Parser.cc	/^int Parser::parse()$/;"	f	class:Parser	signature:()
+Parser::parse	Parser.h	/^        int parse();$/;"	p	class:Parser	access:public	signature:()
+Parser::print	Parser.h	/^        void print();                   \/\/ use, e.g., d_token, d_loc$/;"	p	class:Parser	access:private	signature:()
+Parser::print__	Parser.cc	/^void Parser::print__()$/;"	f	class:Parser	signature:()
+Parser::print__	Parser.h	/^        void print__();$/;"	p	class:Parser	access:private	signature:()
+ParserBase	Parser.cc	/^ParserBase::ParserBase()$/;"	f	class:ParserBase	signature:()
+ParserBase	Parserbase.h	/^        ParserBase();$/;"	p	class:ParserBase	access:protected	signature:()
+ParserBase	Parserbase.h	/^class ParserBase$/;"	c
+ParserBase::ABORT	Parserbase.h	/^        void ABORT() const;$/;"	p	class:ParserBase	access:protected	signature:() const
+ParserBase::ABORT	Parserbase.h	/^inline void ParserBase::ABORT() const$/;"	f	class:ParserBase	signature:() const
+ParserBase::ACCEPT	Parserbase.h	/^        void ACCEPT() const;$/;"	p	class:ParserBase	access:protected	signature:() const
+ParserBase::ACCEPT	Parserbase.h	/^inline void ParserBase::ACCEPT() const$/;"	f	class:ParserBase	signature:() const
+ParserBase::DEFAULT_RECOVERY_MODE__	Parserbase.h	/^            DEFAULT_RECOVERY_MODE__,$/;"	e	enum:ParserBase::ErrorRecovery__
+ParserBase::ERROR	Parserbase.h	/^        void ERROR() const;$/;"	p	class:ParserBase	access:protected	signature:() const
+ParserBase::ERROR	Parserbase.h	/^inline void ParserBase::ERROR() const$/;"	f	class:ParserBase	signature:() const
+ParserBase::ErrorRecovery__	Parserbase.h	/^        enum ErrorRecovery__$/;"	g	class:ParserBase	access:protected
+ParserBase::NUM	Parserbase.h	/^        NUM = 257,$/;"	e	enum:ParserBase::Tokens__
+ParserBase::PARSE_ABORT__	Parserbase.h	/^            PARSE_ABORT__  = 1$/;"	e	enum:ParserBase::Return__
+ParserBase::PARSE_ACCEPT__	Parserbase.h	/^            PARSE_ACCEPT__ = 0,   \/\/ values used as parse()'s return values$/;"	e	enum:ParserBase::Return__
+ParserBase::ParserBase	Parser.cc	/^ParserBase::ParserBase()$/;"	f	class:ParserBase	signature:()
+ParserBase::ParserBase	Parserbase.h	/^        ParserBase();$/;"	p	class:ParserBase	access:protected	signature:()
+ParserBase::Return__	Parserbase.h	/^        enum Return__$/;"	g	class:ParserBase	access:protected
+ParserBase::STYPE__	Parserbase.h	/^typedef int STYPE__;$/;"	t	class:ParserBase	access:public
+ParserBase::Tokens__	Parserbase.h	/^    enum Tokens__$/;"	g	class:ParserBase	access:public
+ParserBase::UNEXPECTED_TOKEN__	Parserbase.h	/^            UNEXPECTED_TOKEN__,$/;"	e	enum:ParserBase::ErrorRecovery__
+ParserBase::clearin	Parser.cc	/^void ParserBase::clearin()$/;"	f	class:ParserBase	signature:()
+ParserBase::clearin	Parserbase.h	/^        void clearin();$/;"	p	class:ParserBase	access:protected	signature:()
+ParserBase::d_acceptedTokens__	Parserbase.h	/^        size_t      d_acceptedTokens__;$/;"	m	class:ParserBase	access:protected
+ParserBase::d_debug__	Parserbase.h	/^        bool        d_debug__;$/;"	m	class:ParserBase	access:protected
+ParserBase::d_nErrors__	Parserbase.h	/^        size_t      d_nErrors__;$/;"	m	class:ParserBase	access:protected
+ParserBase::d_nextToken__	Parserbase.h	/^        int         d_nextToken__;$/;"	m	class:ParserBase	access:protected
+ParserBase::d_nextVal__	Parserbase.h	/^        STYPE__     d_nextVal__;$/;"	m	class:ParserBase	access:protected
+ParserBase::d_requiredTokens__	Parserbase.h	/^        size_t      d_requiredTokens__;$/;"	m	class:ParserBase	access:protected
+ParserBase::d_stackIdx__	Parserbase.h	/^        int d_stackIdx__;$/;"	m	class:ParserBase	access:private
+ParserBase::d_stateStack__	Parserbase.h	/^        std::vector<size_t>   d_stateStack__;$/;"	m	class:ParserBase	access:private
+ParserBase::d_state__	Parserbase.h	/^        size_t      d_state__;$/;"	m	class:ParserBase	access:protected
+ParserBase::d_token__	Parserbase.h	/^        int         d_token__;$/;"	m	class:ParserBase	access:protected
+ParserBase::d_val__	Parserbase.h	/^        STYPE__     d_val__;$/;"	m	class:ParserBase	access:protected
+ParserBase::d_valueStack__	Parserbase.h	/^        std::vector<STYPE__>  d_valueStack__;$/;"	m	class:ParserBase	access:private
+ParserBase::d_vsp__	Parserbase.h	/^        STYPE__    *d_vsp__;$/;"	m	class:ParserBase	access:protected
+ParserBase::debug	Parserbase.h	/^        bool debug() const;$/;"	p	class:ParserBase	access:protected	signature:() const
+ParserBase::debug	Parserbase.h	/^inline bool ParserBase::debug() const$/;"	f	class:ParserBase	signature:() const
+ParserBase::errorVerbose__	Parserbase.h	/^        void errorVerbose__();$/;"	p	class:ParserBase	access:protected	signature:()
+ParserBase::popToken__	Parser.cc	/^void ParserBase::popToken__()$/;"	f	class:ParserBase	signature:()
+ParserBase::popToken__	Parserbase.h	/^        void popToken__();$/;"	p	class:ParserBase	access:protected	signature:()
+ParserBase::pop__	Parser.cc	/^void ParserBase::pop__(size_t count)$/;"	f	class:ParserBase	signature:(size_t count)
+ParserBase::pop__	Parserbase.h	/^        void pop__(size_t count = 1);$/;"	p	class:ParserBase	access:protected	signature:(size_t count = 1)
+ParserBase::pushToken__	Parser.cc	/^void ParserBase::pushToken__(int token)$/;"	f	class:ParserBase	signature:(int token)
+ParserBase::pushToken__	Parserbase.h	/^        void pushToken__(int token);$/;"	p	class:ParserBase	access:protected	signature:(int token)
+ParserBase::push__	Parser.cc	/^void ParserBase::push__(size_t state)$/;"	f	class:ParserBase	signature:(size_t state)
+ParserBase::push__	Parserbase.h	/^        void push__(size_t nextState);$/;"	p	class:ParserBase	access:protected	signature:(size_t nextState)
+ParserBase::reduce__	Parser.cc	/^inline void ParserBase::reduce__(PI__ const &pi)$/;"	f	class:ParserBase	signature:(PI__ const &pi)
+ParserBase::reduce__	Parserbase.h	/^        void reduce__(PI__ const &productionInfo);$/;"	p	class:ParserBase	access:protected	signature:(PI__ const &productionInfo)
+ParserBase::setDebug	Parserbase.h	/^        void setDebug(bool mode);$/;"	p	class:ParserBase	access:public	signature:(bool mode)
+ParserBase::setDebug	Parserbase.h	/^inline void ParserBase::setDebug(bool mode)$/;"	f	class:ParserBase	signature:(bool mode)
+ParserBase::top__	Parser.cc	/^inline size_t ParserBase::top__() const$/;"	f	class:ParserBase	signature:() const
+ParserBase::top__	Parserbase.h	/^        size_t top__() const;$/;"	p	class:ParserBase	access:protected	signature:() const
+ParserBase_h_included	Parserbase.h	4;"	d
+Parser_h_included	Parser.h	4;"	d
+REQ_DEF	Parser.cc	/^        REQ_DEF,    \/\/ REQ_TOKEN | DEF_RED$/;"	e	enum:__anon1::StateType	file:
+REQ_TOKEN	Parser.cc	/^        REQ_TOKEN,$/;"	e	enum:__anon1::StateType	file:
+ReservedTokens	Parser.cc	/^    enum ReservedTokens$/;"	g	namespace:__anon1	file:
+Return__	Parserbase.h	/^        enum Return__$/;"	g	class:ParserBase	access:protected
+SR__	Parser.cc	/^    struct SR__     \/\/ Shift Reduce info, see its description above$/;"	s	namespace:__anon1	file:
+STACK_EXPANSION	Parser.cc	/^        STACK_EXPANSION = 5     \/\/ size to expand the state-stack with when$/;"	e	enum:__anon1::__anon2	file:
+STYPE__	Parserbase.h	/^typedef int STYPE__;$/;"	t	class:ParserBase	access:public
+StateType	Parser.cc	/^    enum StateType       \/\/ modify statetype\/data.cc when this enum changes$/;"	g	namespace:__anon1	file:
+Tokens__	Parserbase.h	/^    enum Tokens__$/;"	g	class:ParserBase	access:public
+UNEXPECTED_TOKEN__	Parserbase.h	/^            UNEXPECTED_TOKEN__,$/;"	e	enum:ParserBase::ErrorRecovery__
+_EOF_	Parser.cc	/^        _EOF_            = -1,$/;"	e	enum:__anon1::ReservedTokens	file:
+_UNDETERMINED_	Parser.cc	/^        _UNDETERMINED_   = -2,$/;"	e	enum:__anon1::ReservedTokens	file:
+__anon1::DEF_RED	Parser.cc	/^        DEF_RED,    \/\/ state having default reduction$/;"	e	enum:__anon1::StateType	file:
+__anon1::ERR_DEF	Parser.cc	/^        ERR_DEF,    \/\/ ERR_ITEM | DEF_RED$/;"	e	enum:__anon1::StateType	file:
+__anon1::ERR_ITEM	Parser.cc	/^        ERR_ITEM,$/;"	e	enum:__anon1::StateType	file:
+__anon1::ERR_REQ	Parser.cc	/^        ERR_REQ,    \/\/ ERR_ITEM | REQ_TOKEN$/;"	e	enum:__anon1::StateType	file:
+__anon1::ERR_REQ_DEF	Parser.cc	/^        ERR_REQ_DEF \/\/ ERR_ITEM | REQ_TOKEN | DEF_RED$/;"	e	enum:__anon1::StateType	file:
+__anon1::NORMAL	Parser.cc	/^        NORMAL,$/;"	e	enum:__anon1::StateType	file:
+__anon1::PARSE_ACCEPT	Parser.cc	/^        PARSE_ACCEPT     = 0,   \/\/ `ACCEPT' TRANSITION$/;"	e	enum:__anon1::ReservedTokens	file:
+__anon1::PI__	Parser.cc	/^    struct PI__     \/\/ Production Info$/;"	s	namespace:__anon1	file:
+__anon1::PI__::d_nonTerm	Parser.cc	/^        size_t d_nonTerm; \/\/ identification number of this production's$/;"	m	struct:__anon1::PI__	file:	access:public
+__anon1::PI__::d_size	Parser.cc	/^        size_t d_size;    \/\/ number of elements in this production $/;"	m	struct:__anon1::PI__	file:	access:public
+__anon1::REQ_DEF	Parser.cc	/^        REQ_DEF,    \/\/ REQ_TOKEN | DEF_RED$/;"	e	enum:__anon1::StateType	file:
+__anon1::REQ_TOKEN	Parser.cc	/^        REQ_TOKEN,$/;"	e	enum:__anon1::StateType	file:
+__anon1::ReservedTokens	Parser.cc	/^    enum ReservedTokens$/;"	g	namespace:__anon1	file:
+__anon1::SR__	Parser.cc	/^    struct SR__     \/\/ Shift Reduce info, see its description above$/;"	s	namespace:__anon1	file:
+__anon1::SR__::__anon3::_field_1_	Parser.cc	/^            int _field_1_;      \/\/ initializer, allowing initializations $/;"	m	union:__anon1::SR__::__anon3	file:	access:public
+__anon1::SR__::__anon3::d_token	Parser.cc	/^            int d_token;$/;"	m	union:__anon1::SR__::__anon3	file:	access:public
+__anon1::SR__::__anon3::d_type	Parser.cc	/^            int d_type;$/;"	m	union:__anon1::SR__::__anon3	file:	access:public
+__anon1::SR__::__anon4::_field_2_	Parser.cc	/^            int _field_2_;$/;"	m	union:__anon1::SR__::__anon4	file:	access:public
+__anon1::SR__::__anon4::d_action	Parser.cc	/^            int d_action;           \/\/ may be negative (reduce), $/;"	m	union:__anon1::SR__::__anon4	file:	access:public
+__anon1::SR__::__anon4::d_errorState	Parser.cc	/^            size_t d_errorState;    \/\/ used with Error states$/;"	m	union:__anon1::SR__::__anon4	file:	access:public
+__anon1::SR__::__anon4::d_lastIdx	Parser.cc	/^            int d_lastIdx;          \/\/ if negative, the state uses SHIFT$/;"	m	union:__anon1::SR__::__anon4	file:	access:public
+__anon1::STACK_EXPANSION	Parser.cc	/^        STACK_EXPANSION = 5     \/\/ size to expand the state-stack with when$/;"	e	enum:__anon1::__anon2	file:
+__anon1::StateType	Parser.cc	/^    enum StateType       \/\/ modify statetype\/data.cc when this enum changes$/;"	g	namespace:__anon1	file:
+__anon1::_EOF_	Parser.cc	/^        _EOF_            = -1,$/;"	e	enum:__anon1::ReservedTokens	file:
+__anon1::_UNDETERMINED_	Parser.cc	/^        _UNDETERMINED_   = -2,$/;"	e	enum:__anon1::ReservedTokens	file:
+__anon1::_error_	Parser.cc	/^        _error_          = 256$/;"	e	enum:__anon1::ReservedTokens	file:
+__anon1::author	Parser.cc	/^    char const author[] = "Frank B. Brokken (f.b.brokken@rug.nl)";$/;"	m	namespace:__anon1	file:
+__anon1::s_0	Parser.cc	/^SR__ s_0[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_1	Parser.cc	/^SR__ s_1[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_10	Parser.cc	/^SR__ s_10[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_11	Parser.cc	/^SR__ s_11[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_2	Parser.cc	/^SR__ s_2[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_3	Parser.cc	/^SR__ s_3[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_4	Parser.cc	/^SR__ s_4[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_5	Parser.cc	/^SR__ s_5[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_6	Parser.cc	/^SR__ s_6[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_7	Parser.cc	/^SR__ s_7[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_8	Parser.cc	/^SR__ s_8[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_9	Parser.cc	/^SR__ s_9[] =$/;"	m	namespace:__anon1	file:
+__anon1::s_productionInfo	Parser.cc	/^PI__ const s_productionInfo[] = $/;"	m	namespace:__anon1	file:
+__anon1::s_state	Parser.cc	/^SR__ *s_state[] =$/;"	m	namespace:__anon1	file:
+_error_	Parser.cc	/^        _error_          = 256$/;"	e	enum:__anon1::ReservedTokens	file:
+_field_1_	Parser.cc	/^            int _field_1_;      \/\/ initializer, allowing initializations $/;"	m	union:__anon1::SR__::__anon3	file:	access:public
+_field_2_	Parser.cc	/^            int _field_2_;$/;"	m	union:__anon1::SR__::__anon4	file:	access:public
+author	Parser.cc	/^    char const author[] = "Frank B. Brokken (f.b.brokken@rug.nl)";$/;"	m	namespace:__anon1	file:
+clearin	Parser.cc	/^void ParserBase::clearin()$/;"	f	class:ParserBase	signature:()
+clearin	Parserbase.h	/^        void clearin();$/;"	p	class:ParserBase	access:protected	signature:()
+d_acceptedTokens__	Parserbase.h	/^        size_t      d_acceptedTokens__;$/;"	m	class:ParserBase	access:protected
+d_action	Parser.cc	/^            int d_action;           \/\/ may be negative (reduce), $/;"	m	union:__anon1::SR__::__anon4	file:	access:public
+d_debug__	Parserbase.h	/^        bool        d_debug__;$/;"	m	class:ParserBase	access:protected
+d_errorState	Parser.cc	/^            size_t d_errorState;    \/\/ used with Error states$/;"	m	union:__anon1::SR__::__anon4	file:	access:public
+d_lastIdx	Parser.cc	/^            int d_lastIdx;          \/\/ if negative, the state uses SHIFT$/;"	m	union:__anon1::SR__::__anon4	file:	access:public
+d_nErrors__	Parserbase.h	/^        size_t      d_nErrors__;$/;"	m	class:ParserBase	access:protected
+d_nextToken__	Parserbase.h	/^        int         d_nextToken__;$/;"	m	class:ParserBase	access:protected
+d_nextVal__	Parserbase.h	/^        STYPE__     d_nextVal__;$/;"	m	class:ParserBase	access:protected
+d_nonTerm	Parser.cc	/^        size_t d_nonTerm; \/\/ identification number of this production's$/;"	m	struct:__anon1::PI__	file:	access:public
+d_requiredTokens__	Parserbase.h	/^        size_t      d_requiredTokens__;$/;"	m	class:ParserBase	access:protected
+d_size	Parser.cc	/^        size_t d_size;    \/\/ number of elements in this production $/;"	m	struct:__anon1::PI__	file:	access:public
+d_stackIdx__	Parserbase.h	/^        int d_stackIdx__;$/;"	m	class:ParserBase	access:private
+d_stateStack__	Parserbase.h	/^        std::vector<size_t>   d_stateStack__;$/;"	m	class:ParserBase	access:private
+d_state__	Parserbase.h	/^        size_t      d_state__;$/;"	m	class:ParserBase	access:protected
+d_token	Parser.cc	/^            int d_token;$/;"	m	union:__anon1::SR__::__anon3	file:	access:public
+d_token__	Parserbase.h	/^        int         d_token__;$/;"	m	class:ParserBase	access:protected
+d_type	Parser.cc	/^            int d_type;$/;"	m	union:__anon1::SR__::__anon3	file:	access:public
+d_val__	Parserbase.h	/^        STYPE__     d_val__;$/;"	m	class:ParserBase	access:protected
+d_valueStack__	Parserbase.h	/^        std::vector<STYPE__>  d_valueStack__;$/;"	m	class:ParserBase	access:private
+d_vsp__	Parserbase.h	/^        STYPE__    *d_vsp__;$/;"	m	class:ParserBase	access:protected
+debug	Parserbase.h	/^        bool debug() const;$/;"	p	class:ParserBase	access:protected	signature:() const
+debug	Parserbase.h	/^inline bool ParserBase::debug() const$/;"	f	class:ParserBase	signature:() const
+error	Parser.h	/^        void error(char const *msg);    \/\/ called on (syntax) errors$/;"	p	class:Parser	access:private	signature:(char const *msg)
+errorRecovery	Parser.cc	/^void Parser::errorRecovery()$/;"	f	class:Parser	signature:()
+errorRecovery	Parser.h	/^        void errorRecovery();$/;"	p	class:Parser	access:private	signature:()
+errorVerbose__	Parserbase.h	/^        void errorVerbose__();$/;"	p	class:ParserBase	access:protected	signature:()
+exceptionHandler__	Parser.h	/^        void exceptionHandler__(std::exception const &exc);$/;"	p	class:Parser	access:private	signature:(std::exception const &exc)
+executeAction	Parser.cc	/^void Parser::executeAction(int production)$/;"	f	class:Parser	signature:(int production)
+executeAction	Parser.h	/^        void executeAction(int ruleNr);$/;"	p	class:Parser	access:private	signature:(int ruleNr)
+lex	Parser.cc	/^int Parser::lex()$/;"	f	class:Parser	signature:()
+lex	Parser.h	/^        int lex();                      \/\/ returns the next token from the$/;"	p	class:Parser	access:private	signature:()
+lookup	Parser.cc	/^int Parser::lookup(bool recovery)$/;"	f	class:Parser	signature:(bool recovery)
+lookup	Parser.h	/^        int lookup(bool recovery);$/;"	p	class:Parser	access:private	signature:(bool recovery)
+nextToken	Parser.cc	/^void Parser::nextToken()$/;"	f	class:Parser	signature:()
+nextToken	Parser.h	/^        void nextToken();$/;"	p	class:Parser	access:private	signature:()
+parse	Parser.cc	/^int Parser::parse()$/;"	f	class:Parser	signature:()
+parse	Parser.h	/^        int parse();$/;"	p	class:Parser	access:public	signature:()
+popToken__	Parser.cc	/^void ParserBase::popToken__()$/;"	f	class:ParserBase	signature:()
+popToken__	Parserbase.h	/^        void popToken__();$/;"	p	class:ParserBase	access:protected	signature:()
+pop__	Parser.cc	/^void ParserBase::pop__(size_t count)$/;"	f	class:ParserBase	signature:(size_t count)
+pop__	Parserbase.h	/^        void pop__(size_t count = 1);$/;"	p	class:ParserBase	access:protected	signature:(size_t count = 1)
+print	Parser.h	/^        void print();                   \/\/ use, e.g., d_token, d_loc$/;"	p	class:Parser	access:private	signature:()
+print__	Parser.cc	/^void Parser::print__()$/;"	f	class:Parser	signature:()
+print__	Parser.h	/^        void print__();$/;"	p	class:Parser	access:private	signature:()
+pushToken__	Parser.cc	/^void ParserBase::pushToken__(int token)$/;"	f	class:ParserBase	signature:(int token)
+pushToken__	Parserbase.h	/^        void pushToken__(int token);$/;"	p	class:ParserBase	access:protected	signature:(int token)
+push__	Parser.cc	/^void ParserBase::push__(size_t state)$/;"	f	class:ParserBase	signature:(size_t state)
+push__	Parserbase.h	/^        void push__(size_t nextState);$/;"	p	class:ParserBase	access:protected	signature:(size_t nextState)
+reduce__	Parser.cc	/^inline void ParserBase::reduce__(PI__ const &pi)$/;"	f	class:ParserBase	signature:(PI__ const &pi)
+reduce__	Parserbase.h	/^        void reduce__(PI__ const &productionInfo);$/;"	p	class:ParserBase	access:protected	signature:(PI__ const &productionInfo)
+s_0	Parser.cc	/^SR__ s_0[] =$/;"	m	namespace:__anon1	file:
+s_1	Parser.cc	/^SR__ s_1[] =$/;"	m	namespace:__anon1	file:
+s_10	Parser.cc	/^SR__ s_10[] =$/;"	m	namespace:__anon1	file:
+s_11	Parser.cc	/^SR__ s_11[] =$/;"	m	namespace:__anon1	file:
+s_2	Parser.cc	/^SR__ s_2[] =$/;"	m	namespace:__anon1	file:
+s_3	Parser.cc	/^SR__ s_3[] =$/;"	m	namespace:__anon1	file:
+s_4	Parser.cc	/^SR__ s_4[] =$/;"	m	namespace:__anon1	file:
+s_5	Parser.cc	/^SR__ s_5[] =$/;"	m	namespace:__anon1	file:
+s_6	Parser.cc	/^SR__ s_6[] =$/;"	m	namespace:__anon1	file:
+s_7	Parser.cc	/^SR__ s_7[] =$/;"	m	namespace:__anon1	file:
+s_8	Parser.cc	/^SR__ s_8[] =$/;"	m	namespace:__anon1	file:
+s_9	Parser.cc	/^SR__ s_9[] =$/;"	m	namespace:__anon1	file:
+s_productionInfo	Parser.cc	/^PI__ const s_productionInfo[] = $/;"	m	namespace:__anon1	file:
+s_state	Parser.cc	/^SR__ *s_state[] =$/;"	m	namespace:__anon1	file:
+setDebug	Parserbase.h	/^        void setDebug(bool mode);$/;"	p	class:ParserBase	access:public	signature:(bool mode)
+setDebug	Parserbase.h	/^inline void ParserBase::setDebug(bool mode)$/;"	f	class:ParserBase	signature:(bool mode)
+top__	Parser.cc	/^inline size_t ParserBase::top__() const$/;"	f	class:ParserBase	signature:() const
+top__	Parserbase.h	/^        size_t top__() const;$/;"	p	class:ParserBase	access:protected	signature:() const

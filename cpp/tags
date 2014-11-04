@@ -1,0 +1,387 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ACCCOUNT	Scannerbase.h	/^        ACCCOUNT,$/;"	e	enum:ScannerBase::__anon1
+AT_EOF	Scannerbase.h	/^        AT_EOF = -1$/;"	e	enum:ScannerBase::__anon3
+ActionType__	Scannerbase.h	/^    enum class ActionType__$/;"	c	class:ScannerBase	access:protected
+BOL	Scannerbase.h	/^        BOL = 8$/;"	e	enum:ScannerBase::__anon2
+CONTINUE	Scannerbase.h	/^        CONTINUE,               \/\/ transition succeeded, go on$/;"	m	class:ScannerBase::ActionType__	access:private
+COUNT	Scannerbase.h	/^        COUNT = 4,$/;"	e	enum:ScannerBase::__anon2
+ECHO_CH	Scannerbase.h	/^        ECHO_CH,                \/\/ echo ch itself (d_matched empty)$/;"	m	class:ScannerBase::ActionType__	access:private
+ECHO_FIRST	Scannerbase.h	/^        ECHO_FIRST,             \/\/ echo d_matched[0], push back the rest$/;"	m	class:ScannerBase::ActionType__	access:private
+END	Scannerbase.h	/^        END,                    \/\/ postCode called when lex__() ends $/;"	m	class:ScannerBase::PostEnum__	access:private
+FINAL	Scannerbase.h	/^        FINAL = 1,$/;"	e	enum:ScannerBase::__anon2
+FLAGS	Scannerbase.h	/^        FLAGS,$/;"	e	enum:ScannerBase::__anon1
+FinData	Scannerbase.h	/^    struct FinData            \/\/ Info about intermediate matched rules while$/;"	s	class:ScannerBase	access:private
+Final	Scannerbase.h	/^    struct Final$/;"	s	class:ScannerBase	access:private
+INCREMENT	Scannerbase.h	/^        INCREMENT = 2,$/;"	e	enum:ScannerBase::__anon2
+Input	Scannerbase.h	/^            Input();$/;"	p	class:ScannerBase::Input	access:public	signature:()
+Input	Scannerbase.h	/^            Input(std::istream *iStream, size_t lineNr = 1);$/;"	p	class:ScannerBase::Input	access:public	signature:(std::istream *iStream, size_t lineNr = 1)
+Input	Scannerbase.h	/^    class Input$/;"	c	class:ScannerBase	access:private
+Input	lex.cc	/^ScannerBase::Input::Input()$/;"	f	class:ScannerBase::Input	signature:()
+Input	lex.cc	/^ScannerBase::Input::Input(std::istream *iStream, size_t lineNr)$/;"	f	class:ScannerBase::Input	signature:(std::istream *iStream, size_t lineNr)
+Leave__	Scannerbase.h	/^    enum Leave__$/;"	g	class:ScannerBase	access:protected
+MATCH	Scannerbase.h	/^        MATCH,                  \/\/ matched a rule$/;"	m	class:ScannerBase::ActionType__	access:private
+POP	Scannerbase.h	/^        POP,                    \/\/ postCode called after switching files$/;"	m	class:ScannerBase::PostEnum__	access:private
+PostEnum__	Scannerbase.h	/^    enum class PostEnum__$/;"	c	class:ScannerBase	access:protected
+RETURN	Scannerbase.h	/^        RETURN,                 \/\/ no further continuation, lex returns 0.$/;"	m	class:ScannerBase::ActionType__	access:private
+RETURN	Scannerbase.h	/^        RETURN,                 \/\/ postCode called when lex__() returns$/;"	m	class:ScannerBase::PostEnum__	access:private
+RULE	Scannerbase.h	/^        RULE = 0,$/;"	e	enum:ScannerBase::__anon1
+Scanner	Scanner.h	/^        Scanner(std::string const &infile, std::string const &outfile);$/;"	p	class:Scanner	access:public	signature:(std::string const &infile, std::string const &outfile)
+Scanner	Scanner.h	/^        explicit Scanner(std::istream &in = std::cin,$/;"	p	class:Scanner	access:public	signature:(std::istream &in = std::cin, std::ostream &out = std::cout)
+Scanner	Scanner.h	/^class Scanner: public ScannerBase$/;"	c	inherits:ScannerBase
+Scanner	Scanner.h	/^inline Scanner::Scanner(std::istream &in, std::ostream &out)$/;"	f	class:Scanner	signature:(std::istream &in, std::ostream &out)
+Scanner	Scanner.h	/^inline Scanner::Scanner(std::string const &infile, std::string const &outfile)$/;"	f	class:Scanner	signature:(std::string const &infile, std::string const &outfile)
+Scanner::Scanner	Scanner.h	/^        Scanner(std::string const &infile, std::string const &outfile);$/;"	p	class:Scanner	access:public	signature:(std::string const &infile, std::string const &outfile)
+Scanner::Scanner	Scanner.h	/^        explicit Scanner(std::istream &in = std::cin,$/;"	p	class:Scanner	access:public	signature:(std::istream &in = std::cin, std::ostream &out = std::cout)
+Scanner::Scanner	Scanner.h	/^inline Scanner::Scanner(std::istream &in, std::ostream &out)$/;"	f	class:Scanner	signature:(std::istream &in, std::ostream &out)
+Scanner::Scanner	Scanner.h	/^inline Scanner::Scanner(std::string const &infile, std::string const &outfile)$/;"	f	class:Scanner	signature:(std::string const &infile, std::string const &outfile)
+Scanner::executeAction__	Scanner.h	/^        int executeAction__(size_t ruleNr);$/;"	p	class:Scanner	access:private	signature:(size_t ruleNr)
+Scanner::executeAction__	lex.cc	/^int Scanner::executeAction__(size_t ruleIdx)$/;"	f	class:Scanner	signature:(size_t ruleIdx)
+Scanner::lex	Scanner.h	/^        int lex();$/;"	p	class:Scanner	access:public	signature:()
+Scanner::lex	Scanner.h	/^inline int Scanner::lex()$/;"	f	class:Scanner	signature:()
+Scanner::lex__	Scanner.h	/^        int lex__();$/;"	p	class:Scanner	access:private	signature:()
+Scanner::lex__	lex.cc	/^int Scanner::lex__()$/;"	f	class:Scanner	signature:()
+Scanner::postCode	Scanner.h	/^        void postCode(PostEnum__ type);    $/;"	p	class:Scanner	access:private	signature:(PostEnum__ type)
+Scanner::postCode	Scanner.h	/^inline void Scanner::postCode(PostEnum__ type) $/;"	f	class:Scanner	signature:(PostEnum__ type)
+Scanner::preCode	Scanner.h	/^        void preCode();     \/\/ re-implement this function for code that must $/;"	p	class:Scanner	access:private	signature:()
+Scanner::preCode	Scanner.h	/^inline void Scanner::preCode() $/;"	f	class:Scanner	signature:()
+Scanner::print	Scanner.h	/^        void print();$/;"	p	class:Scanner	access:private	signature:()
+Scanner::print	Scanner.h	/^inline void Scanner::print() $/;"	f	class:Scanner	signature:()
+ScannerBASE_H_INCLUDED	Scannerbase.h	4;"	d
+ScannerBase	Scannerbase.h	/^    ScannerBase(std::istream &in, std::ostream &out);$/;"	p	class:ScannerBase	access:protected	signature:(std::istream &in, std::ostream &out)
+ScannerBase	Scannerbase.h	/^    ScannerBase(std::string const &infilename, std::string const &outfilename);$/;"	p	class:ScannerBase	access:protected	signature:(std::string const &infilename, std::string const &outfilename)
+ScannerBase	Scannerbase.h	/^class ScannerBase$/;"	c
+ScannerBase	lex.cc	/^ScannerBase::ScannerBase(std::istream &in, std::ostream &out)$/;"	f	class:ScannerBase	signature:(std::istream &in, std::ostream &out)
+ScannerBase	lex.cc	/^ScannerBase::ScannerBase(std::string const &infilename, std::string const &outfilename)$/;"	f	class:ScannerBase	signature:(std::string const &infilename, std::string const &outfilename)
+ScannerBase::ACCCOUNT	Scannerbase.h	/^        ACCCOUNT,$/;"	e	enum:ScannerBase::__anon1
+ScannerBase::AT_EOF	Scannerbase.h	/^        AT_EOF = -1$/;"	e	enum:ScannerBase::__anon3
+ScannerBase::ActionType__	Scannerbase.h	/^    enum class ActionType__$/;"	c	class:ScannerBase	access:protected
+ScannerBase::ActionType__::CONTINUE	Scannerbase.h	/^        CONTINUE,               \/\/ transition succeeded, go on$/;"	m	class:ScannerBase::ActionType__	access:private
+ScannerBase::ActionType__::ECHO_CH	Scannerbase.h	/^        ECHO_CH,                \/\/ echo ch itself (d_matched empty)$/;"	m	class:ScannerBase::ActionType__	access:private
+ScannerBase::ActionType__::ECHO_FIRST	Scannerbase.h	/^        ECHO_FIRST,             \/\/ echo d_matched[0], push back the rest$/;"	m	class:ScannerBase::ActionType__	access:private
+ScannerBase::ActionType__::MATCH	Scannerbase.h	/^        MATCH,                  \/\/ matched a rule$/;"	m	class:ScannerBase::ActionType__	access:private
+ScannerBase::ActionType__::RETURN	Scannerbase.h	/^        RETURN,                 \/\/ no further continuation, lex returns 0.$/;"	m	class:ScannerBase::ActionType__	access:private
+ScannerBase::BOL	Scannerbase.h	/^        BOL = 8$/;"	e	enum:ScannerBase::__anon2
+ScannerBase::COUNT	Scannerbase.h	/^        COUNT = 4,$/;"	e	enum:ScannerBase::__anon2
+ScannerBase::FINAL	Scannerbase.h	/^        FINAL = 1,$/;"	e	enum:ScannerBase::__anon2
+ScannerBase::FLAGS	Scannerbase.h	/^        FLAGS,$/;"	e	enum:ScannerBase::__anon1
+ScannerBase::FinData	Scannerbase.h	/^    struct FinData            \/\/ Info about intermediate matched rules while$/;"	s	class:ScannerBase	access:private
+ScannerBase::FinData::matchLen	Scannerbase.h	/^        size_t matchLen;$/;"	m	struct:ScannerBase::FinData	access:public
+ScannerBase::FinData::rule	Scannerbase.h	/^        size_t rule;$/;"	m	struct:ScannerBase::FinData	access:public
+ScannerBase::FinData::tailCount	Scannerbase.h	/^        size_t tailCount;$/;"	m	struct:ScannerBase::FinData	access:public
+ScannerBase::Final	Scannerbase.h	/^    struct Final$/;"	s	class:ScannerBase	access:private
+ScannerBase::Final::atBOL	Scannerbase.h	/^        FinData atBOL;$/;"	m	struct:ScannerBase::Final	access:public
+ScannerBase::Final::notAtBOL	Scannerbase.h	/^        FinData notAtBOL;$/;"	m	struct:ScannerBase::Final	access:public
+ScannerBase::INCREMENT	Scannerbase.h	/^        INCREMENT = 2,$/;"	e	enum:ScannerBase::__anon2
+ScannerBase::Input	Scannerbase.h	/^    class Input$/;"	c	class:ScannerBase	access:private
+ScannerBase::Input::Input	Scannerbase.h	/^            Input();$/;"	p	class:ScannerBase::Input	access:public	signature:()
+ScannerBase::Input::Input	Scannerbase.h	/^            Input(std::istream *iStream, size_t lineNr = 1);$/;"	p	class:ScannerBase::Input	access:public	signature:(std::istream *iStream, size_t lineNr = 1)
+ScannerBase::Input::Input	lex.cc	/^ScannerBase::Input::Input()$/;"	f	class:ScannerBase::Input	signature:()
+ScannerBase::Input::Input	lex.cc	/^ScannerBase::Input::Input(std::istream *iStream, size_t lineNr)$/;"	f	class:ScannerBase::Input	signature:(std::istream *iStream, size_t lineNr)
+ScannerBase::Input::close	Scannerbase.h	/^            void close()                    \/\/ force closing the stream$/;"	f	class:ScannerBase::Input	access:public	signature:()
+ScannerBase::Input::d_deque	Scannerbase.h	/^        std::deque<unsigned char> d_deque;  \/\/ pending input chars$/;"	m	class:ScannerBase::Input	access:private
+ScannerBase::Input::d_in	Scannerbase.h	/^        std::istream *d_in;                 \/\/ ptr for easy streamswitching$/;"	m	class:ScannerBase::Input	access:private
+ScannerBase::Input::d_lineNr	Scannerbase.h	/^        size_t d_lineNr;                    \/\/ line count$/;"	m	class:ScannerBase::Input	access:private
+ScannerBase::Input::get	Scannerbase.h	/^            size_t get();                   \/\/ the next range$/;"	p	class:ScannerBase::Input	access:public	signature:()
+ScannerBase::Input::get	lex.cc	/^size_t ScannerBase::Input::get()$/;"	f	class:ScannerBase::Input	signature:()
+ScannerBase::Input::lineNr	Scannerbase.h	/^            size_t lineNr() const$/;"	f	class:ScannerBase::Input	access:public	signature:() const
+ScannerBase::Input::next	Scannerbase.h	/^            size_t next();                  \/\/ obtain the next character$/;"	p	class:ScannerBase::Input	access:private	signature:()
+ScannerBase::Input::next	lex.cc	/^size_t ScannerBase::Input::next()$/;"	f	class:ScannerBase::Input	signature:()
+ScannerBase::Input::reRead	Scannerbase.h	/^            void reRead(size_t ch);         \/\/ push back 'ch' (if < 0x100)$/;"	p	class:ScannerBase::Input	access:public	signature:(size_t ch)
+ScannerBase::Input::reRead	Scannerbase.h	/^            void reRead(std::string const &str, size_t fmIdx);$/;"	p	class:ScannerBase::Input	access:public	signature:(std::string const &str, size_t fmIdx)
+ScannerBase::Input::reRead	lex.cc	/^void ScannerBase::Input::reRead(size_t ch)$/;"	f	class:ScannerBase::Input	signature:(size_t ch)
+ScannerBase::Input::reRead	lex.cc	/^void ScannerBase::Input::reRead(std::string const &str, size_t fm)$/;"	f	class:ScannerBase::Input	signature:(std::string const &str, size_t fm)
+ScannerBase::Leave__	Scannerbase.h	/^    enum Leave__$/;"	g	class:ScannerBase	access:protected
+ScannerBase::PostEnum__	Scannerbase.h	/^    enum class PostEnum__$/;"	c	class:ScannerBase	access:protected
+ScannerBase::PostEnum__::END	Scannerbase.h	/^        END,                    \/\/ postCode called when lex__() ends $/;"	m	class:ScannerBase::PostEnum__	access:private
+ScannerBase::PostEnum__::POP	Scannerbase.h	/^        POP,                    \/\/ postCode called after switching files$/;"	m	class:ScannerBase::PostEnum__	access:private
+ScannerBase::PostEnum__::RETURN	Scannerbase.h	/^        RETURN,                 \/\/ postCode called when lex__() returns$/;"	m	class:ScannerBase::PostEnum__	access:private
+ScannerBase::RULE	Scannerbase.h	/^        RULE = 0,$/;"	e	enum:ScannerBase::__anon1
+ScannerBase::ScannerBase	Scannerbase.h	/^    ScannerBase(std::istream &in, std::ostream &out);$/;"	p	class:ScannerBase	access:protected	signature:(std::istream &in, std::ostream &out)
+ScannerBase::ScannerBase	Scannerbase.h	/^    ScannerBase(std::string const &infilename, std::string const &outfilename);$/;"	p	class:ScannerBase	access:protected	signature:(std::string const &infilename, std::string const &outfilename)
+ScannerBase::ScannerBase	lex.cc	/^ScannerBase::ScannerBase(std::istream &in, std::ostream &out)$/;"	f	class:ScannerBase	signature:(std::istream &in, std::ostream &out)
+ScannerBase::ScannerBase	lex.cc	/^ScannerBase::ScannerBase(std::string const &infilename, std::string const &outfilename)$/;"	f	class:ScannerBase	signature:(std::string const &infilename, std::string const &outfilename)
+ScannerBase::StartCondition__	Scannerbase.h	/^    enum class StartCondition__ {$/;"	c	class:ScannerBase	access:public
+ScannerBase::StreamStruct	Scannerbase.h	/^    struct StreamStruct$/;"	s	class:ScannerBase	access:protected
+ScannerBase::StreamStruct::pushedInput	Scannerbase.h	/^        Input pushedInput;$/;"	m	struct:ScannerBase::StreamStruct	access:public
+ScannerBase::StreamStruct::pushedName	Scannerbase.h	/^        std::string pushedName;$/;"	m	struct:ScannerBase::StreamStruct	access:public
+ScannerBase::VectorInt	Scannerbase.h	/^    typedef std::vector<int> VectorInt;$/;"	t	class:ScannerBase	access:private
+ScannerBase::accept	Scannerbase.h	/^    void            accept(size_t nChars = 0);      \/\/ former: less$/;"	p	class:ScannerBase	access:protected	signature:(size_t nChars = 0)
+ScannerBase::accept	lex.cc	/^void ScannerBase::accept(size_t nChars)          \/\/ old name: less$/;"	f	class:ScannerBase	signature:(size_t nChars)
+ScannerBase::actionType__	Scannerbase.h	/^    ActionType__    actionType__(size_t range); \/\/ next action$/;"	p	class:ScannerBase	access:protected	signature:(size_t range)
+ScannerBase::actionType__	lex.cc	/^ScannerBase::ActionType__ ScannerBase::actionType__(size_t range)$/;"	f	class:ScannerBase	signature:(size_t range)
+ScannerBase::atFinalState	Scannerbase.h	/^    bool atFinalState();$/;"	p	class:ScannerBase	access:private	signature:()
+ScannerBase::atFinalState	Scannerbase.h	/^inline bool ScannerBase::atFinalState()$/;"	f	class:ScannerBase	signature:()
+ScannerBase::begin	Scannerbase.h	/^    void            begin(StartCondition__ startCondition);$/;"	p	class:ScannerBase	access:protected	signature:(StartCondition__ startCondition)
+ScannerBase::begin	Scannerbase.h	/^inline void ScannerBase::begin(StartCondition__ startCondition)$/;"	f	class:ScannerBase	signature:(StartCondition__ startCondition)
+ScannerBase::continue__	Scannerbase.h	/^    void            continue__(int ch);         \/\/ handles a transition$/;"	p	class:ScannerBase	access:protected	signature:(int ch)
+ScannerBase::continue__	lex.cc	/^void ScannerBase::continue__(int ch)$/;"	f	class:ScannerBase	signature:(int ch)
+ScannerBase::d_atBOL	Scannerbase.h	/^    bool            d_atBOL;                \/\/ the matched text starts at BOL$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_dfaBase__	Scannerbase.h	/^    int     const (*d_dfaBase__)[17];$/;"	m	class:ScannerBase	access:protected
+ScannerBase::d_filename	Scannerbase.h	/^    std::string     d_filename;             \/\/ name of the currently processed$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_final	Scannerbase.h	/^    Final d_final;                          \/\/ 1st for BOL rules$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_in	Scannerbase.h	/^    std::istream *d_in;                     \/\/ points to the input stream$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_in__	Scannerbase.h	/^    std::istream   *d_in__;$/;"	m	class:ScannerBase	access:protected
+ScannerBase::d_input	Scannerbase.h	/^    Input           d_input;$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_line	Scannerbase.h	/^    std::shared_ptr<std::istringstream> d_line; \/\/ holds line fm d_in$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_matched	Scannerbase.h	/^    std::string     d_matched;              \/\/ matched characters$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_more	Scannerbase.h	/^    bool            d_more = false;         \/\/ set to true by more()$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_nextState	Scannerbase.h	/^    int             d_nextState;$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_out	Scannerbase.h	/^    std::shared_ptr<std::ostream> d_out;$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_return	Scannerbase.h	/^    bool            d_return;               \/\/ return after a rule's action $/;"	m	class:ScannerBase	access:private
+ScannerBase::d_sawEOF	Scannerbase.h	/^    bool            d_sawEOF;               \/\/ saw EOF: ignore tailCount$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_startCondition	Scannerbase.h	/^    StartCondition__  d_startCondition;$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_state	Scannerbase.h	/^    size_t          d_state;$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_streamStack	Scannerbase.h	/^    std::vector<StreamStruct>    d_streamStack;$/;"	m	class:ScannerBase	access:private
+ScannerBase::d_tailCount	Scannerbase.h	/^    std::vector<size_t> d_tailCount;         $/;"	m	class:ScannerBase	access:private
+ScannerBase::d_token__	Scannerbase.h	/^    int d_token__;                          \/\/ returned by lex__$/;"	m	class:ScannerBase	access:protected
+ScannerBase::debug	Scannerbase.h	/^    bool                debug()     const;$/;"	p	class:ScannerBase	access:public	signature:() const
+ScannerBase::debug	lex.cc	/^bool ScannerBase::debug() const$/;"	f	class:ScannerBase	signature:() const
+ScannerBase::determineMatchedSize	Scannerbase.h	/^    void determineMatchedSize(FinData const &final);$/;"	p	class:ScannerBase	access:private	signature:(FinData const &final)
+ScannerBase::determineMatchedSize	lex.cc	/^void ScannerBase::determineMatchedSize(FinData const &final)$/;"	f	class:ScannerBase	signature:(FinData const &final)
+ScannerBase::echo	Scannerbase.h	/^    void            echo() const;$/;"	p	class:ScannerBase	access:protected	signature:() const
+ScannerBase::echo	Scannerbase.h	/^inline void ScannerBase::echo() const$/;"	f	class:ScannerBase	signature:() const
+ScannerBase::echoCh__	Scannerbase.h	/^    void            echoCh__(size_t ch);        \/\/ echoes ch, sets d_atBOL$/;"	p	class:ScannerBase	access:protected	signature:(size_t ch)
+ScannerBase::echoCh__	lex.cc	/^void ScannerBase::echoCh__(size_t ch)$/;"	f	class:ScannerBase	signature:(size_t ch)
+ScannerBase::echoFirst__	Scannerbase.h	/^    void            echoFirst__(size_t ch);     \/\/ handles unknown input$/;"	p	class:ScannerBase	access:protected	signature:(size_t ch)
+ScannerBase::echoFirst__	lex.cc	/^void ScannerBase::echoFirst__(size_t ch)$/;"	f	class:ScannerBase	signature:(size_t ch)
+ScannerBase::getRange__	Scannerbase.h	/^    size_t          getRange__(int ch);         \/\/ convert char to range$/;"	p	class:ScannerBase	access:protected	signature:(int ch)
+ScannerBase::getRange__	lex.cc	/^size_t ScannerBase::getRange__(int ch)       \/\/ using int to prevent casts$/;"	f	class:ScannerBase	signature:(int ch)
+ScannerBase::get__	Scannerbase.h	/^    size_t          get__();                    \/\/ next character$/;"	p	class:ScannerBase	access:protected	signature:()
+ScannerBase::get__	Scannerbase.h	/^inline size_t ScannerBase::get__()$/;"	f	class:ScannerBase	signature:()
+ScannerBase::inspectRFCs__	Scannerbase.h	/^    void            inspectRFCs__();            \/\/ update d_tailCount$/;"	p	class:ScannerBase	access:protected	signature:()
+ScannerBase::inspectRFCs__	lex.cc	/^void ScannerBase::inspectRFCs__()$/;"	f	class:ScannerBase	signature:()
+ScannerBase::istreamName__	Scannerbase.h	/^    static std::string istreamName__();$/;"	p	class:ScannerBase	access:protected	signature:()
+ScannerBase::leave	Scannerbase.h	/^    void            leave(int retValue) const;$/;"	p	class:ScannerBase	access:protected	signature:(int retValue) const
+ScannerBase::leave	Scannerbase.h	/^inline void ScannerBase::leave(int retValue) const$/;"	f	class:ScannerBase	signature:(int retValue) const
+ScannerBase::length	Scannerbase.h	/^    size_t              length()    const;$/;"	p	class:ScannerBase	access:public	signature:() const
+ScannerBase::length	Scannerbase.h	/^inline size_t ScannerBase::length() const$/;"	f	class:ScannerBase	signature:() const
+ScannerBase::lineNr	Scannerbase.h	/^    size_t              lineNr()    const;$/;"	p	class:ScannerBase	access:public	signature:() const
+ScannerBase::lineNr	Scannerbase.h	/^inline size_t ScannerBase::lineNr() const$/;"	f	class:ScannerBase	signature:() const
+ScannerBase::matched__	Scannerbase.h	/^    size_t          matched__(size_t ch);       \/\/ handles a matched rule$/;"	p	class:ScannerBase	access:protected	signature:(size_t ch)
+ScannerBase::matched__	lex.cc	/^size_t ScannerBase::matched__(size_t ch)$/;"	f	class:ScannerBase	signature:(size_t ch)
+ScannerBase::more	Scannerbase.h	/^    void            more();$/;"	p	class:ScannerBase	access:protected	signature:()
+ScannerBase::more	Scannerbase.h	/^inline void ScannerBase::more()$/;"	f	class:ScannerBase	signature:()
+ScannerBase::noReturn__	Scannerbase.h	/^    void            noReturn__();               \/\/ d_return to false$/;"	p	class:ScannerBase	access:protected	signature:()
+ScannerBase::noReturn__	Scannerbase.h	/^inline void ScannerBase::noReturn__()$/;"	f	class:ScannerBase	signature:()
+ScannerBase::other	Scannerbase.h	/^    ScannerBase(ScannerBase const &other)             = delete;$/;"	m	class:ScannerBase	access:public
+ScannerBase::out	Scannerbase.h	/^    std::ostream   &out();$/;"	p	class:ScannerBase	access:protected	signature:()
+ScannerBase::out	Scannerbase.h	/^inline std::ostream &ScannerBase::out()$/;"	f	class:ScannerBase	signature:()
+ScannerBase::p_pushStream	Scannerbase.h	/^    void p_pushStream(std::string const &name, std::istream *streamPtr);$/;"	p	class:ScannerBase	access:private	signature:(std::string const &name, std::istream *streamPtr)
+ScannerBase::p_pushStream	lex.cc	/^void ScannerBase::p_pushStream(std::string const &name, std::istream *streamPtr)$/;"	f	class:ScannerBase	signature:(std::string const &name, std::istream *streamPtr)
+ScannerBase::popStream	Scannerbase.h	/^    bool            popStream();$/;"	p	class:ScannerBase	access:protected	signature:()
+ScannerBase::popStream	lex.cc	/^bool ScannerBase::popStream()$/;"	f	class:ScannerBase	signature:()
+ScannerBase::print__	Scannerbase.h	/^    void            print__() const;            \/\/ optionally print token$/;"	p	class:ScannerBase	access:protected	signature:() const
+ScannerBase::print__	lex.cc	/^void ScannerBase::print__() const$/;"	f	class:ScannerBase	signature:() const
+ScannerBase::push	Scannerbase.h	/^    void            push(size_t ch);                \/\/ push char to Input$/;"	p	class:ScannerBase	access:protected	signature:(size_t ch)
+ScannerBase::push	Scannerbase.h	/^    void            push(std::string const &txt);   \/\/ same: chars$/;"	p	class:ScannerBase	access:protected	signature:(std::string const &txt)
+ScannerBase::push	Scannerbase.h	/^inline void ScannerBase::push(size_t ch)$/;"	f	class:ScannerBase	signature:(size_t ch)
+ScannerBase::push	Scannerbase.h	/^inline void ScannerBase::push(std::string const &str)$/;"	f	class:ScannerBase	signature:(std::string const &str)
+ScannerBase::pushFront__	Scannerbase.h	/^    void            pushFront__(size_t ch);     \/\/ return char to Input$/;"	p	class:ScannerBase	access:protected	signature:(size_t ch)
+ScannerBase::pushStream	Scannerbase.h	/^    void            pushStream(std::istream &curStream);$/;"	p	class:ScannerBase	access:protected	signature:(std::istream &curStream)
+ScannerBase::pushStream	Scannerbase.h	/^    void            pushStream(std::string const &curName);$/;"	p	class:ScannerBase	access:protected	signature:(std::string const &curName)
+ScannerBase::pushStream	lex.cc	/^void ScannerBase::pushStream(std::istream  &istr)$/;"	f	class:ScannerBase	signature:(std::istream &istr)
+ScannerBase::pushStream	lex.cc	/^void ScannerBase::pushStream(std::string const &name)$/;"	f	class:ScannerBase	signature:(std::string const &name)
+ScannerBase::redo	Scannerbase.h	/^    void            redo(size_t nChars = 0);        \/\/ rescan the last nChar$/;"	p	class:ScannerBase	access:protected	signature:(size_t nChars = 0)
+ScannerBase::redo	lex.cc	/^void ScannerBase::redo(size_t nChars)$/;"	f	class:ScannerBase	signature:(size_t nChars)
+ScannerBase::reset__	Scannerbase.h	/^    void            reset__();                  \/\/ prepare for new cycle$/;"	p	class:ScannerBase	access:protected	signature:()
+ScannerBase::reset__	lex.cc	/^void ScannerBase::reset__()$/;"	f	class:ScannerBase	signature:()
+ScannerBase::return__	Scannerbase.h	/^    bool            return__();                 \/\/ 'return' from codeblock$/;"	p	class:ScannerBase	access:protected	signature:()
+ScannerBase::return__	Scannerbase.h	/^inline bool ScannerBase::return__()$/;"	f	class:ScannerBase	signature:()
+ScannerBase::rhs	Scannerbase.h	/^    ScannerBase &operator=(ScannerBase const &rhs)    = delete;$/;"	m	class:ScannerBase	access:public
+ScannerBase::s_dfaBase__	Scannerbase.h	/^    static int     const (*s_dfaBase__[])[17];$/;"	m	class:ScannerBase	access:protected
+ScannerBase::s_dfa__	Scannerbase.h	/^    static int     const s_dfa__[][17];$/;"	m	class:ScannerBase	access:protected
+ScannerBase::s_dfa__	lex.cc	/^int const ScannerBase::s_dfa__[][17] =$/;"	m	class:ScannerBase	file:
+ScannerBase::s_istreamNr	Scannerbase.h	/^    static size_t   s_istreamNr;            \/\/ file. With istreams it receives$/;"	m	class:ScannerBase	access:private
+ScannerBase::s_istreamNr	lex.cc	/^size_t ScannerBase::s_istreamNr = 0;$/;"	m	class:ScannerBase	file:
+ScannerBase::s_ranges__	Scannerbase.h	/^    static size_t  const s_ranges__[];$/;"	m	class:ScannerBase	access:protected
+ScannerBase::s_ranges__	lex.cc	/^size_t const ScannerBase::s_ranges__[] =$/;"	m	class:ScannerBase	file:
+ScannerBase::s_rfc__	Scannerbase.h	/^    static size_t  const s_rfc__[][3];$/;"	m	class:ScannerBase	access:protected
+ScannerBase::s_rfc__	lex.cc	/^size_t const ScannerBase::s_rfc__[][3] =$/;"	m	class:ScannerBase	file:
+ScannerBase::setDebug	Scannerbase.h	/^    void                setDebug(bool onOff);$/;"	p	class:ScannerBase	access:public	signature:(bool onOff)
+ScannerBase::setDebug	lex.cc	/^void ScannerBase::setDebug(bool onOff)$/;"	f	class:ScannerBase	signature:(bool onOff)
+ScannerBase::setFilename	Scannerbase.h	/^    void            setFilename(std::string const &name);$/;"	p	class:ScannerBase	access:protected	signature:(std::string const &name)
+ScannerBase::setFilename	Scannerbase.h	/^inline void ScannerBase::setFilename(std::string const &name)$/;"	f	class:ScannerBase	signature:(std::string const &name)
+ScannerBase::setMatched	Scannerbase.h	/^    void            setMatched(std::string const &text);$/;"	p	class:ScannerBase	access:protected	signature:(std::string const &text)
+ScannerBase::setMatched	Scannerbase.h	/^inline void ScannerBase::setMatched(std::string const &text)$/;"	f	class:ScannerBase	signature:(std::string const &text)
+ScannerBase::startCondition	Scannerbase.h	/^    StartCondition__  startCondition() const;   \/\/ current start condition$/;"	p	class:ScannerBase	access:protected	signature:() const
+ScannerBase::startCondition	Scannerbase.h	/^inline ScannerBase::StartCondition__ ScannerBase::startCondition() const$/;"	f	class:ScannerBase	signature:() const
+ScannerBase::state__	Scannerbase.h	/^    size_t          state__() const;            \/\/ current state $/;"	p	class:ScannerBase	access:protected	signature:() const
+ScannerBase::state__	Scannerbase.h	/^inline size_t ScannerBase::state__() const$/;"	f	class:ScannerBase	signature:() const
+ScannerBase::std::filename	Scannerbase.h	/^    std::string const  &filename()  const;$/;"	p	class:ScannerBase::std	access:public	signature:() const
+ScannerBase::std::matched	Scannerbase.h	/^    std::string const  &matched()   const;$/;"	p	class:ScannerBase::std	access:public	signature:() const
+ScannerBase::std::streamStack	Scannerbase.h	/^    std::vector<StreamStruct> const &streamStack() const;$/;"	p	class:ScannerBase::std	access:protected	signature:() const
+ScannerBase::switchIstream	Scannerbase.h	/^    void                switchIstream(std::string const &infilename);$/;"	p	class:ScannerBase	access:public	signature:(std::string const &infilename)
+ScannerBase::switchIstream	lex.cc	/^void ScannerBase::switchIstream(std::string const &infilename)$/;"	f	class:ScannerBase	signature:(std::string const &infilename)
+ScannerBase::switchOstream	Scannerbase.h	/^    void                switchOstream(std::ostream &out);$/;"	p	class:ScannerBase	access:public	signature:(std::ostream &out)
+ScannerBase::switchOstream	Scannerbase.h	/^    void                switchOstream(std::string const &outfilename);$/;"	p	class:ScannerBase	access:public	signature:(std::string const &outfilename)
+ScannerBase::switchOstream	lex.cc	/^void ScannerBase::switchOstream(std::ostream &out)$/;"	f	class:ScannerBase	signature:(std::ostream &out)
+ScannerBase::switchOstream	lex.cc	/^void ScannerBase::switchOstream(std::string const &outfilename)$/;"	f	class:ScannerBase	signature:(std::string const &outfilename)
+ScannerBase::switchStream__	Scannerbase.h	/^    void            switchStream__(std::istream &in, size_t lineNr);   $/;"	p	class:ScannerBase	access:protected	signature:(std::istream &in, size_t lineNr)
+ScannerBase::switchStream__	lex.cc	/^void ScannerBase::switchStream__(std::istream &in, size_t lineNr)$/;"	f	class:ScannerBase	signature:(std::istream &in, size_t lineNr)
+ScannerBase::switchStreams	Scannerbase.h	/^    void                switchStreams(std::istream &in,$/;"	p	class:ScannerBase	access:public	signature:(std::istream &in, std::ostream &out = std::cout)
+ScannerBase::switchStreams	Scannerbase.h	/^    void                switchStreams(std::string const &infilename,$/;"	p	class:ScannerBase	access:public	signature:(std::string const &infilename, std::string const &outfilename)
+ScannerBase::switchStreams	lex.cc	/^void ScannerBase::switchStreams(std::istream &in, std::ostream &out)$/;"	f	class:ScannerBase	signature:(std::istream &in, std::ostream &out)
+ScannerBase::switchStreams	lex.cc	/^void ScannerBase::switchStreams(std::string const &infilename,$/;"	f	class:ScannerBase	signature:(std::string const &infilename, std::string const &outfilename)
+Scanner_H_INCLUDED_	Scanner.h	4;"	d
+StartCondition__	Scannerbase.h	/^    enum class StartCondition__ {$/;"	c	class:ScannerBase	access:public
+StreamStruct	Scannerbase.h	/^    struct StreamStruct$/;"	s	class:ScannerBase	access:protected
+VectorInt	Scannerbase.h	/^    typedef std::vector<int> VectorInt;$/;"	t	class:ScannerBase	access:private
+accept	Scannerbase.h	/^    void            accept(size_t nChars = 0);      \/\/ former: less$/;"	p	class:ScannerBase	access:protected	signature:(size_t nChars = 0)
+accept	lex.cc	/^void ScannerBase::accept(size_t nChars)          \/\/ old name: less$/;"	f	class:ScannerBase	signature:(size_t nChars)
+actionType__	Scannerbase.h	/^    ActionType__    actionType__(size_t range); \/\/ next action$/;"	p	class:ScannerBase	access:protected	signature:(size_t range)
+actionType__	lex.cc	/^ScannerBase::ActionType__ ScannerBase::actionType__(size_t range)$/;"	f	class:ScannerBase	signature:(size_t range)
+atBOL	Scannerbase.h	/^        FinData atBOL;$/;"	m	struct:ScannerBase::Final	access:public
+atFinalState	Scannerbase.h	/^    bool atFinalState();$/;"	p	class:ScannerBase	access:private	signature:()
+atFinalState	Scannerbase.h	/^inline bool ScannerBase::atFinalState()$/;"	f	class:ScannerBase	signature:()
+begin	Scannerbase.h	/^    void            begin(StartCondition__ startCondition);$/;"	p	class:ScannerBase	access:protected	signature:(StartCondition__ startCondition)
+begin	Scannerbase.h	/^inline void ScannerBase::begin(StartCondition__ startCondition)$/;"	f	class:ScannerBase	signature:(StartCondition__ startCondition)
+close	Scannerbase.h	/^            void close()                    \/\/ force closing the stream$/;"	f	class:ScannerBase::Input	access:public	signature:()
+continue__	Scannerbase.h	/^    void            continue__(int ch);         \/\/ handles a transition$/;"	p	class:ScannerBase	access:protected	signature:(int ch)
+continue__	lex.cc	/^void ScannerBase::continue__(int ch)$/;"	f	class:ScannerBase	signature:(int ch)
+d_atBOL	Scannerbase.h	/^    bool            d_atBOL;                \/\/ the matched text starts at BOL$/;"	m	class:ScannerBase	access:private
+d_deque	Scannerbase.h	/^        std::deque<unsigned char> d_deque;  \/\/ pending input chars$/;"	m	class:ScannerBase::Input	access:private
+d_dfaBase__	Scannerbase.h	/^    int     const (*d_dfaBase__)[17];$/;"	m	class:ScannerBase	access:protected
+d_filename	Scannerbase.h	/^    std::string     d_filename;             \/\/ name of the currently processed$/;"	m	class:ScannerBase	access:private
+d_final	Scannerbase.h	/^    Final d_final;                          \/\/ 1st for BOL rules$/;"	m	class:ScannerBase	access:private
+d_in	Scannerbase.h	/^        std::istream *d_in;                 \/\/ ptr for easy streamswitching$/;"	m	class:ScannerBase::Input	access:private
+d_in	Scannerbase.h	/^    std::istream *d_in;                     \/\/ points to the input stream$/;"	m	class:ScannerBase	access:private
+d_in__	Scannerbase.h	/^    std::istream   *d_in__;$/;"	m	class:ScannerBase	access:protected
+d_input	Scannerbase.h	/^    Input           d_input;$/;"	m	class:ScannerBase	access:private
+d_line	Scannerbase.h	/^    std::shared_ptr<std::istringstream> d_line; \/\/ holds line fm d_in$/;"	m	class:ScannerBase	access:private
+d_lineNr	Scannerbase.h	/^        size_t d_lineNr;                    \/\/ line count$/;"	m	class:ScannerBase::Input	access:private
+d_matched	Scannerbase.h	/^    std::string     d_matched;              \/\/ matched characters$/;"	m	class:ScannerBase	access:private
+d_more	Scannerbase.h	/^    bool            d_more = false;         \/\/ set to true by more()$/;"	m	class:ScannerBase	access:private
+d_nextState	Scannerbase.h	/^    int             d_nextState;$/;"	m	class:ScannerBase	access:private
+d_out	Scannerbase.h	/^    std::shared_ptr<std::ostream> d_out;$/;"	m	class:ScannerBase	access:private
+d_return	Scannerbase.h	/^    bool            d_return;               \/\/ return after a rule's action $/;"	m	class:ScannerBase	access:private
+d_sawEOF	Scannerbase.h	/^    bool            d_sawEOF;               \/\/ saw EOF: ignore tailCount$/;"	m	class:ScannerBase	access:private
+d_startCondition	Scannerbase.h	/^    StartCondition__  d_startCondition;$/;"	m	class:ScannerBase	access:private
+d_state	Scannerbase.h	/^    size_t          d_state;$/;"	m	class:ScannerBase	access:private
+d_streamStack	Scannerbase.h	/^    std::vector<StreamStruct>    d_streamStack;$/;"	m	class:ScannerBase	access:private
+d_tailCount	Scannerbase.h	/^    std::vector<size_t> d_tailCount;         $/;"	m	class:ScannerBase	access:private
+d_token__	Scannerbase.h	/^    int d_token__;                          \/\/ returned by lex__$/;"	m	class:ScannerBase	access:protected
+debug	Scannerbase.h	/^    bool                debug()     const;$/;"	p	class:ScannerBase	access:public	signature:() const
+debug	lex.cc	/^bool ScannerBase::debug() const$/;"	f	class:ScannerBase	signature:() const
+determineMatchedSize	Scannerbase.h	/^    void determineMatchedSize(FinData const &final);$/;"	p	class:ScannerBase	access:private	signature:(FinData const &final)
+determineMatchedSize	lex.cc	/^void ScannerBase::determineMatchedSize(FinData const &final)$/;"	f	class:ScannerBase	signature:(FinData const &final)
+echo	Scannerbase.h	/^    void            echo() const;$/;"	p	class:ScannerBase	access:protected	signature:() const
+echo	Scannerbase.h	/^inline void ScannerBase::echo() const$/;"	f	class:ScannerBase	signature:() const
+echoCh__	Scannerbase.h	/^    void            echoCh__(size_t ch);        \/\/ echoes ch, sets d_atBOL$/;"	p	class:ScannerBase	access:protected	signature:(size_t ch)
+echoCh__	lex.cc	/^void ScannerBase::echoCh__(size_t ch)$/;"	f	class:ScannerBase	signature:(size_t ch)
+echoFirst__	Scannerbase.h	/^    void            echoFirst__(size_t ch);     \/\/ handles unknown input$/;"	p	class:ScannerBase	access:protected	signature:(size_t ch)
+echoFirst__	lex.cc	/^void ScannerBase::echoFirst__(size_t ch)$/;"	f	class:ScannerBase	signature:(size_t ch)
+executeAction__	Scanner.h	/^        int executeAction__(size_t ruleNr);$/;"	p	class:Scanner	access:private	signature:(size_t ruleNr)
+executeAction__	lex.cc	/^int Scanner::executeAction__(size_t ruleIdx)$/;"	f	class:Scanner	signature:(size_t ruleIdx)
+filename	Scannerbase.h	/^    std::string const  &filename()  const;$/;"	p	class:ScannerBase::std	access:public	signature:() const
+filename	Scannerbase.h	/^inline std::string const &ScannerBase::filename() const$/;"	f	class:std::ScannerBase	signature:() const
+get	Scannerbase.h	/^            size_t get();                   \/\/ the next range$/;"	p	class:ScannerBase::Input	access:public	signature:()
+get	lex.cc	/^size_t ScannerBase::Input::get()$/;"	f	class:ScannerBase::Input	signature:()
+getRange__	Scannerbase.h	/^    size_t          getRange__(int ch);         \/\/ convert char to range$/;"	p	class:ScannerBase	access:protected	signature:(int ch)
+getRange__	lex.cc	/^size_t ScannerBase::getRange__(int ch)       \/\/ using int to prevent casts$/;"	f	class:ScannerBase	signature:(int ch)
+get__	Scannerbase.h	/^    size_t          get__();                    \/\/ next character$/;"	p	class:ScannerBase	access:protected	signature:()
+get__	Scannerbase.h	/^inline size_t ScannerBase::get__()$/;"	f	class:ScannerBase	signature:()
+inspectRFCs__	Scannerbase.h	/^    void            inspectRFCs__();            \/\/ update d_tailCount$/;"	p	class:ScannerBase	access:protected	signature:()
+inspectRFCs__	lex.cc	/^void ScannerBase::inspectRFCs__()$/;"	f	class:ScannerBase	signature:()
+istreamName__	Scannerbase.h	/^    static std::string istreamName__();$/;"	p	class:ScannerBase	access:protected	signature:()
+leave	Scannerbase.h	/^    void            leave(int retValue) const;$/;"	p	class:ScannerBase	access:protected	signature:(int retValue) const
+leave	Scannerbase.h	/^inline void ScannerBase::leave(int retValue) const$/;"	f	class:ScannerBase	signature:(int retValue) const
+length	Scannerbase.h	/^    size_t              length()    const;$/;"	p	class:ScannerBase	access:public	signature:() const
+length	Scannerbase.h	/^inline size_t ScannerBase::length() const$/;"	f	class:ScannerBase	signature:() const
+lex	Scanner.h	/^        int lex();$/;"	p	class:Scanner	access:public	signature:()
+lex	Scanner.h	/^inline int Scanner::lex()$/;"	f	class:Scanner	signature:()
+lex__	Scanner.h	/^        int lex__();$/;"	p	class:Scanner	access:private	signature:()
+lex__	lex.cc	/^int Scanner::lex__()$/;"	f	class:Scanner	signature:()
+lineNr	Scannerbase.h	/^            size_t lineNr() const$/;"	f	class:ScannerBase::Input	access:public	signature:() const
+lineNr	Scannerbase.h	/^    size_t              lineNr()    const;$/;"	p	class:ScannerBase	access:public	signature:() const
+lineNr	Scannerbase.h	/^inline size_t ScannerBase::lineNr() const$/;"	f	class:ScannerBase	signature:() const
+matchLen	Scannerbase.h	/^        size_t matchLen;$/;"	m	struct:ScannerBase::FinData	access:public
+matched	Scannerbase.h	/^    std::string const  &matched()   const;$/;"	p	class:ScannerBase::std	access:public	signature:() const
+matched	Scannerbase.h	/^inline std::string const &ScannerBase::matched() const$/;"	f	class:std::ScannerBase	signature:() const
+matched__	Scannerbase.h	/^    size_t          matched__(size_t ch);       \/\/ handles a matched rule$/;"	p	class:ScannerBase	access:protected	signature:(size_t ch)
+matched__	lex.cc	/^size_t ScannerBase::matched__(size_t ch)$/;"	f	class:ScannerBase	signature:(size_t ch)
+more	Scannerbase.h	/^    void            more();$/;"	p	class:ScannerBase	access:protected	signature:()
+more	Scannerbase.h	/^inline void ScannerBase::more()$/;"	f	class:ScannerBase	signature:()
+next	Scannerbase.h	/^            size_t next();                  \/\/ obtain the next character$/;"	p	class:ScannerBase::Input	access:private	signature:()
+next	lex.cc	/^size_t ScannerBase::Input::next()$/;"	f	class:ScannerBase::Input	signature:()
+noReturn__	Scannerbase.h	/^    void            noReturn__();               \/\/ d_return to false$/;"	p	class:ScannerBase	access:protected	signature:()
+noReturn__	Scannerbase.h	/^inline void ScannerBase::noReturn__()$/;"	f	class:ScannerBase	signature:()
+notAtBOL	Scannerbase.h	/^        FinData notAtBOL;$/;"	m	struct:ScannerBase::Final	access:public
+other	Scannerbase.h	/^    ScannerBase(ScannerBase const &other)             = delete;$/;"	m	class:ScannerBase	access:public
+out	Scannerbase.h	/^    std::ostream   &out();$/;"	p	class:ScannerBase	access:protected	signature:()
+out	Scannerbase.h	/^inline std::ostream &ScannerBase::out()$/;"	f	class:ScannerBase	signature:()
+p_pushStream	Scannerbase.h	/^    void p_pushStream(std::string const &name, std::istream *streamPtr);$/;"	p	class:ScannerBase	access:private	signature:(std::string const &name, std::istream *streamPtr)
+p_pushStream	lex.cc	/^void ScannerBase::p_pushStream(std::string const &name, std::istream *streamPtr)$/;"	f	class:ScannerBase	signature:(std::string const &name, std::istream *streamPtr)
+popStream	Scannerbase.h	/^    bool            popStream();$/;"	p	class:ScannerBase	access:protected	signature:()
+popStream	lex.cc	/^bool ScannerBase::popStream()$/;"	f	class:ScannerBase	signature:()
+postCode	Scanner.h	/^        void postCode(PostEnum__ type);    $/;"	p	class:Scanner	access:private	signature:(PostEnum__ type)
+postCode	Scanner.h	/^inline void Scanner::postCode(PostEnum__ type) $/;"	f	class:Scanner	signature:(PostEnum__ type)
+preCode	Scanner.h	/^        void preCode();     \/\/ re-implement this function for code that must $/;"	p	class:Scanner	access:private	signature:()
+preCode	Scanner.h	/^inline void Scanner::preCode() $/;"	f	class:Scanner	signature:()
+print	Scanner.h	/^        void print();$/;"	p	class:Scanner	access:private	signature:()
+print	Scanner.h	/^inline void Scanner::print() $/;"	f	class:Scanner	signature:()
+print__	Scannerbase.h	/^    void            print__() const;            \/\/ optionally print token$/;"	p	class:ScannerBase	access:protected	signature:() const
+print__	lex.cc	/^void ScannerBase::print__() const$/;"	f	class:ScannerBase	signature:() const
+push	Scannerbase.h	/^    void            push(size_t ch);                \/\/ push char to Input$/;"	p	class:ScannerBase	access:protected	signature:(size_t ch)
+push	Scannerbase.h	/^    void            push(std::string const &txt);   \/\/ same: chars$/;"	p	class:ScannerBase	access:protected	signature:(std::string const &txt)
+push	Scannerbase.h	/^inline void ScannerBase::push(size_t ch)$/;"	f	class:ScannerBase	signature:(size_t ch)
+push	Scannerbase.h	/^inline void ScannerBase::push(std::string const &str)$/;"	f	class:ScannerBase	signature:(std::string const &str)
+pushFront__	Scannerbase.h	/^    void            pushFront__(size_t ch);     \/\/ return char to Input$/;"	p	class:ScannerBase	access:protected	signature:(size_t ch)
+pushStream	Scannerbase.h	/^    void            pushStream(std::istream &curStream);$/;"	p	class:ScannerBase	access:protected	signature:(std::istream &curStream)
+pushStream	Scannerbase.h	/^    void            pushStream(std::string const &curName);$/;"	p	class:ScannerBase	access:protected	signature:(std::string const &curName)
+pushStream	lex.cc	/^void ScannerBase::pushStream(std::istream  &istr)$/;"	f	class:ScannerBase	signature:(std::istream &istr)
+pushStream	lex.cc	/^void ScannerBase::pushStream(std::string const &name)$/;"	f	class:ScannerBase	signature:(std::string const &name)
+pushedInput	Scannerbase.h	/^        Input pushedInput;$/;"	m	struct:ScannerBase::StreamStruct	access:public
+pushedName	Scannerbase.h	/^        std::string pushedName;$/;"	m	struct:ScannerBase::StreamStruct	access:public
+reRead	Scannerbase.h	/^            void reRead(size_t ch);         \/\/ push back 'ch' (if < 0x100)$/;"	p	class:ScannerBase::Input	access:public	signature:(size_t ch)
+reRead	Scannerbase.h	/^            void reRead(std::string const &str, size_t fmIdx);$/;"	p	class:ScannerBase::Input	access:public	signature:(std::string const &str, size_t fmIdx)
+reRead	lex.cc	/^void ScannerBase::Input::reRead(size_t ch)$/;"	f	class:ScannerBase::Input	signature:(size_t ch)
+reRead	lex.cc	/^void ScannerBase::Input::reRead(std::string const &str, size_t fm)$/;"	f	class:ScannerBase::Input	signature:(std::string const &str, size_t fm)
+redo	Scannerbase.h	/^    void            redo(size_t nChars = 0);        \/\/ rescan the last nChar$/;"	p	class:ScannerBase	access:protected	signature:(size_t nChars = 0)
+redo	lex.cc	/^void ScannerBase::redo(size_t nChars)$/;"	f	class:ScannerBase	signature:(size_t nChars)
+reset__	Scannerbase.h	/^    void            reset__();                  \/\/ prepare for new cycle$/;"	p	class:ScannerBase	access:protected	signature:()
+reset__	lex.cc	/^void ScannerBase::reset__()$/;"	f	class:ScannerBase	signature:()
+return__	Scannerbase.h	/^    bool            return__();                 \/\/ 'return' from codeblock$/;"	p	class:ScannerBase	access:protected	signature:()
+return__	Scannerbase.h	/^inline bool ScannerBase::return__()$/;"	f	class:ScannerBase	signature:()
+rhs	Scannerbase.h	/^    ScannerBase &operator=(ScannerBase const &rhs)    = delete;$/;"	m	class:ScannerBase	access:public
+rule	Scannerbase.h	/^        size_t rule;$/;"	m	struct:ScannerBase::FinData	access:public
+s_dfaBase__	Scannerbase.h	/^    static int     const (*s_dfaBase__[])[17];$/;"	m	class:ScannerBase	access:protected
+s_dfaBase__	lex.cc	/^int const (*ScannerBase::s_dfaBase__[])[17] =$/;"	v
+s_dfa__	Scannerbase.h	/^    static int     const s_dfa__[][17];$/;"	m	class:ScannerBase	access:protected
+s_dfa__	lex.cc	/^int const ScannerBase::s_dfa__[][17] =$/;"	m	class:ScannerBase	file:
+s_istreamNr	Scannerbase.h	/^    static size_t   s_istreamNr;            \/\/ file. With istreams it receives$/;"	m	class:ScannerBase	access:private
+s_istreamNr	lex.cc	/^size_t ScannerBase::s_istreamNr = 0;$/;"	m	class:ScannerBase	file:
+s_ranges__	Scannerbase.h	/^    static size_t  const s_ranges__[];$/;"	m	class:ScannerBase	access:protected
+s_ranges__	lex.cc	/^size_t const ScannerBase::s_ranges__[] =$/;"	m	class:ScannerBase	file:
+s_rfc__	Scannerbase.h	/^    static size_t  const s_rfc__[][3];$/;"	m	class:ScannerBase	access:protected
+s_rfc__	lex.cc	/^size_t const ScannerBase::s_rfc__[][3] =$/;"	m	class:ScannerBase	file:
+setDebug	Scannerbase.h	/^    void                setDebug(bool onOff);$/;"	p	class:ScannerBase	access:public	signature:(bool onOff)
+setDebug	lex.cc	/^void ScannerBase::setDebug(bool onOff)$/;"	f	class:ScannerBase	signature:(bool onOff)
+setFilename	Scannerbase.h	/^    void            setFilename(std::string const &name);$/;"	p	class:ScannerBase	access:protected	signature:(std::string const &name)
+setFilename	Scannerbase.h	/^inline void ScannerBase::setFilename(std::string const &name)$/;"	f	class:ScannerBase	signature:(std::string const &name)
+setMatched	Scannerbase.h	/^    void            setMatched(std::string const &text);$/;"	p	class:ScannerBase	access:protected	signature:(std::string const &text)
+setMatched	Scannerbase.h	/^inline void ScannerBase::setMatched(std::string const &text)$/;"	f	class:ScannerBase	signature:(std::string const &text)
+startCondition	Scannerbase.h	/^    StartCondition__  startCondition() const;   \/\/ current start condition$/;"	p	class:ScannerBase	access:protected	signature:() const
+startCondition	Scannerbase.h	/^inline ScannerBase::StartCondition__ ScannerBase::startCondition() const$/;"	f	class:ScannerBase	signature:() const
+state__	Scannerbase.h	/^    size_t          state__() const;            \/\/ current state $/;"	p	class:ScannerBase	access:protected	signature:() const
+state__	Scannerbase.h	/^inline size_t ScannerBase::state__() const$/;"	f	class:ScannerBase	signature:() const
+std::ScannerBase::filename	Scannerbase.h	/^inline std::string const &ScannerBase::filename() const$/;"	f	class:std::ScannerBase	signature:() const
+std::ScannerBase::matched	Scannerbase.h	/^inline std::string const &ScannerBase::matched() const$/;"	f	class:std::ScannerBase	signature:() const
+streamStack	Scannerbase.h	/^    std::vector<StreamStruct> const &streamStack() const;$/;"	p	class:ScannerBase::std	access:protected	signature:() const
+switchIstream	Scannerbase.h	/^    void                switchIstream(std::string const &infilename);$/;"	p	class:ScannerBase	access:public	signature:(std::string const &infilename)
+switchIstream	lex.cc	/^void ScannerBase::switchIstream(std::string const &infilename)$/;"	f	class:ScannerBase	signature:(std::string const &infilename)
+switchOstream	Scannerbase.h	/^    void                switchOstream(std::ostream &out);$/;"	p	class:ScannerBase	access:public	signature:(std::ostream &out)
+switchOstream	Scannerbase.h	/^    void                switchOstream(std::string const &outfilename);$/;"	p	class:ScannerBase	access:public	signature:(std::string const &outfilename)
+switchOstream	lex.cc	/^void ScannerBase::switchOstream(std::ostream &out)$/;"	f	class:ScannerBase	signature:(std::ostream &out)
+switchOstream	lex.cc	/^void ScannerBase::switchOstream(std::string const &outfilename)$/;"	f	class:ScannerBase	signature:(std::string const &outfilename)
+switchStream__	Scannerbase.h	/^    void            switchStream__(std::istream &in, size_t lineNr);   $/;"	p	class:ScannerBase	access:protected	signature:(std::istream &in, size_t lineNr)
+switchStream__	lex.cc	/^void ScannerBase::switchStream__(std::istream &in, size_t lineNr)$/;"	f	class:ScannerBase	signature:(std::istream &in, size_t lineNr)
+switchStreams	Scannerbase.h	/^    void                switchStreams(std::istream &in,$/;"	p	class:ScannerBase	access:public	signature:(std::istream &in, std::ostream &out = std::cout)
+switchStreams	Scannerbase.h	/^    void                switchStreams(std::string const &infilename,$/;"	p	class:ScannerBase	access:public	signature:(std::string const &infilename, std::string const &outfilename)
+switchStreams	lex.cc	/^void ScannerBase::switchStreams(std::istream &in, std::ostream &out)$/;"	f	class:ScannerBase	signature:(std::istream &in, std::ostream &out)
+switchStreams	lex.cc	/^void ScannerBase::switchStreams(std::string const &infilename,$/;"	f	class:ScannerBase	signature:(std::string const &infilename, std::string const &outfilename)
+tailCount	Scannerbase.h	/^        size_t tailCount;$/;"	m	struct:ScannerBase::FinData	access:public
