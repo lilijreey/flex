@@ -21,6 +21,11 @@ flexc++ 的导出class提供了从文件读入和输出到文件的structor
      Scanner s("InFileName", "OutFileName")
      和改变instream 的方法
 
+在生成的Parser.ih 中间中加入
+Parser::Parser(const std::string &inFile) 
+     :d_scanner(inFile, "") // out file is stdout
+{}
+
 flexc++
 bisonc++ 配合
 
